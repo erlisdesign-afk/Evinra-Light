@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evinra - Import Products - Step 1</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #FAFAFE;
+      --bg2: #F5F7FA;
+      --bg3: #EEF1F5;
+      --bg4: #E8EBF0;
+      --primary: #2A9B85;
+      --primary-dim: rgba(42,155,133,.08);
+      --primary-border: rgba(42,155,133,.2);
+      --text: #1A1A2E;
+      --text2: #5A6B6B;
+      --text3: #8A9B9B;
+      --border: rgba(0,0,0,.06);
+      --info-bg: #D4F3E8;
+      --info-text: #0D7860;
+    }
+
+    body {
+      background: rgba(0, 0, 0, 0.5);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .modal {
+      background: var(--bg);
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--primary-dim);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 16px;
+    }
+
+    .modal-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .modal-badge {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text2);
+      margin-left: 8px;
+    }
+
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text3);
+      font-size: 20px;
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover {
+      color: var(--text);
+    }
+
+    .modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* INFO BOX */
+    .info-box {
+      background: var(--info-bg);
+      border: 1px solid rgba(13, 120, 96, 0.2);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .info-icon {
+      width: 20px;
+      height: 20px;
+      background: rgba(13, 120, 96, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--info-text);
+      font-size: 12px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .info-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .info-title {
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--info-text);
+    }
+
+    .info-text {
+      font-size: 11px;
+      color: var(--info-text);
+      line-height: 1.4;
+    }
+
+    .info-text strong {
+      font-weight: 700;
+    }
+
+    /* FILE UPLOAD */
+    .file-upload {
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      padding: 48px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .file-upload:hover {
+      border-color: var(--primary);
+      background: var(--primary-dim);
+    }
+
+    .file-upload-icon {
+      font-size: 32px;
+      color: var(--text3);
+    }
+
+    .file-upload-text {
+      font-size: 13px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .file-upload-meta {
+      font-size: 11px;
+      color: var(--text3);
+    }
+
+    .file-upload-input {
+      display: none;
+    }
+
+    /* TEMPLATE SECTION */
+    .template-label {
+      font-size: 11px;
+      color: var(--text3);
+      text-align: center;
+      margin: 12px 0;
+    }
+
+    .template-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .btn-template {
+      padding: 12px 16px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--text2);
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-template:hover {
+      background: var(--bg4);
+      border-color: var(--primary-border);
+      color: var(--text);
+    }
+
+    /* MODAL FOOTER */
+    .modal-footer {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-cancel {
+      background: var(--bg3);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-cancel:hover {
+      background: var(--bg4);
+      border-color: var(--primary-border);
+    }
+
+    .btn-preview {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-preview:hover {
+      background: #1f8b75;
+      box-shadow: 0 8px 24px rgba(42, 155, 133, 0.35);
+    }
+
+    .btn-preview:disabled {
+      background: var(--text3);
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+
+<div class="modal">
+  <div class="modal-header">
+    <div class="modal-header-left">
+      <div class="modal-icon">
+        <i class="hgi-stroke hgi-download-02"></i>
+      </div>
+      <div style="display: flex; align-items: center;">
+        <div class="modal-title">Import Items</div>
+        <div class="modal-badge">Step 1 of 2 - Upload</div>
+      </div>
+    </div>
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+  </div>
+
+  <div class="modal-body">
+    <!-- INFO BOX -->
+    <div class="info-box">
+      <div class="info-icon">i</div>
+      <div class="info-content">
+        <div class="info-title">Upload a .xlsx or .csv file</div>
+        <div class="info-text">
+          The first row must be a header row. <strong>Required columns: ITEM NAME, CODE, PRICE, MAIN CATEGORY, CATEGORY, SUB CATEGORY</strong>. Optional: ACTIVE (yes/no, default: yes).
+        </div>
+        <div class="info-text" style="margin-top: 8px;">
+          Codes must be unique and not already exist in the catalog.
+        </div>
+      </div>
+    </div>
+
+    <!-- FILE UPLOAD -->
+    <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+      <div class="file-upload-icon">
+        <i class="hgi-stroke hgi-arrow-up-from-bracket"></i>
+      </div>
+      <div class="file-upload-text">Drop your file here, or click to browse</div>
+      <div class="file-upload-meta">.xlsx .csv - max 5 MB</div>
+      <input type="file" id="fileInput" class="file-upload-input" accept=".xlsx,.csv" onchange="handleFileSelect(event)">
+    </div>
+
+    <!-- TEMPLATE SECTION -->
+    <div>
+      <div class="template-label">or start from a template</div>
+      <div class="template-buttons">
+        <button class="btn-template" onclick="downloadCSV()">
+          <i class="hgi-stroke hgi-download-02"></i>
+          Download CSV Template
+        </button>
+        <button class="btn-template" onclick="downloadXLSX()">
+          <i class="hgi-stroke hgi-download-02"></i>
+          Download XLSX Template
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-cancel" onclick="closeModal()">Cancel</button>
+    <button class="btn btn-preview" id="previewBtn" disabled onclick="previewFile()">
+      Preview
+      <i class="hgi-stroke hgi-arrow-right"></i>
+    </button>
+  </div>
+</div>
+
+<script>
+  let selectedFile = null;
+
+  function handleFileSelect(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const validTypes = ['application/vnd.ms-excel', 'text/csv', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+      const validExtensions = ['.xlsx', '.csv'];
+      const fileName = file.name.toLowerCase();
+
+      const hasValidExtension = validExtensions.some(ext => fileName.endsWith(ext));
+      const hasValidType = validTypes.includes(file.type) || fileName.endsWith('.xlsx');
+
+      if (!hasValidExtension) {
+        alert('Please upload a .xlsx or .csv file');
+        return;
+      }
+
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File size must be less than 5 MB');
+        return;
+      }
+
+      selectedFile = file;
+      document.getElementById('previewBtn').disabled = false;
+
+      console.log('File selected:', file.name, file.size);
+    }
+  }
+
+  function downloadCSV() {
+    const csv = `ITEM NAME,CODE,PRICE,MAIN CATEGORY,CATEGORY,SUB CATEGORY,ACTIVE
+Cotton Candy Bag,CCB001,8.99,Concession,Foods,Sweets,yes
+Popcorn Bucket,POP001,12.50,Concession,Foods,Snacks,yes
+Soft Drink,SOD001,5.99,Concession,Beverages,Cold,yes
+Hot Dog Combo,HDC001,14.99,Concession,Foods,Hot Foods,yes
+Nachos,NAC001,10.00,Concession,Foods,Snacks,yes`;
+
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'products_template.csv';
+    a.click();
+  }
+
+  function downloadXLSX() {
+    alert('XLSX template download - would trigger actual file download');
+    // In a real app, this would generate an Excel file
+  }
+
+  function previewFile() {
+    if (!selectedFile) {
+      alert('Please select a file first');
+      return;
+    }
+
+    // Navigate to step 2 (preview page)
+    window.location.href = 'import_products_step2.html';
+  }
+
+  function closeModal() {
+    window.history.back();
+  }
+
+  // Handle drag and drop
+  const fileUpload = document.querySelector('.file-upload');
+
+  fileUpload.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    fileUpload.style.borderColor = '#2A9B85';
+    fileUpload.style.background = 'rgba(42,155,133,.08)';
+  });
+
+  fileUpload.addEventListener('dragleave', (e) => {
+    e.preventDefault();
+    fileUpload.style.borderColor = 'rgba(0,0,0,.06)';
+    fileUpload.style.background = 'transparent';
+  });
+
+  fileUpload.addEventListener('drop', (e) => {
+    e.preventDefault();
+    fileUpload.style.borderColor = 'rgba(0,0,0,.06)';
+    fileUpload.style.background = 'transparent';
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      document.getElementById('fileInput').files = files;
+      handleFileSelect({ target: { files: files } });
+    }
+  });
+</script>
+
+</body>
+</html>
