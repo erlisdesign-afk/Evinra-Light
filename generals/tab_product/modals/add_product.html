@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evinra - Add New Item</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #FAFAFE;
+      --bg2: #F5F7FA;
+      --bg3: #EEF1F5;
+      --bg4: #E8EBF0;
+      --primary: #2A9B85;
+      --primary-dim: rgba(42,155,133,.08);
+      --primary-border: rgba(42,155,133,.2);
+      --text: #1A1A2E;
+      --text2: #5A6B6B;
+      --text3: #8A9B9B;
+      --border: rgba(0,0,0,.06);
+      --border2: rgba(0,0,0,.10);
+    }
+
+    body {
+      background: rgba(0, 0, 0, 0.5);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* MODAL */
+    .modal {
+      background: var(--bg);
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 550px;
+      max-height: 90vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* MODAL HEADER */
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text3);
+      font-size: 20px;
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover {
+      color: var(--text);
+    }
+
+    /* MODAL BODY */
+    .modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* IMAGE UPLOAD SECTION */
+    .image-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .image-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .image-upload {
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      padding: 32px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .image-upload:hover {
+      border-color: var(--primary);
+      background: var(--primary-dim);
+    }
+
+    .image-upload-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--bg3);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text3);
+      font-size: 24px;
+    }
+
+    .image-upload-text {
+      font-size: 12px;
+      color: var(--text2);
+    }
+
+    .image-upload-btn {
+      padding: 8px 16px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text2);
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .image-upload-btn:hover {
+      background: var(--bg4);
+      border-color: var(--primary-border);
+    }
+
+    /* FORM GROUPS */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-label.required::after {
+      content: " *";
+      color: #ef4444;
+    }
+
+    .form-input,
+    .form-select {
+      padding: 10px 12px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--text);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .form-input::placeholder,
+    .form-select {
+      color: var(--text3);
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      border-color: var(--primary);
+      background: var(--bg2);
+      box-shadow: 0 0 0 3px var(--primary-dim);
+    }
+
+    .form-select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235A6B6B' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 32px;
+    }
+
+    /* PRICE INPUT */
+    .price-input-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .price-currency {
+      font-weight: 600;
+      color: var(--text2);
+    }
+
+    .price-input-wrapper .form-input {
+      flex: 1;
+    }
+
+    /* TOGGLE SWITCH */
+    .toggle-section {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .toggle-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .toggle-label {
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .toggle-description {
+      font-size: 11px;
+      color: var(--text3);
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      background: var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      padding: 0;
+    }
+
+    .toggle-switch.active {
+      background: var(--primary);
+    }
+
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: all 0.2s;
+    }
+
+    .toggle-switch.active::after {
+      left: 22px;
+    }
+
+    /* MODAL FOOTER */
+    .modal-footer {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-cancel {
+      background: var(--bg3);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-cancel:hover {
+      background: var(--bg4);
+      border-color: var(--primary-border);
+    }
+
+    .btn-save {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-save:hover {
+      background: #1f8b75;
+      box-shadow: 0 8px 24px rgba(42, 155, 133, 0.35);
+    }
+  </style>
+</head>
+<body>
+
+<div class="modal">
+  <!-- MODAL HEADER -->
+  <div class="modal-header">
+    <div class="modal-title">Add New Item</div>
+    <button class="modal-close">&times;</button>
+  </div>
+
+  <!-- MODAL BODY -->
+  <div class="modal-body">
+    <!-- IMAGE UPLOAD -->
+    <div class="image-section">
+      <label class="image-label">Product Image</label>
+      <div class="image-upload" onclick="document.getElementById('imageInput').click()">
+        <div class="image-upload-icon">
+          <i class="hgi-stroke hgi-image-01"></i>
+        </div>
+        <div class="image-upload-text">Click the box or drag & drop an image.<br>PNG, JPG, WEBP = displayed in the product table.</div>
+        <button type="button" class="image-upload-btn">Upload</button>
+      </div>
+      <input type="file" id="imageInput" style="display: none;" accept="image/*">
+    </div>
+
+    <!-- ITEM NAME & CODE -->
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label required">Item Name</label>
+        <input type="text" class="form-input" placeholder="e.g. Cotton Candy Bag">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Item Code</label>
+        <input type="text" class="form-input" placeholder="CCC001">
+      </div>
+    </div>
+
+    <!-- MAIN CATEGORY & CATEGORY -->
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label required">Main Category</label>
+        <select class="form-select">
+          <option>Select...</option>
+          <option>Concession</option>
+          <option>Novelties</option>
+          <option>Services</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Category</label>
+        <select class="form-select">
+          <option>Select...</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- SUB CATEGORY & PRICE -->
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Sub Category</label>
+        <select class="form-select">
+          <option>Select...</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label required">Price ($)</label>
+        <div class="price-input-wrapper">
+          <span class="price-currency">$</span>
+          <input type="number" class="form-input" placeholder="12.00" step="0.01" min="0">
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIVE TOGGLE -->
+    <div class="toggle-section">
+      <div class="toggle-info">
+        <div class="toggle-label">Active</div>
+        <div class="toggle-description">Visible in catalog and events</div>
+      </div>
+      <button class="toggle-switch active" onclick="this.classList.toggle('active')"></button>
+    </div>
+  </div>
+
+  <!-- MODAL FOOTER -->
+  <div class="modal-footer">
+    <button class="btn btn-cancel" onclick="closeModal()">Cancel</button>
+    <button class="btn btn-save" onclick="saveItem()">
+      <i class="hgi-stroke hgi-check"></i>
+      Save Item
+    </button>
+  </div>
+</div>
+
+<script>
+  function closeModal() {
+    window.history.back();
+  }
+
+  function saveItem() {
+    const itemName = document.querySelector('input[placeholder="e.g. Cotton Candy Bag"]').value;
+    const itemCode = document.querySelector('input[placeholder="CCC001"]').value;
+    const mainCategory = document.querySelectorAll('select')[0].value;
+    const category = document.querySelectorAll('select')[1].value;
+    const subCategory = document.querySelectorAll('select')[2].value;
+    const price = document.querySelector('input[type="number"]').value;
+    const isActive = document.querySelector('.toggle-switch').classList.contains('active');
+
+    if (!itemName || !mainCategory || !price) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    console.log('Saving item:', {
+      itemName,
+      itemCode,
+      mainCategory,
+      category,
+      subCategory,
+      price,
+      isActive
+    });
+
+    alert('Item saved successfully!');
+  }
+
+  // Handle drag and drop for image
+  const imageUpload = document.querySelector('.image-upload');
+
+  imageUpload.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    imageUpload.style.borderColor = '#2A9B85';
+    imageUpload.style.background = 'rgba(42,155,133,.08)';
+  });
+
+  imageUpload.addEventListener('dragleave', (e) => {
+    e.preventDefault();
+    imageUpload.style.borderColor = 'rgba(0,0,0,.06)';
+    imageUpload.style.background = 'transparent';
+  });
+
+  imageUpload.addEventListener('drop', (e) => {
+    e.preventDefault();
+    imageUpload.style.borderColor = 'rgba(0,0,0,.06)';
+    imageUpload.style.background = 'transparent';
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      document.getElementById('imageInput').files = files;
+    }
+  });
