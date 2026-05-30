@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evinra - Add Gateway - Step 2</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #FAFAFE;
+      --bg2: #F5F7FA;
+      --bg3: #EEF1F5;
+      --bg4: #E8EBF0;
+      --primary: #2A9B85;
+      --primary-dim: rgba(42,155,133,.08);
+      --primary-border: rgba(42,155,133,.2);
+      --text: #1A1A2E;
+      --text2: #5A6B6B;
+      --text3: #8A9B9B;
+      --border: rgba(0,0,0,.06);
+    }
+
+    body {
+      background: rgba(0, 0, 0, 0.5);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .modal {
+      background: var(--bg);
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--primary-dim);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 16px;
+    }
+
+    .modal-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text3);
+      font-size: 20px;
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover {
+      color: var(--text);
+    }
+
+    /* STEPS INDICATOR */
+    .steps-indicator {
+      background: var(--bg2);
+      padding: 12px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text3);
+      white-space: nowrap;
+    }
+
+    .step-number {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .step.active .step-number {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .step.active {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .step-separator {
+      color: var(--text3);
+      font-weight: 600;
+      margin: 0 4px;
+    }
+
+    .modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .step-description {
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.4;
+    }
+
+    .location-item {
+      background: var(--bg2);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .location-item:hover {
+      border-color: var(--primary-border);
+      background: var(--bg3);
+    }
+
+    .location-item.selected {
+      border-color: var(--primary);
+      background: var(--primary-dim);
+    }
+
+    .location-radio {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .location-item.selected .location-radio {
+      border-color: var(--primary);
+      background: var(--primary);
+    }
+
+    .location-radio::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0;
+    }
+
+    .location-item.selected .location-radio::after {
+      opacity: 1;
+    }
+
+    .location-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--border);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text3);
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .location-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .location-name {
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .location-meta {
+      font-size: 11px;
+      color: var(--text3);
+    }
+
+    /* MODAL FOOTER */
+    .modal-footer {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .footer-left {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-back {
+      background: var(--bg3);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-back:hover {
+      background: var(--bg4);
+      border-color: var(--primary-border);
+    }
+
+    .btn-cancel {
+      background: var(--bg3);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-cancel:hover {
+      background: var(--bg4);
+      border-color: var(--primary-border);
+    }
+
+    .btn-next {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-next:hover {
+      background: #1f8b75;
+      box-shadow: 0 8px 24px rgba(42, 155, 133, 0.35);
+    }
+  </style>
+</head>
+<body>
+
+<div class="modal">
+  <div class="modal-header">
+    <div class="modal-header-left">
+      <div class="modal-icon">
+        <i class="hgi-stroke hgi-wallet-03"></i>
+      </div>
+      <div class="modal-title">Add Gateway</div>
+    </div>
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+  </div>
+
+  <div class="steps-indicator">
+    <div class="step">
+      <div class="step-number">1</div>
+      <span>General Info</span>
+    </div>
+    <div class="step-separator">›</div>
+    <div class="step active">
+      <div class="step-number">2</div>
+      <span>Locations</span>
+    </div>
+    <div class="step-separator">›</div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <span>Usage</span>
+    </div>
+  </div>
+
+  <div class="modal-body">
+    <div class="step-description">
+      Locations are provided by this gateway account – pick the one to use by default.
+    </div>
+
+    <div class="location-item selected" onclick="selectLocation(this)">
+      <div class="location-radio"></div>
+      <div class="location-icon">
+        <i class="hgi-stroke hgi-map-pin-02"></i>
+      </div>
+      <div class="location-info">
+        <div class="location-name">Main Box Office</div>
+        <div class="location-meta">Las Vegas, NV · loc-1</div>
+      </div>
+    </div>
+
+    <div class="location-item" onclick="selectLocation(this)">
+      <div class="location-radio"></div>
+      <div class="location-icon">
+        <i class="hgi-stroke hgi-map-pin-02"></i>
+      </div>
+      <div class="location-info">
+        <div class="location-name">Downtown Theater</div>
+        <div class="location-meta">Las Vegas, NV · loc-2</div>
+      </div>
+    </div>
+
+    <div class="location-item" onclick="selectLocation(this)">
+      <div class="location-radio"></div>
+      <div class="location-icon">
+        <i class="hgi-stroke hgi-map-pin-02"></i>
+      </div>
+      <div class="location-info">
+        <div class="location-name">Stadium Gate A</div>
+        <div class="location-meta">Henderson, NV · loc-3</div>
+      </div>
+    </div>
+
+    <div class="location-item" onclick="selectLocation(this)">
+      <div class="location-radio"></div>
+      <div class="location-icon">
+        <i class="hgi-stroke hgi-map-pin-02"></i>
+      </div>
+      <div class="location-info">
+        <div class="location-name">Fairgrounds Pavilion</div>
+        <div class="location-meta">Reno, NV · loc-4</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <div class="footer-left">
+      <button class="btn btn-back" onclick="previousStep()">
+        <i class="hgi-stroke hgi-arrow-left"></i>
+        Back
+      </button>
+    </div>
+    <div class="footer-right">
+      <button class="btn btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-next" onclick="nextStep()">
+        Next: Usage
+        <i class="hgi-stroke hgi-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function selectLocation(element) {
+    const allLocations = document.querySelectorAll('.location-item');
+    allLocations.forEach(loc => loc.classList.remove('selected'));
+    element.classList.add('selected');
+  }
+
+  function closeModal() {
+    window.history.back();
+  }
+
+  function previousStep() {
+    window.location.href = 'add_gateway_step1.html';
+  }
+
+  function nextStep() {
+    window.location.href = 'add_gateway_step3.html';
+  }
+</script>
+
+</body>
+</html>
