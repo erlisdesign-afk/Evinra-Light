@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evinra - Rides & Experiences</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hugeicons/uicons-stroke-rounded/index.css">
+
+  <style>
+    :root {
+      /* LIGHT MODE PALETTE */
+      --primary: #2A9B85;
+      --primary-dim: rgba(42, 155, 133, 0.1);
+      --primary-border: #1e7d6b;
+      --bg: #ffffff;
+      --bg2: #f9f9f9;
+      --bg3: #f3f3f3;
+      --bg4: #efefef;
+      --text: #1a1a1a;
+      --text2: #666666;
+      --text3: #999999;
+      --border: #e0e0e0;
+      --status-active: #16a766;
+      --warning: #ffa500;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--text);
+      width: 1920px;
+    }
+
+    /* CONTAINER & LAYOUT */
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 200px;
+      background: var(--bg2);
+      border-right: 1px solid var(--border);
+      padding: 20px 0;
+      overflow-y: auto;
+      position: fixed;
+      height: 100vh;
+      left: 0;
+      top: 0;
+    }
+
+    .sb-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 16px 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .sb-logo {
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      color: white;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .sb-title {
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      color: var(--text);
+    }
+
+    .sb-section {
+      margin-bottom: 20px;
+    }
+
+    .sb-group-title {
+      padding: 0 16px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text3);
+      margin-bottom: 8px;
+    }
+
+    .sb-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      color: var(--text2);
+      text-decoration: none;
+      font-size: 12px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .sb-item:hover {
+      background: var(--bg3);
+      color: var(--text);
+    }
+
+    .sb-item.active {
+      background: var(--primary-dim);
+      color: var(--primary);
+      border-left: 2px solid var(--primary);
+      padding-left: 14px;
+    }
+
+    .sb-item i {
+      font-size: 16px;
+    }
+
+    /* MAIN CONTENT */
+    .main {
+      margin-left: 200px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      height: 60px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+
+    .topbar-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .topbar-title {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text);
+    }
+
+    .topbar-breadcrumb {
+      font-size: 11px;
+      color: var(--text3);
+    }
+
+    .topbar-breadcrumb span {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .topbar-user {
+      text-align: right;
+    }
+
+    .topbar-user-name {
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    .topbar-user-role {
+      font-size: 11px;
+      color: var(--text3);
+    }
+
+    .topbar-avatar {
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      color: white;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    /* CONTENT AREA */
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    /* TABS */
+    .tabs-container {
+      display: flex;
+      gap: 0;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tab {
+      padding: 12px 16px;
+      border: none;
+      background: transparent;
+      color: var(--text2);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .tab:hover {
+      color: var(--text);
+    }
+
+    .tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    /* BANNER */
+    .banner {
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    .banner-catalog {
+      background: #fff3e0;
+      border: 1px solid #ffe0b2;
+    }
+
+    .banner-catalog i {
+      color: var(--warning);
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .banner-manage {
+      background: #e8f4f8;
+      border: 1px solid #b3e5fc;
+    }
+
+    .banner-manage i {
+      color: #0288d1;
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .banner-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .banner-text {
+      flex: 1;
+    }
+
+    .badge-module {
+      background: var(--warning);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    /* FILTER BAR */
+    .filter-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      align-items: center;
+    }
+
+    .search-box {
+      flex: 1;
+      max-width: 300px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 12px 10px 36px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--text);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .search-box input::placeholder {
+      color: var(--text3);
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+      background: var(--bg);
+      box-shadow: 0 0 0 3px var(--primary-dim);
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text3);
+      font-size: 14px;
+    }
+
+    .filter-select {
+      padding: 10px 12px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--text);
+      outline: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-select:hover {
+      border-color: var(--primary);
+    }
+
+    .filter-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-dim);
+    }
+
+    .btn-add {
+      margin-left: auto;
+      padding: 10px 16px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-add:hover {
+      background: #1f8b75;
+      box-shadow: 0 8px 24px rgba(42, 155, 133, 0.35);
+    }
+
+    /* TABLE */
+    .table-wrapper {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    thead {
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 700;
+      color: var(--text2);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    tbody tr:hover {
+      background: var(--bg2);
+    }
+
+    td {
+      padding: 12px 16px;
+      color: var(--text);
+    }
+
+    .cell-code {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* BADGES */
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-catalog {
+      background: rgba(255, 165, 0, 0.15);
+      color: var(--warning);
+    }
+
+    .badge-ride {
+      background: rgba(42, 155, 133, 0.15);
+      color: var(--primary);
+    }
+
+    .badge-experience {
+      background: rgba(100, 100, 200, 0.15);
+      color: #6464c8;
+    }
+
+    /* CREDIT BADGE */
+    .credit-badge {
+      background: var(--primary-dim);
+      color: var(--primary);
+      padding: 6px 10px;
+      border-radius: 16px;
+      font-size: 11px;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    /* TOGGLE SWITCH */
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      background: var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      padding: 0;
+    }
+
+    .toggle-switch.active {
+      background: var(--status-active);
+    }
+
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: all 0.2s;
+    }
+
+    .toggle-switch.active::after {
+      left: 22px;
+    }
+
+    /* ACTION BUTTON */
+    .btn-action {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text2);
+      transition: all 0.2s;
+    }
+
+    .btn-action:hover {
+      background: var(--border);
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sb-header">
+      <div class="sb-logo">e</div>
+      <div class="sb-title">EVINRA</div>
+    </div>
+
+    <div class="sb-section">
+      <a class="sb-item" href="#">
+        <i class="hgi-stroke hgi-layout-grid-03"></i>
+        <span>Dashboard</span>
+      </a>
+      <a class="sb-item" href="#">
+        <i class="hgi-stroke hgi-calendar"></i>
+        <span>Events</span>
+      </a>
+      <a class="sb-item" href="#">
+        <i class="hgi-stroke hgi-shopping-cart-01"></i>
+        <span>Orders</span>
+      </a>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-group-title">Layout Management</div>
+      <a class="sb-item" href="#">
+        <i class="hgi-stroke hgi-layout-left"></i>
+        <span>Layout Management</span>
+      </a>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-group-title">Financial Reports</div>
+      <a class="sb-item" href="#">
+        <i class="hgi-stroke hgi-chart-bar-01"></i>
+        <span>Sales Overview</span>
+      </a>
+      <a class="sb-item" href="#">
+        <i class="hgi-stroke hgi-chart-line-01"></i>
+        <span>Sales Report</span>
+      </a>
+      <a class="sb-item" href="#">
+        <i class="hgi-stroke hgi-fingerprint-01"></i>
+        <span>Attendance / Scan</span>
+      </a>
+      <a class="sb-item" href="#">
+        <i class="hgi-stroke hgi-file-02"></i>
+        <span>Vendor Settlement</span>
+      </a>
+      <a class="sb-item" href="#">
+        <i class="hgi-stroke hgi-arrow-left-right"></i>
+        <span>Refund Report</span>
+      </a>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-group-title">Settings</div>
+      <a class="sb-item active" href="#">
+        <i class="hgi-stroke hgi-settings-01"></i>
+        <span>Generals</span>
+      </a>
+      <a class="sb-item" href="#">
+        <i class="hgi-stroke hgi-user"></i>
+        <span>Users</span>
+      </a>
+      <a class="sb-item" href="#">
+        <i class="hgi-stroke hgi-compass-01"></i>
+        <span>Experience Ticketing</span>
+      </a>
+      <a class="sb-item" href="#">
+        <i class="hgi-stroke hgi-coins-01"></i>
+        <span>Fee and Taxes</span>
+      </a>
+      <a class="sb-item" href="#">
+        <i class="hgi-stroke hgi-ticket-02"></i>
+        <span>Promo Codes</span>
+      </a>
+      <a class="sb-item" href="#">
+        <i class="hgi-stroke hgi-star"></i>
+        <span>Shows</span>
+      </a>
+      <a class="sb-item" href="#">
+        <i class="hgi-stroke hgi-building-02"></i>
+        <span>Others Vendors</span>
+      </a>
+      <a class="sb-item" href="#">
+        <i class="hgi-stroke hgi-link-01"></i>
+        <span>Vendor Sales Links</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-title">General</div>
+        <div class="topbar-breadcrumb">Events / Settings / <span>General</span> / Rides & Experiences</div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-user">
+          <div class="topbar-user-name">Yoaids P.</div>
+          <div class="topbar-user-role">Super Admin</div>
+        </div>
+        <div class="topbar-avatar">YP</div>
+      </div>
+    </div>
+
+    <!-- PAGE CONTENT -->
+    <div class="content">
+
+<!-- TABS -->
+<div class="tabs-container">
+  <button class="tab" href="#">Productions</button>
+  <button class="tab" href="#">Products</button>
+  <button class="tab active" href="#">Rides & Exp.</button>
+  <button class="tab" href="#">Devices</button>
+</div>
+
+<!-- BANNERS -->
+<div class="banner banner-catalog">
+  <div class="banner-content">
+    <i class="hgi-stroke hgi-alert-circle"></i>
+    <div class="banner-text">Catalog module active. Rides & Experiences are inherited from Evinra Event Management > Catalog. Credit assignments and per-event overrides are managed inside each Event's Add-Ons tab.</div>
+    <span class="badge-module">Module Active</span>
+  </div>
+</div>
+
+<div class="banner banner-manage">
+  <i class="hgi-stroke hgi-info-circle"></i>
+  <span>Managed in Event Management Module. Rides & Experiences are read-only here — manage them from your EM platform.</span>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <select class="filter-select">
+    <option>All Types</option>
+    <option>Ride</option>
+    <option>Experience</option>
+  </select>
+  <div class="search-box">
+    <i class="hgi-stroke hgi-search-01"></i>
+    <input type="text" placeholder="Search rides & experiences...">
+  </div>
+  <button class="btn-add">
+    <i class="hgi-stroke hgi-plus"></i>
+    Add Ride / Experience
+  </button>
+</div>
+
+<!-- TABLE -->
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>CODE</th>
+        <th>NAME</th>
+        <th>TYPE</th>
+        <th>CREDITS</th>
+        <th>ACTIVE</th>
+        <th style="width: 40px;"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="cell-code">RD001</td>
+        <td>
+          <strong>Roller Coaster</strong>
+          <br>
+          <span class="badge badge-catalog">Catalog</span>
+        </td>
+        <td><span class="badge badge-ride">Ride</span></td>
+        <td><span class="credit-badge">1 cr / $3.00</span></td>
+        <td><button class="toggle-switch active"></button></td>
+        <td><button class="btn-action"><i class="hgi-stroke hgi-eye"></i></button></td>
+      </tr>
+      <tr>
+        <td class="cell-code">RD002</td>
+        <td>
+          <strong>Ferris Wheel</strong>
+          <br>
+          <span class="badge badge-catalog">Catalog</span>
+        </td>
+        <td><span class="badge badge-ride">Ride</span></td>
+        <td><span class="credit-badge">2 cr / $2.00</span></td>
+        <td><button class="toggle-switch active"></button></td>
+        <td><button class="btn-action"><i class="hgi-stroke hgi-eye"></i></button></td>
+      </tr>
+      <tr>
+        <td class="cell-code">RD003</td>
+        <td>
+          <strong>Carousel</strong>
+          <br>
+          <span class="badge badge-catalog">Catalog</span>
+        </td>
+        <td><span class="badge badge-ride">Ride</span></td>
+        <td><span class="credit-badge">1 cr / $3.00</span></td>
+        <td><button class="toggle-switch active"></button></td>
+        <td><button class="btn-action"><i class="hgi-stroke hgi-eye"></i></button></td>
+      </tr>
+      <tr>
+        <td class="cell-code">RD004</td>
+        <td>
+          <strong>VIP Backstage Pass</strong>
+          <br>
+          <span class="badge badge-catalog">Catalog</span>
+        </td>
+        <td><span class="badge badge-experience">Experience</span></td>
+        <td><span class="credit-badge">10 cr / $10.00</span></td>
+        <td><button class="toggle-switch active"></button></td>
+        <td><button class="btn-action"><i class="hgi-stroke hgi-eye"></i></button></td>
+      </tr>
+      <tr>
+        <td class="cell-code">RD005</td>
+        <td>
+          <strong>Cast Photo Package</strong>
+          <br>
+          <span class="badge badge-catalog">Catalog</span>
+        </td>
+        <td><span class="badge badge-experience">Experience</span></td>
+        <td><span class="credit-badge">5 cr / $5.00</span></td>
+        <td><button class="toggle-switch"></button></td>
+        <td><button class="btn-action"><i class="hgi-stroke hgi-eye"></i></button></td>
+      </tr>
+      <tr>
+        <td class="cell-code">RD006</td>
+        <td>
+          <strong>Meet & Greet</strong>
+          <br>
+          <span class="badge badge-catalog">Catalog</span>
+        </td>
+        <td><span class="badge badge-experience">Experience</span></td>
+        <td><span class="credit-badge">8 cr / $8.00</span></td>
+        <td><button class="toggle-switch active"></button></td>
+        <td><button class="btn-action"><i class="hgi-stroke hgi-eye"></i></button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
