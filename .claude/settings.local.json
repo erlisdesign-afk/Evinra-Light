@@ -28,7 +28,10 @@
       "Bash(mv -v evinra_events.html evinra_event_sales_report.html events/)",
       "Bash(mv -v evinra_products*.html orders/)",
       "Bash(mv -v evinra_sales_overview.html sales-overview/)",
-      "Bash(xargs -0 sh -c 'for f; do *)"
+      "Bash(xargs -0 sh -c 'for f; do *)",
+      "Bash(sed -i 's/#0B0F0E/#FAFAFE/g' _logo-preview.html)",
+      "Bash(sed -i 's|assets/evinra-logo-dark.png|evinra-logo-light.png|g' _logo-preview.html)",
+      "Bash(grep -r \"dark-mode\\\\|#0B0F0E\\\\|#111816\\\\|evinra-logo-dark\" --include=\"*.html\" .)"
     ]
   }
 }
