@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Evinra — General Settings</title>
+  <title>Evinra — General</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
@@ -54,32 +54,38 @@
     .sb-logo-img.dark { display: none; }
     .sb-logo-img.light { display: block; }
 
-    .section-title { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-    .section-subtitle { font-size: 13px; color: var(--text2); margin-bottom: 20px; }
-
     .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 20px; flex-wrap: wrap; }
-    .tab-btn { padding: 14px 18px; background: transparent; border: none; color: var(--text2); font-family: 'Inter', sans-serif; font-weight: 600; font-size: 12px; cursor: pointer; transition: all 0.2s; border-bottom: 3px solid transparent; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
+    .tab-btn { padding: 14px 16px; background: transparent; border: none; color: var(--text2); font-family: 'Inter', sans-serif; font-weight: 500; font-size: 11px; cursor: pointer; transition: all 0.2s; border-bottom: 3px solid transparent; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; }
     .tab-btn:hover { color: var(--text); }
     .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
-    .tab-content { display: none; flex: 1; min-height: 0; }
-    .tab-content.active { display: flex; flex-direction: column; }
+
+    .banner { background: rgba(167,139,250,.1); border: 1px solid rgba(167,139,250,.3); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; margin-bottom: 20px; flex-shrink: 0; }
+    .banner svg { width: 16px; height: 16px; flex-shrink: 0; stroke: #a855f7; }
+    .banner p { font-size: 11px; font-family: 'Inter', sans-serif; color: var(--text2); margin: 0; flex: 1; }
+    .banner strong { font-weight: 700; color: var(--text); }
+
+    .filter-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; flex-shrink: 0; }
+    .search-box { flex: 1; min-width: 220px; position: relative; display: flex; align-items: center; }
+    .search-box input { width: 100%; padding: 8px 12px 8px 32px; background: var(--bg3); border: 1px solid var(--border); border-radius: 7px; color: var(--text); font-family: 'Inter', sans-serif; font-size: 11px; outline: none; }
+    .search-box input::placeholder { color: var(--text3); }
+    .search-icon { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: var(--text3); pointer-events: none; width: 13px; height: 13px; }
+    .filter-dropdown { position: relative; }
+    .filter-dropdown select { appearance: none; background: var(--bg3); border: 1px solid var(--border); border-radius: 7px; color: var(--text2); font-size: 11px; font-family: 'Inter', sans-serif; padding: 8px 28px 8px 12px; cursor: pointer; outline: none; }
+    .filter-dropdown::after { content: ''; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); pointer-events: none; width: 11px; height: 11px; background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="none" stroke="%23999999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M6 9l6 6 6-6"/></svg>'); background-size: contain; }
+    .btn-add { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: var(--primary); border: none; color: white; border-radius: 6px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 11px; cursor: pointer; margin-left: auto; text-transform: uppercase; }
 
     .table-wrapper { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: auto; flex: 1; }
     table { width: 100%; border-collapse: collapse; font-family: 'Inter', sans-serif; }
     th { padding: 12px 14px; text-align: left; font-weight: 600; border-bottom: 1px solid var(--border); color: var(--text2); font-size: 10px; text-transform: uppercase; background: var(--bg3); }
     td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 12px; }
     tbody tr:hover { background: var(--bg4); }
-    .badge { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 10px; font-weight: 600; }
-    .badge-active { background: rgba(34, 197, 94, 0.1); color: #22C55E; }
-    .icon-btn { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--border); color: var(--text3); border-radius: 4px; cursor: pointer; }
+    .badge { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; background: rgba(34, 197, 94, 0.1); color: #22C55E; }
+    .icon-btn { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--border); color: var(--text3); border-radius: 4px; cursor: pointer; font-size: 14px; }
     .icon-btn:hover { color: var(--primary); border-color: var(--primary); }
 
-    .form-group { margin-bottom: 20px; }
-    .form-group label { display: block; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 12px; margin-bottom: 8px; color: var(--text); }
-    .form-group input { width: 100%; max-width: 400px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text); background: var(--bg2); }
-    .form-group input:focus { outline: none; border-color: var(--primary); background: var(--bg); }
-    .btn-save { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 6px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 12px; cursor: pointer; }
-    .btn-save:hover { opacity: 0.9; }
+    .pagination { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text3); }
+    .pagination button { width: 32px; height: 32px; border: 1px solid var(--border); background: var(--bg2); border-radius: 4px; cursor: pointer; font-size: 12px; color: var(--text2); }
+    .pagination button.active { background: var(--primary); color: white; border-color: var(--primary); }
   </style>
 </head>
 <body>
@@ -138,8 +144,8 @@
   <div class="main">
     <div class="topbar">
       <div class="topbar-left">
-        <div class="topbar-title">General Settings</div>
-        <div class="topbar-breadcrumb">Evinra <span style="color: var(--primary);">/</span> Settings <span style="color: var(--primary);">/</span> General</div>
+        <div class="topbar-title">General</div>
+        <div class="topbar-breadcrumb">Evinra <span style="color: var(--primary);">/</span> Settings <span style="color: var(--primary);">/</span> General / Production</div>
       </div>
       <div class="topbar-right">
         <div class="topbar-btn"><i class="hgi-stroke hgi-notification-01"></i></div>
@@ -149,81 +155,163 @@
     </div>
 
     <div class="content">
-      <div class="section-title">Configuration</div>
-      <div class="section-subtitle">Manage your general settings</div>
-
       <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('productions')">
-          <i class="hgi-stroke hgi-star"></i> Productions
-        </button>
-        <button class="tab-btn" onclick="switchTab('settings')">
-          <i class="hgi-stroke hgi-settings-01"></i> Settings
-        </button>
+        <button class="tab-btn active"><i class="hgi-stroke hgi-star"></i> Production</button>
+        <button class="tab-btn"><i class="hgi-stroke hgi-box-01"></i> Products</button>
+        <button class="tab-btn"><i class="hgi-stroke hgi-star-01"></i> Roles & Experience</button>
+        <button class="tab-btn"><i class="hgi-stroke hgi-grid-01"></i> Products Categories</button>
+        <button class="tab-btn"><i class="hgi-stroke hgi-link-01"></i> Gateway</button>
+        <button class="tab-btn"><i class="hgi-stroke hgi-smartphone-02"></i> Devices</button>
+        <button class="tab-btn"><i class="hgi-stroke hgi-map-01"></i> Devices by Locations</button>
       </div>
 
-      <!-- Productions Tab -->
-      <div id="productions" class="tab-content active">
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Status</th>
-                <th>Events</th>
-                <th style="width: 80px;">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Evinra Circus 2024</strong></td>
-                <td>Circus Event</td>
-                <td><span class="badge badge-active">Active</span></td>
-                <td>12 events</td>
-                <td><button class="icon-btn"><i class="hgi-stroke hgi-edit-02"></i></button></td>
-              </tr>
-              <tr>
-                <td><strong>Summer Concert Series</strong></td>
-                <td>Music Event</td>
-                <td><span class="badge badge-active">Active</span></td>
-                <td>8 events</td>
-                <td><button class="icon-btn"><i class="hgi-stroke hgi-edit-02"></i></button></td>
-              </tr>
-              <tr>
-                <td><strong>Holiday Festival</strong></td>
-                <td>Festival</td>
-                <td><span class="badge badge-active">Active</span></td>
-                <td>5 events</td>
-                <td><button class="icon-btn"><i class="hgi-stroke hgi-edit-02"></i></button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="banner">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <p><strong>Managed in Event Management Module</strong><br/>Productions are read-only here — manage them from your EM platform.</p>
       </div>
 
-      <!-- Settings Tab -->
-      <div id="settings" class="tab-content">
-        <div class="form-group">
-          <label>Organization Name</label>
-          <input type="text" placeholder="Enter organization name" value="Evinra Ticketing">
+      <div class="filter-bar">
+        <div class="search-box">
+          <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" placeholder="Search for name or phone">
         </div>
-
-        <div class="form-group">
-          <label>Default Currency</label>
-          <input type="text" placeholder="USD" value="USD">
+        <div class="filter-dropdown">
+          <select>
+            <option>Status</option>
+            <option>Active</option>
+            <option>Inactive</option>
+          </select>
         </div>
+        <button class="btn-add"><i class="hgi-stroke hgi-plus"></i> Add Production</button>
+      </div>
 
-        <div class="form-group">
-          <label>Support Email</label>
-          <input type="email" placeholder="support@evinra.com" value="support@example.com">
-        </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Contact</th>
+              <th>Description</th>
+              <th>Show</th>
+              <th>Source</th>
+              <th>Status</th>
+              <th style="width: 80px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span style="color: var(--primary); font-weight: 600;">PRD-001</span></td>
+              <td><strong>Evinra Faris Event</strong></td>
+              <td>Devon Lane</td>
+              <td>Main touring production with full experience lineup</td>
+              <td>2</td>
+              <td>EM</td>
+              <td><span class="badge">Active</span></td>
+              <td><button class="icon-btn"><i class="hgi-stroke hgi-edit-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><span style="color: var(--primary); font-weight: 600;">PRD-001</span></td>
+              <td><strong>Summer Festival 2026</strong></td>
+              <td>Brooklyn Simmons</td>
+              <td>Outdoor summer festival series — multi-stage</td>
+              <td>4</td>
+              <td>EM</td>
+              <td><span class="badge">Active</span></td>
+              <td><button class="icon-btn"><i class="hgi-stroke hgi-edit-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><span style="color: var(--primary); font-weight: 600;">PRD-001</span></td>
+              <td><strong>Circus Spectacular</strong></td>
+              <td>Wade Warren</td>
+              <td>Main touring production with full experience lineup</td>
+              <td>3</td>
+              <td>Local</td>
+              <td><span class="badge">Active</span></td>
+              <td><button class="icon-btn"><i class="hgi-stroke hgi-edit-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><span style="color: var(--primary); font-weight: 600;">PRD-001</span></td>
+              <td><strong>Winter Holiday Show</strong></td>
+              <td>Guy Hawkins</td>
+              <td>Outdoor summer festival series — multi-stage</td>
+              <td>5</td>
+              <td>Local</td>
+              <td><span class="badge">Active</span></td>
+              <td><button class="icon-btn"><i class="hgi-stroke hgi-edit-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><span style="color: var(--primary); font-weight: 600;">PRD-001</span></td>
+              <td><strong>Summer Festival 2026</strong></td>
+              <td>Eleanor Pena</td>
+              <td>Main touring production with full experience lineup</td>
+              <td>2</td>
+              <td>Local</td>
+              <td><span class="badge">Active</span></td>
+              <td><button class="icon-btn"><i class="hgi-stroke hgi-edit-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><span style="color: var(--primary); font-weight: 600;">PRD-001</span></td>
+              <td><strong>Winter Holiday Show</strong></td>
+              <td>Jacob Jones</td>
+              <td>Main touring production with full experience lineup</td>
+              <td>0</td>
+              <td>Local</td>
+              <td><span class="badge">Active</span></td>
+              <td><button class="icon-btn"><i class="hgi-stroke hgi-edit-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><span style="color: var(--primary); font-weight: 600;">PRD-001</span></td>
+              <td><strong>Winter Holiday Show</strong></td>
+              <td>Annette Black</td>
+              <td>Outdoor summer festival series — multi-stage</td>
+              <td>1</td>
+              <td>Local</td>
+              <td><span class="badge">Active</span></td>
+              <td><button class="icon-btn"><i class="hgi-stroke hgi-edit-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><span style="color: var(--primary); font-weight: 600;">PRD-001</span></td>
+              <td><strong>Summer Festival 2026</strong></td>
+              <td>Cameron Williamson</td>
+              <td>Seasonal holiday entertainment and light shows</td>
+              <td>3</td>
+              <td>Local</td>
+              <td><span class="badge">Active</span></td>
+              <td><button class="icon-btn"><i class="hgi-stroke hgi-edit-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><span style="color: var(--primary); font-weight: 600;">PRD-001</span></td>
+              <td><strong>Circus Spectacular</strong></td>
+              <td>Marvin McKinney</td>
+              <td>Main touring production with full experience lineup</td>
+              <td>0</td>
+              <td>Local</td>
+              <td><span class="badge">Active</span></td>
+              <td><button class="icon-btn"><i class="hgi-stroke hgi-edit-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><span style="color: var(--primary); font-weight: 600;">PRD-001</span></td>
+              <td><strong>Summer Festival 2026</strong></td>
+              <td>Theresa Webb</td>
+              <td>Outdoor summer festival series — multi-stage</td>
+              <td>5</td>
+              <td>Local</td>
+              <td><span class="badge">Active</span></td>
+              <td><button class="icon-btn"><i class="hgi-stroke hgi-edit-02"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-        <div class="form-group">
-          <label>Support Phone</label>
-          <input type="tel" placeholder="+1 (555) 000-0000" value="">
-        </div>
-
-        <button class="btn-save"><i class="hgi-stroke hgi-check-circle-01"></i> Save Changes</button>
+      <div class="pagination">
+        <span>Showing 1-10 of 1000</span>
+        <button><i class="hgi-stroke hgi-chevron-left"></i></button>
+        <button class="active">1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>100</button>
+        <button><i class="hgi-stroke hgi-chevron-right"></i></button>
       </div>
     </div>
 
@@ -232,19 +320,6 @@
     </div>
   </div>
 </div>
-
-<script>
-function switchTab(tabName) {
-  const tabs = document.querySelectorAll('.tab-content');
-  const buttons = document.querySelectorAll('.tab-btn');
-
-  tabs.forEach(tab => tab.classList.remove('active'));
-  buttons.forEach(btn => btn.classList.remove('active'));
-
-  document.getElementById(tabName).classList.add('active');
-  event.target.closest('.tab-btn').classList.add('active');
-}
-</script>
 
 </body>
 </html>
