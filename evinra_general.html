@@ -7,58 +7,104 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
-  <link rel="stylesheet" href="evinra-styles.css">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2A9B85;
+      --primary-dim: rgba(42, 155, 133, 0.1);
+      --primary-border: #1e7d6b;
+      --bg: #ffffff;
+      --bg2: #f9f9f9;
+      --bg3: #f3f3f3;
+      --bg4: #efefef;
+      --text: #1a1a1a;
+      --text2: #666666;
+      --text3: #999999;
+      --border: #e0e0e0;
+    }
+    html, body { height: 100%; background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 13px; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Inter', sans-serif; font-weight: 700; }
+    .container { display: flex; height: 100vh; width: 1920px; margin: 0 auto; }
+    .sidebar { width: 280px; background: var(--bg2); border-right: 1px solid var(--border); overflow-y: auto; padding: 24px 0; position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; }
+    .sb-header { padding: 0 20px 24px; border-bottom: 1px solid var(--border); margin-bottom: 16px; display: flex; gap: 12px; align-items: center; cursor: pointer; }
+    .sb-logo { width: 40px; height: 40px; background: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: 'Inter', sans-serif; color: white; }
+    .sb-nav { flex: 1; overflow-y: auto; min-height: 0; }
+    .sb-section { padding: 0 12px 16px; }
+    .sb-group-title { font-size: 9px; font-weight: 700; color: var(--text3); text-transform: uppercase; padding: 12px 12px 8px; border-bottom: 1px solid var(--border); }
+    .sb-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 6px; color: var(--text2); font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.2s; border: 1px solid transparent; text-decoration: none; }
+    .sb-item:hover { background: var(--primary-dim); color: var(--text); }
+    .sb-item.active { background: var(--primary-dim); color: var(--primary); }
+    .sb-user { border-top: 1px solid var(--border); padding: 14px 18px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; margin-top: auto; }
+    .sb-user-avatar { width: 36px; height: 36px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; color: white; }
+    .sb-user-name { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12px; }
+    .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .topbar { background: var(--bg2); border-bottom: 1px solid var(--border); height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; gap: 20px; }
+    .topbar-title { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; }
+    .topbar-breadcrumb { font-size: 11px; color: var(--text3); }
+    .topbar-right { display: flex; gap: 8px; margin-left: auto; }
+    .topbar-btn { width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg3); display: flex; align-items: center; justify-content: center; color: var(--text2); cursor: pointer; }
+    .theme-toggle { display: flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg3); font-size: 12px; }
+    .content { flex: 1; overflow-y: auto; padding: 40px; }
+    .footer { border-top: 1px solid var(--border); padding: 20px 40px; display: flex; justify-content: space-between; font-size: 10px; color: var(--text3); }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--text3); border-radius: 4px; }
+    .sb-logo-img { height: 26px; width: auto; display: block; }
+    .sb-logo-img.dark { display: none; }
+    .sb-logo-img.light { display: block; }
+
+    .section-title { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .section-subtitle { font-size: 13px; color: var(--text2); margin-bottom: 24px; }
+    .form-group { margin-bottom: 24px; }
+    .form-group label { display: block; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 12px; margin-bottom: 8px; color: var(--text); }
+    .form-group input { width: 100%; max-width: 400px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text); background: var(--bg2); }
+    .form-group input:focus { outline: none; border-color: var(--primary); background: var(--bg); }
+    .btn-save { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 6px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 12px; cursor: pointer; }
+    .btn-save:hover { opacity: 0.9; }
+  </style>
 </head>
 <body>
 
 <div class="container">
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sb-header" onclick="location.href='evinra_index.html'">
-      <img class="sb-logo-img dark" src="evinra-logo-dark.png" alt="Eventra">
-      <img class="sb-logo-img light" src="evinra-logo-light.png" alt="Eventra">
+      <img class="sb-logo-img dark" src="evinra-logo-dark.png" alt="Evinra" style="height: 26px;">
+      <img class="sb-logo-img light" src="evinra-logo-light.png" alt="Evinra" style="height: 26px;">
     </div>
 
     <div class="sb-nav">
       <div class="sb-section">
         <div class="sb-group-title">Main</div>
-        <a href="evinra_index.html" data-page="evinra_index" class="sb-item"><i class="hgi-stroke hgi-grid-01"></i><span>Dashboard</span></a>
-        <a href="evinra_events.html" data-page="evinra_events" class="sb-item"><i class="hgi-stroke hgi-calendar"></i><span>Events</span></a>
+        <a href="evinra_index.html" class="sb-item"><i class="hgi-stroke hgi-grid-01"></i><span>Dashboard</span></a>
+        <a href="evinra_events.html" class="sb-item"><i class="hgi-stroke hgi-calendar"></i><span>Events</span></a>
+        <a href="evinra_orders.html" class="sb-item"><i class="hgi-stroke hgi-shopping-cart-01"></i><span>Orders</span></a>
       </div>
 
       <div class="sb-section">
-        <div class="sb-group-title">Layout</div>
-        <a href="evinra_catalog.html" data-page="evinra_catalog" class="sb-item"><i class="hgi-stroke hgi-home-02"></i><span>Seating Map</span></a>
-        <a href="evinra_rides_exp.html" data-page="evinra_rides_exp" class="sb-item"><i class="hgi-stroke hgi-hierarchy-square-01"></i><span>Sections &amp; Zones</span></a>
-        <a href="evinra_entry_points.html" data-page="evinra_entry_points" class="sb-item"><i class="hgi-stroke hgi-building-02"></i><span>Entry Points</span></a>
+        <div class="sb-group-title">Layout Management</div>
+        <a href="evinra_layout_management.html" class="sb-item"><i class="hgi-stroke hgi-hierarchy-square-01"></i><span>Layout Management</span></a>
       </div>
 
       <div class="sb-section">
-        <div class="sb-group-title">Reports</div>
-        <a href="evinra_sales_overview.html" data-page="evinra_sales_overview" class="sb-item"><i class="hgi-stroke hgi-chart-column"></i><span>Sales Overview</span></a>
-        <a href="evinra_event_sales_report.html" data-page="evinra_event_sales_report" class="sb-item"><i class="hgi-stroke hgi-analytics-01"></i><span>Sales Report</span></a>
-        <a href="evinra_order_detail.html" data-page="evinra_order_detail" class="sb-item"><i class="hgi-stroke hgi-file-01"></i><span>Order Transactions</span></a>
-        <a href="evinra_inshow_analytics.html" data-page="evinra_inshow_analytics" class="sb-item"><i class="hgi-stroke hgi-shopping-cart-01"></i><span>In-Show Analytics</span></a>
-        <a href="evinra_attendance_scan_report.html" data-page="evinra_attendance_scan_report" class="sb-item"><i class="hgi-stroke hgi-qr-code"></i><span>Attendance / Scan</span></a>
-        <a href="evinra_vendor_settlement.html" data-page="evinra_vendor_settlement" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Vendor Settlement</span></a>
-        <a href="evinra_refund_report.html" data-page="evinra_refund_report" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Refund Report</span></a>
-        <a href="evinra_promo_discounts.html" data-page="evinra_promo_discounts" class="sb-item"><i class="hgi-stroke hgi-discount"></i><span>Promo &amp; Discounts</span></a>
-        <a href="evinra_split_dist.html" data-page="evinra_split_dist" class="sb-item"><i class="hgi-stroke hgi-shuffle"></i><span>Split Distribution</span></a>
-        <a href="evinra_credit_txn.html" data-page="evinra_credit_txn" class="sb-item"><i class="hgi-stroke hgi-wallet-04"></i><span>Credit Transactions</span></a>
+        <div class="sb-group-title">Financial Reports</div>
+        <a href="evinra_sales_overview.html" class="sb-item"><i class="hgi-stroke hgi-chart-column"></i><span>Sales Overview</span></a>
+        <a href="evinra_sales_report.html" class="sb-item"><i class="hgi-stroke hgi-analytics-01"></i><span>Sales Report</span></a>
+        <a href="evinra_attendance_scan.html" class="sb-item"><i class="hgi-stroke hgi-qr-code"></i><span>Attendance / Scan</span></a>
+        <a href="evinra_vendor_settlement.html" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Vendor Settlement</span></a>
+        <a href="evinra_refund_report.html" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Refund Report</span></a>
       </div>
 
       <div class="sb-section">
         <div class="sb-group-title">Settings</div>
-        <a href="evinra_general.html" data-page="evinra_general" class="sb-item"><i class="hgi-stroke hgi-settings-01"></i><span>General</span></a>
-        <a href="evinra_users.html" data-page="evinra_users" class="sb-item"><i class="hgi-stroke hgi-user-group"></i><span>Users</span></a>
-        <a href="evinra_experience_tickets.html" data-page="evinra_experience_tickets" class="sb-item"><i class="hgi-stroke hgi-ticket-01"></i><span>Experience Ticketing</span></a>
-        <a href="evinra_credit_plans.html" data-page="evinra_credit_plans" class="sb-item"><i class="hgi-stroke hgi-dollar-01"></i><span>Credit Plans</span></a>
-        <a href="evinra_scan_roles.html" data-page="evinra_scan_roles" class="sb-item"><i class="hgi-stroke hgi-shield-check"></i><span>Scan App Roles</span></a>
-        <a href="evinra_fees_taxes.html" data-page="evinra_fees_taxes" class="sb-item"><i class="hgi-stroke hgi-percent"></i><span>Fees &amp; Taxes</span></a>
-        <a href="evinra_discounts.html" data-page="evinra_discounts" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Discounts</span></a>
-        <a href="evinra_productions.html" data-page="evinra_productions" class="sb-item"><i class="hgi-stroke hgi-star"></i><span>Productions</span></a>
-        <a href="evinra_shows.html" data-page="evinra_shows" class="sb-item"><i class="hgi-stroke hgi-play-circle"></i><span>Shows</span></a>
-        <a href="evinra_other_vendors.html" data-page="evinra_other_vendors" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Other Vendors</span></a>
+        <a href="evinra_general.html" class="sb-item active"><i class="hgi-stroke hgi-settings-01"></i><span>Generals</span></a>
+        <a href="evinra_users.html" class="sb-item"><i class="hgi-stroke hgi-user-group"></i><span>Users</span></a>
+        <a href="evinra_experience_ticketing.html" class="sb-item"><i class="hgi-stroke hgi-ticket-01"></i><span>Experience Ticketing</span></a>
+        <a href="evinra_fees_taxes.html" class="sb-item"><i class="hgi-stroke hgi-percent"></i><span>Fee and Taxes</span></a>
+        <a href="evinra_promo_codes.html" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Promo Codes</span></a>
+        <a href="evinra_shows.html" class="sb-item"><i class="hgi-stroke hgi-play-circle"></i><span>Shows</span></a>
+        <a href="evinra_other_vendors.html" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Others Vendors</span></a>
+        <a href="evinra_vendor_sales_links.html" class="sb-item"><i class="hgi-stroke hgi-link-01"></i><span>Vendor Sales Links</span></a>
       </div>
     </div>
 
@@ -68,126 +114,54 @@
         <div class="sb-user-name">Yoaldis P.</div>
         <div class="sb-user-role">Super Admin</div>
       </div>
-      <i class="hgi-stroke hgi-logout-01 sb-user-action"></i>
     </div>
   </aside>
 
-  <!-- MAIN -->
   <div class="main">
-    <!-- TOPBAR -->
     <div class="topbar">
       <div class="topbar-left">
         <div class="topbar-title">General Settings</div>
-        <div class="topbar-breadcrumb">Evinra <span>/</span> Configuration <span>/</span> General</div>
+        <div class="topbar-breadcrumb">Evinra <span style="color: var(--primary);">/</span> Settings <span style="color: var(--primary);">/</span> General</div>
       </div>
       <div class="topbar-right">
         <div class="topbar-btn"><i class="hgi-stroke hgi-notification-01"></i></div>
-        <div class="topbar-btn"><i class="hgi-stroke hgi-search-01"></i></div>
         <div class="topbar-btn"><i class="hgi-stroke hgi-settings-01"></i></div>
         <div class="theme-toggle"><i class="hgi-stroke hgi-sun"></i><span>Light</span></div>
-        <div class="topbar-btn"><i class="hgi-stroke hgi-arrow-right-02"></i></div>
       </div>
     </div>
 
-    <!-- CONTENT -->
     <div class="content">
-      <div id="gen-panel-products" style="display:flex;flex-direction:column;flex:1;min-height:0">
-      <!-- Module banner -->
-      <div style="background:var(--primary-dim);border:1px solid var(--primary-border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-shrink:0">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <p style="font-size:11px;font-family:Inter,sans-serif;color:var(--text2)">
-          <strong>Catalog module active.</strong> Products are inherited from <strong>Evinra Event Management → Catalog</strong>. You can add local items or disable inherited ones per your subscription.
-        </p>
-        <span style="margin-left:auto;font-size:9px;font-family:Inter,sans-serif;padding:2px 8px;border-radius:10px;background:var(--primary);color:#FFF;font-weight:700;flex-shrink:0">MODULE ACTIVE</span>
+      <div class="section-title">General Configuration</div>
+      <div class="section-subtitle">Configure general settings for your Evinra instance</div>
+
+      <div class="form-group">
+        <label>Organization Name</label>
+        <input type="text" placeholder="Enter organization name" value="Evinra Ticketing">
       </div>
-      <!-- Filter bar -->
-      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;flex-shrink:0">
-        <div style="position:relative">
-          <select id="pMainCatFilter" onchange="filterProducts()" style="appearance:none;background:var(--bg4);border:1px solid var(--border);border-radius:7px;color:var(--text2);font-size:11.5px;font-family:Inter,sans-serif;padding:6px 28px 6px 10px;cursor:pointer;outline:none;min-width:140px">
-            <option value="">Main Category</option><option>Concession</option><option>Novelty</option>
-          </select>
-          <span style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text3)"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
-        </div>
-        <div style="position:relative">
-          <select id="pCatFilter" onchange="filterProducts()" style="appearance:none;background:var(--bg4);border:1px solid var(--border);border-radius:7px;color:var(--text2);font-size:11.5px;font-family:Inter,sans-serif;padding:6px 28px 6px 10px;cursor:pointer;outline:none;min-width:120px">
-            <option value="">Category</option><option>Foods</option><option>Beverages</option>
-          </select>
-          <span style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text3)"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
-        </div>
-        <div style="position:relative">
-          <select id="pSubCatFilter" onchange="filterProducts()" style="appearance:none;background:var(--bg4);border:1px solid var(--border);border-radius:7px;color:var(--text2);font-size:11.5px;font-family:Inter,sans-serif;padding:6px 28px 6px 10px;cursor:pointer;outline:none;min-width:130px">
-            <option value="">Sub Category</option><option>Cotton Candy</option><option>Funnel Cakes</option><option>Popcorn 1</option><option>Snow Cones</option><option>Lemonade</option><option>Drinks</option>
-          </select>
-          <span style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text3)"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
-        </div>
-        <div style="position:relative;flex:1;max-width:220px">
-          <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></span>
-          <input type="text" id="pSearch" oninput="filterProducts()" placeholder="Search by item name" style="width:100%;background:var(--bg4);border:1px solid var(--border);border-radius:7px;color:var(--text2);font-size:11.5px;font-family:Inter,sans-serif;padding:6px 10px 6px 30px;outline:none">
-        </div>
-        <button class="btn" style="padding:10px 20px;border-radius:6px;border:1px solid var(--primary);background:var(--primary);color:white;cursor:pointer;font-family:Inter,sans-serif;font-weight:600;transition:all 0.2s;margin-left:auto" onclick="openProductModal(null)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M4 12h16"/></svg> Add New Item</button>
+
+      <div class="form-group">
+        <label>Default Currency</label>
+        <input type="text" placeholder="USD" value="USD">
       </div>
-      <!-- Table -->
-      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;flex:1;overflow:auto">
-        <table style="width:100%;border-collapse:collapse;margin-top:16px">
-          <thead><tr><th style="background:var(--bg3);padding:12px;text-align:left;font-weight:600;font-family:Inter,sans-serif;border-bottom:1px solid var(--border);color:var(--text)">Image</th><th style="background:var(--bg3);padding:12px;text-align:left;font-weight:600;font-family:Inter,sans-serif;border-bottom:1px solid var(--border);color:var(--text)">Item Name</th><th style="background:var(--bg3);padding:12px;text-align:left;font-weight:600;font-family:Inter,sans-serif;border-bottom:1px solid var(--border);color:var(--text)">Code</th><th style="background:var(--bg3);padding:12px;text-align:left;font-weight:600;font-family:Inter,sans-serif;border-bottom:1px solid var(--border);color:var(--text)">Price</th><th style="background:var(--bg3);padding:12px;text-align:left;font-weight:600;font-family:Inter,sans-serif;border-bottom:1px solid var(--border);color:var(--text)">Category</th><th style="background:var(--bg3);padding:12px;text-align:left;font-weight:600;font-family:Inter,sans-serif;border-bottom:1px solid var(--border);color:var(--text)">Active</th></tr></thead>
-          <tbody id="productsBody"><tr><td style="padding:12px;border-bottom:1px solid var(--border);font-family:Inter,sans-serif">—</td><td style="padding:12px;border-bottom:1px solid var(--border);font-family:Inter,sans-serif"><strong>COTTON CANDY BAG</strong></td><td style="padding:12px;border-bottom:1px solid var(--border);font-family:Inter,sans-serif;color:var(--text2);font-size:11px">CCC001</td><td style="padding:12px;border-bottom:1px solid var(--border);font-family:Inter,sans-serif">$12.00</td><td style="padding:12px;border-bottom:1px solid var(--border);font-family:Inter,sans-serif;color:var(--text2);font-size:11px">Foods / Concession</td><td style="padding:12px;border-bottom:1px solid var(--border)"><button style="padding:6px 12px;border-radius:4px;border:1px solid var(--primary);background:var(--primary);color:white;cursor:pointer;font-family:Inter,sans-serif;font-size:12px">Active</button></td></tr></tbody>
-        </table>
+
+      <div class="form-group">
+        <label>Support Email</label>
+        <input type="email" placeholder="support@evinra.com" value="support@example.com">
       </div>
-    </div>
+
+      <div class="form-group">
+        <label>Support Phone</label>
+        <input type="tel" placeholder="+1 (555) 000-0000" value="">
+      </div>
+
+      <button class="btn-save"><i class="hgi-stroke hgi-check-circle-01"></i> Save Changes</button>
     </div>
 
-    <!-- FOOTER -->
     <div class="footer">
       <div>Evinra Ticketing OS · <strong style="color:var(--primary)">v2.1</strong></div>
-      <div class="footer-right">
-        <div class="footer-link">Documentation</div>
-        <div class="footer-link">Support</div>
-        <div class="footer-link">API</div>
-      </div>
     </div>
   </div>
 </div>
 
-<script>
-function switchGenTab(tid){
-  document.querySelectorAll('.gen-tab').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('[id^="gen-panel-"]').forEach(p=>p.style.display='none');
-  const btn=document.querySelector(`.gen-tab[onclick*="${tid}"]`);
-  if(btn)btn.classList.add('active');
-  const panel=document.getElementById('gen-panel-'+tid);
-  if(panel)panel.style.display='flex';
-}
-window.switchGenTab=switchGenTab;
-
-function filterProducts() {
-  // Placeholder for filter logic
-  console.log('Filter products');
-}
-
-function openProductModal(id) {
-  // Placeholder for modal logic
-  console.log('Open product modal:', id);
-}
-
-function closeProductModal() {
-  // Placeholder for close modal logic
-  console.log('Close product modal');
-}
-
-function deleteProduct(id) {
-  // Placeholder for delete logic
-  console.log('Delete product:', id);
-}
-</script>
-
-<script src="evinra-theme.js"></script>
-<script>
-(function(){
-  var path = (location.pathname.split('/').pop() || 'evinra_index.html').replace('.html','');
-  if (!path) path = 'evinra_index';
-  var el = document.querySelector('.sb-item[data-page="'+path+'"]');
-  if (el) el.classList.add('active');
-})();
-</script>
 </body>
 </html>
