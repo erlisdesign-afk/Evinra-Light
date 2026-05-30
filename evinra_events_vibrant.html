@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Evinra — Events Vibrant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Clash+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+<link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+</head>
+<body>
+
+<div class="shell">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-icon">E</div>
+      <div>
+        <div class="sb-logo-text">Evinra</div>
+        <div class="sb-logo-sub">Ticketing OS</div>
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-group">Main</div>
+      <div class="sb-item" onclick="location.href='evinra_dashboard_v2_vibrant.html'"><i class="hgi-stroke hgi-dashboard-square-01"></i><span>Dashboard</span></div>
+      <div class="sb-item active"><i class="hgi-stroke hgi-calendar"></i><span>Events</span></div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-group">Layout</div>
+      <div class="sb-item"><i class="hgi-stroke hgi-building-02"></i><span>Seating Map</span></div>
+      <div class="sb-item"><i class="hgi-stroke hgi-hierarchy-square-01"></i><span>Sections</span></div>
+      <div class="sb-item"><i class="hgi-stroke hgi-home-02"></i><span>Entry Points</span></div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-group">Reports</div>
+      <div class="sb-item"><i class="hgi-stroke hgi-chart-column"></i><span>Sales</span></div>
+      <div class="sb-item"><i class="hgi-stroke hgi-analytics-01"></i><span>Analytics</span></div>
+      <div class="sb-item"><i class="hgi-stroke hgi-qr-code"></i><span>Attendance</span></div>
+    </div>
+
+    <div class="sb-bottom">
+      <div class="sb-user">
+        <div class="sb-avatar">YP</div>
+        <div>
+          <div class="sb-user-name">Yoaldis P.</div>
+          <div class="sb-user-role">Admin</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div>
+          <div class="page-title">Events Manager</div>
+          <div class="breadcrumb">Evinra <span>/</span> Events <span>/</span> Overview</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="tb-btn" title="Search"><i class="hgi-stroke hgi-search-01"></i></div>
+        <div class="tb-btn" title="Filters"><i class="hgi-stroke hgi-adjustment-horizontal"></i></div>
+        <div class="tb-btn" title="Settings"><i class="hgi-stroke hgi-settings-01"></i></div>
+        <div class="theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode">
+          <i class="hgi-stroke hgi-sun"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <div class="filter-group">
+          <label class="filter-label">Production</label>
+          <select class="filter-select">
+            <option>All Productions</option>
+            <option>Flying Lions Circus</option>
+            <option>Solar Spectacular</option>
+            <option>Nova Circus</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">City</label>
+          <select class="filter-select">
+            <option>All Cities</option>
+            <option>Miami</option>
+            <option>Orlando</option>
+            <option>Tampa</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Date Range</label>
+          <input type="date" class="filter-input">
+        </div>
+        <div style="margin-left:auto">
+          <button class="btn"><i class="hgi-stroke hgi-plus"></i> New Event</button>
+        </div>
+      </div>
+
+      <!-- Events List -->
+      <div class="card">
+        <div class="card-header">
+          <div class="c-title"><i class="hgi-stroke hgi-star"></i>Upcoming Events</div>
+        </div>
+
+        <div class="event-card">
+          <div class="event-card-header">
+            <div class="event-show">Flying Lions Circus</div>
+            <div class="event-status">On Sale</div>
+          </div>
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <span class="event-meta-label">Venue</span>
+              <span class="event-meta-value">Flying Lions Big Top, West Palm Beach</span>
+            </div>
+            <div class="event-meta-item">
+              <span class="event-meta-label">Dates</span>
+              <span class="event-meta-value">Dec 1 – Dec 31, 2025</span>
+            </div>
+            <div class="event-meta-item">
+              <span class="event-meta-label">Capacity</span>
+              <span class="event-meta-value">2,500 seats</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <div class="event-card-header">
+            <div class="event-show">Solar Spectacular</div>
+            <div class="event-status">On Sale</div>
+          </div>
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <span class="event-meta-label">Venue</span>
+              <span class="event-meta-value">AmericanAirlines Arena, Miami</span>
+            </div>
+            <div class="event-meta-item">
+              <span class="event-meta-label">Dates</span>
+              <span class="event-meta-value">Jan 5 – Jan 20, 2026</span>
+            </div>
+            <div class="event-meta-item">
+              <span class="event-meta-label">Capacity</span>
+              <span class="event-meta-value">6,000 seats</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <div class="event-card-header">
+            <div class="event-show">Nova Circus</div>
+            <div class="event-status">On Sale</div>
+          </div>
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <span class="event-meta-label">Venue</span>
+              <span class="event-meta-value">Orange County Arena, Orlando</span>
+            </div>
+            <div class="event-meta-item">
+              <span class="event-meta-label">Dates</span>
+              <span class="event-meta-value">Feb 10 – Feb 28, 2026</span>
+            </div>
+            <div class="event-meta-item">
+              <span class="event-meta-label">Capacity</span>
+              <span class="event-meta-value">6,000 seats</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <div class="event-card-header">
+            <div class="event-show">SunPeak Events</div>
+            <div class="event-status off-sale">Off Sale</div>
+          </div>
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <span class="event-meta-label">Venue</span>
+              <span class="event-meta-value">Amalie Arena, Tampa</span>
+            </div>
+            <div class="event-meta-item">
+              <span class="event-meta-label">Dates</span>
+              <span class="event-meta-value">Mar 1 – Mar 15, 2026</span>
+            </div>
+            <div class="event-meta-item">
+              <span class="event-meta-label">Capacity</span>
+              <span class="event-meta-value">5,200 seats</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <div class="page-btn"><i class="hgi-stroke hgi-arrow-left-02"></i></div>
+          <div class="page-btn active">1</div>
+          <div class="page-btn">2</div>
+          <div class="page-btn">3</div>
+          <div class="page-btn"><i class="hgi-stroke hgi-arrow-right-02"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Theme Toggle
+const themeToggle = document.getElementById('theme-toggle');
+const htmlElement = document.documentElement;
+
+// Load saved theme
+const savedTheme = localStorage.getItem('theme') || 'dark';
+if(savedTheme === 'light'){
+  htmlElement.classList.add('light-mode');
+  themeToggle.innerHTML = '<i class="hgi-stroke hgi-moon-01"></i>';
+}
+
+themeToggle.addEventListener('click', () => {
+  htmlElement.classList.toggle('light-mode');
+  const isLight = htmlElement.classList.contains('light-mode');
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  themeToggle.innerHTML = isLight ? '<i class="hgi-stroke hgi-moon-01"></i>' : '<i class="hgi-stroke hgi-sun"></i>';
+});
+
+// Add subtle animations on load
+window.addEventListener('load', () => {
+  document.querySelectorAll('.event-card').forEach((card, i) => {
+    setTimeout(() => {
+      card.style.animation = `slideUp 0.5s ease-out forwards`;
+    }, i * 100);
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evinra — Payment Gateways</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2A9B85;
+      --primary-dim: rgba(42, 155, 133, 0.1);
+      --primary-border: #1e7d6b;
+      --bg: #ffffff;
+      --bg2: #f9f9f9;
+      --bg3: #f3f3f3;
+      --bg4: #efefef;
+      --text: #1a1a1a;
+      --text2: #666666;
+      --text3: #999999;
+      --border: #e0e0e0;
+    }
+    html, body { height: 100%; background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 13px; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Inter', sans-serif; font-weight: 700; }
+    .container { display: flex; height: 100vh; width: 1920px; margin: 0 auto; }
+    .sidebar { width: 280px; background: var(--bg2); border-right: 1px solid var(--border); overflow-y: auto; padding: 24px 0; position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; }
+    .sb-header { padding: 0 20px 24px; border-bottom: 1px solid var(--border); margin-bottom: 16px; display: flex; gap: 12px; align-items: center; cursor: pointer; }
+    .sb-logo { width: 40px; height: 40px; background: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: 'Inter', sans-serif; color: white; }
+    .sb-nav { flex: 1; overflow-y: auto; min-height: 0; }
+    .sb-section { padding: 0 12px 16px; }
+    .sb-group-title { font-size: 9px; font-weight: 700; color: var(--text3); text-transform: uppercase; padding: 12px 12px 8px; border-bottom: 1px solid var(--border); }
+    .sb-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 6px; color: var(--text2); font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.2s; border: 1px solid transparent; text-decoration: none; }
+    .sb-item:hover { background: var(--primary-dim); color: var(--text); }
+    .sb-item.active { background: var(--primary-dim); color: var(--primary); }
+    .sb-user { border-top: 1px solid var(--border); padding: 14px 18px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; margin-top: auto; }
+    .sb-user-avatar { width: 36px; height: 36px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; color: white; }
+    .sb-user-name { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12px; }
+    .sb-user-role { font-family: 'Inter', sans-serif; font-size: 10px; color: var(--text3); text-transform: uppercase; }
+    .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .topbar { background: var(--bg2); border-bottom: 1px solid var(--border); height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; gap: 20px; }
+    .topbar-title { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; }
+    .topbar-breadcrumb { font-size: 11px; color: var(--text3); }
+    .topbar-right { display: flex; gap: 8px; margin-left: auto; }
+    .topbar-btn { width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg3); display: flex; align-items: center; justify-content: center; color: var(--text2); cursor: pointer; }
+    .theme-toggle { display: flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg3); font-size: 12px; }
+    .content { flex: 1; overflow-y: auto; padding: 40px; }
+    .footer { border-top: 1px solid var(--border); padding: 20px 40px; display: flex; justify-content: space-between; font-size: 10px; color: var(--text3); }
+    .footer-right { display: flex; gap: 20px; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--text3); border-radius: 4px; }
+    .sb-logo-img { height: 26px; width: auto; display: block; }
+    .sb-logo-img.dark { display: none; }
+    .sb-logo-img.light { display: block; }
+
+    .section-title { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .section-subtitle { font-size: 13px; color: var(--text2); margin-bottom: 24px; }
+    .btn-add { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; background: var(--primary-dim); border: 1px solid var(--primary-border); color: var(--primary); border-radius: 6px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 11px; cursor: pointer; margin-bottom: 20px; text-transform: uppercase; }
+    .table-wrapper { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: auto; }
+    table { width: 100%; border-collapse: collapse; font-family: 'Inter', sans-serif; }
+    th { padding: 12px 14px; text-align: left; font-weight: 600; border-bottom: 1px solid var(--border); color: var(--text2); font-size: 10px; text-transform: uppercase; background: var(--bg3); }
+    td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 12px; color: var(--text); }
+    tbody tr:hover { background: var(--bg4); }
+    .badge { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 10px; font-weight: 600; }
+    .badge-square { background: rgba(59, 130, 246, 0.1); color: #3B82F6; }
+    .badge-stripe { background: rgba(239, 68, 68, 0.1); color: #EF4444; }
+    .badge-prod { background: rgba(245, 158, 11, 0.1); color: #F59E0B; }
+    .badge-success { background: rgba(34, 197, 94, 0.1); color: #22C55E; }
+    .icon-btn { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--border); color: var(--text3); border-radius: 4px; cursor: pointer; font-size: 14px; }
+    .icon-btn:hover { color: var(--primary); border-color: var(--primary); background: var(--primary-dim); }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <aside class="sidebar">
+    <div class="sb-header" onclick="location.href='evinra_index.html'">
+      <img class="sb-logo-img dark" src="evinra-logo-dark.png" alt="Evinra" style="height: 26px;">
+      <img class="sb-logo-img light" src="evinra-logo-light.png" alt="Evinra" style="height: 26px;">
+    </div>
+
+    <div class="sb-nav">
+      <div class="sb-section">
+        <div class="sb-group-title">Main</div>
+        <a href="evinra_index.html" class="sb-item"><i class="hgi-stroke hgi-grid-01"></i><span>Dashboard</span></a>
+        <a href="evinra_events.html" class="sb-item"><i class="hgi-stroke hgi-calendar"></i><span>Events</span></a>
+        <a href="evinra_orders.html" class="sb-item"><i class="hgi-stroke hgi-shopping-cart-01"></i><span>Orders</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Layout Management</div>
+        <a href="evinra_layout_management.html" class="sb-item"><i class="hgi-stroke hgi-hierarchy-square-01"></i><span>Layout Management</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Financial Reports</div>
+        <a href="evinra_sales_overview.html" class="sb-item"><i class="hgi-stroke hgi-chart-column"></i><span>Sales Overview</span></a>
+        <a href="evinra_sales_report.html" class="sb-item"><i class="hgi-stroke hgi-analytics-01"></i><span>Sales Report</span></a>
+        <a href="evinra_attendance_scan.html" class="sb-item"><i class="hgi-stroke hgi-qr-code"></i><span>Attendance / Scan</span></a>
+        <a href="evinra_vendor_settlement.html" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Vendor Settlement</span></a>
+        <a href="evinra_refund_report.html" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Refund Report</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Settings</div>
+        <a href="evinra_general.html" class="sb-item"><i class="hgi-stroke hgi-settings-01"></i><span>Generals</span></a>
+        <a href="evinra_users.html" class="sb-item"><i class="hgi-stroke hgi-user-group"></i><span>Users</span></a>
+        <a href="evinra_experience_ticketing.html" class="sb-item"><i class="hgi-stroke hgi-ticket-01"></i><span>Experience Ticketing</span></a>
+        <a href="evinra_fees_taxes.html" class="sb-item"><i class="hgi-stroke hgi-percent"></i><span>Fee and Taxes</span></a>
+        <a href="evinra_promo_codes.html" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Promo Codes</span></a>
+        <a href="evinra_shows.html" class="sb-item"><i class="hgi-stroke hgi-play-circle"></i><span>Shows</span></a>
+        <a href="evinra_other_vendors.html" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Others Vendors</span></a>
+        <a href="evinra_gateway.html" class="sb-item active"><i class="hgi-stroke hgi-link-01"></i><span>Vendor Sales Links</span></a>
+      </div>
+    </div>
+
+    <div class="sb-user" onclick="location.href='login.html'">
+      <div class="sb-user-avatar">YP</div>
+      <div class="sb-user-info">
+        <div class="sb-user-name">Yoaldis P.</div>
+        <div class="sb-user-role">Super Admin</div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-title">Payment Gateways</div>
+        <div class="topbar-breadcrumb">Evinra <span style="color: var(--primary);">/</span> Settings <span style="color: var(--primary);">/</span> Gateway</div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-btn"><i class="hgi-stroke hgi-notification-01"></i></div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-settings-01"></i></div>
+        <div class="theme-toggle"><i class="hgi-stroke hgi-sun"></i><span>Light</span></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="section-title">Payment Gateways</div>
+      <div class="section-subtitle">Manage the payment gateways where they apply – Storefront, On-Site, or both</div>
+
+      <button class="btn-add"><i class="hgi-stroke hgi-plus"></i> Add Gateway</button>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>TYPE</th>
+              <th>NAME</th>
+              <th>DEFAULT LOCATION</th>
+              <th>ENVIRONMENT</th>
+              <th>USAGE</th>
+              <th>STATUS</th>
+              <th style="width: 80px;">ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-square">Square</span></td>
+              <td><strong>Evinra Circus</strong></td>
+              <td>Main Box Office</td>
+              <td><span class="badge badge-prod">Production</span></td>
+              <td><span class="badge" style="background: rgba(42, 155, 133, 0.1); color: var(--primary);">Both</span></td>
+              <td><span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 8px; height: 8px; background: #22C55E; border-radius: 50%;"></span> Active</span></td>
+              <td><button class="icon-btn" title="View"><i class="hgi-stroke hgi-edit-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-stripe">Stripe</span></td>
+              <td><strong>Online Store</strong></td>
+              <td>Downtown Theater</td>
+              <td><span class="badge badge-prod">Production</span></td>
+              <td><span class="badge" style="background: rgba(59, 130, 246, 0.1); color: #3B82F6;">Storefront</span></td>
+              <td><span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 8px; height: 8px; background: #22C55E; border-radius: 50%;"></span> Active</span></td>
+              <td><button class="icon-btn" title="View"><i class="hgi-stroke hgi-edit-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-square">Square</span></td>
+              <td><strong>Box Office Terminal</strong></td>
+              <td>Stadium Gate A</td>
+              <td><span class="badge" style="background: rgba(245, 158, 11, 0.1); color: #F59E0B;">Sandbox</span></td>
+              <td><span class="badge" style="background: rgba(99, 102, 241, 0.1); color: #6366F1;">On-Site</span></td>
+              <td><span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 8px; height: 8px; background: #9CA3AF; border-radius: 50%;"></span> Inactive</span></td>
+              <td><button class="icon-btn" title="View"><i class="hgi-stroke hgi-edit-02"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>Evinra Ticketing OS · <strong style="color:var(--primary)">v2.1</strong></div>
+      <div class="footer-right">
+        <div class="footer-link">Documentation</div>
+        <div class="footer-link">Support</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

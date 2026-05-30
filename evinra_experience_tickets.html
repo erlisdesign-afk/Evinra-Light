@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evinra — Experience Ticketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+  <link rel="stylesheet" href="evinra-styles.css">
+</head>
+<body>
+
+<div class="container">
+  <aside class="sidebar">
+    <div class="sb-header" onclick="location.href='evinra_index.html'">
+      <img class="sb-logo-img dark" src="evinra-logo-dark.png" alt="Eventra">
+      <img class="sb-logo-img light" src="evinra-logo-light.png" alt="Eventra">
+    </div>
+
+    <div class="sb-nav">
+      <div class="sb-section">
+        <div class="sb-group-title">Main</div>
+        <a href="evinra_index.html" data-page="evinra_index" class="sb-item"><i class="hgi-stroke hgi-grid-01"></i><span>Dashboard</span></a>
+        <a href="evinra_events.html" data-page="evinra_events" class="sb-item"><i class="hgi-stroke hgi-calendar"></i><span>Events</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Layout</div>
+        <a href="evinra_catalog.html" data-page="evinra_catalog" class="sb-item"><i class="hgi-stroke hgi-home-02"></i><span>Seating Map</span></a>
+        <a href="evinra_rides_exp.html" data-page="evinra_rides_exp" class="sb-item"><i class="hgi-stroke hgi-hierarchy-square-01"></i><span>Sections &amp; Zones</span></a>
+        <a href="evinra_entry_points.html" data-page="evinra_entry_points" class="sb-item"><i class="hgi-stroke hgi-building-02"></i><span>Entry Points</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Reports</div>
+        <a href="evinra_sales_overview.html" data-page="evinra_sales_overview" class="sb-item"><i class="hgi-stroke hgi-chart-column"></i><span>Sales Overview</span></a>
+        <a href="evinra_event_sales_report.html" data-page="evinra_event_sales_report" class="sb-item"><i class="hgi-stroke hgi-analytics-01"></i><span>Sales Report</span></a>
+        <a href="evinra_order_detail.html" data-page="evinra_order_detail" class="sb-item"><i class="hgi-stroke hgi-file-01"></i><span>Order Transactions</span></a>
+        <a href="evinra_inshow_analytics.html" data-page="evinra_inshow_analytics" class="sb-item"><i class="hgi-stroke hgi-shopping-cart-01"></i><span>In-Show Analytics</span></a>
+        <a href="evinra_attendance_scan_report.html" data-page="evinra_attendance_scan_report" class="sb-item"><i class="hgi-stroke hgi-qr-code"></i><span>Attendance / Scan</span></a>
+        <a href="evinra_vendor_settlement.html" data-page="evinra_vendor_settlement" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Vendor Settlement</span></a>
+        <a href="evinra_refund_report.html" data-page="evinra_refund_report" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Refund Report</span></a>
+        <a href="evinra_promo_discounts.html" data-page="evinra_promo_discounts" class="sb-item"><i class="hgi-stroke hgi-discount"></i><span>Promo &amp; Discounts</span></a>
+        <a href="evinra_split_dist.html" data-page="evinra_split_dist" class="sb-item"><i class="hgi-stroke hgi-shuffle"></i><span>Split Distribution</span></a>
+        <a href="evinra_credit_txn.html" data-page="evinra_credit_txn" class="sb-item"><i class="hgi-stroke hgi-wallet-04"></i><span>Credit Transactions</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Settings</div>
+        <a href="evinra_general.html" data-page="evinra_general" class="sb-item"><i class="hgi-stroke hgi-settings-01"></i><span>General</span></a>
+        <a href="evinra_users.html" data-page="evinra_users" class="sb-item"><i class="hgi-stroke hgi-user-group"></i><span>Users</span></a>
+        <a href="evinra_experience_tickets.html" data-page="evinra_experience_tickets" class="sb-item"><i class="hgi-stroke hgi-ticket-01"></i><span>Experience Ticketing</span></a>
+        <a href="evinra_credit_plans.html" data-page="evinra_credit_plans" class="sb-item"><i class="hgi-stroke hgi-dollar-01"></i><span>Credit Plans</span></a>
+        <a href="evinra_scan_roles.html" data-page="evinra_scan_roles" class="sb-item"><i class="hgi-stroke hgi-shield-check"></i><span>Scan App Roles</span></a>
+        <a href="evinra_fees_taxes.html" data-page="evinra_fees_taxes" class="sb-item"><i class="hgi-stroke hgi-percent"></i><span>Fees &amp; Taxes</span></a>
+        <a href="evinra_discounts.html" data-page="evinra_discounts" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Discounts</span></a>
+        <a href="evinra_productions.html" data-page="evinra_productions" class="sb-item"><i class="hgi-stroke hgi-star"></i><span>Productions</span></a>
+        <a href="evinra_shows.html" data-page="evinra_shows" class="sb-item"><i class="hgi-stroke hgi-play-circle"></i><span>Shows</span></a>
+        <a href="evinra_other_vendors.html" data-page="evinra_other_vendors" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Other Vendors</span></a>
+      </div>
+    </div>
+
+    <div class="sb-user" onclick="location.href='login.html'">
+      <div class="sb-user-avatar">YP</div>
+      <div class="sb-user-info">
+        <div class="sb-user-name">Yoaldis P.</div>
+        <div class="sb-user-role">Super Admin</div>
+      </div>
+      <i class="hgi-stroke hgi-logout-01 sb-user-action"></i>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-title">Experience Ticketing</div>
+        <div class="topbar-breadcrumb">Evinra <span>/</span> Configuration / Ticketing</div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-btn"><i class="hgi-stroke hgi-notification-01"></i></div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-search-01"></i></div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-settings-01"></i></div>
+        <div class="theme-toggle"><i class="hgi-stroke hgi-sun"></i><span>Light</span></div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-arrow-right-02"></i></div>
+      </div>
+    </div>
+
+    <div class="content">
+
+    </div>
+
+    <div class="footer">
+      <div>Evinra Ticketing OS · <strong style="color:var(--primary)">v2.1</strong></div>
+      <div class="footer-right">
+        <div class="footer-link">Documentation</div>
+        <div class="footer-link">Support</div>
+        <div class="footer-link">API</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-section">
+      <div class="sb-group">Main</div>
+            <div class="sb-item" onclick="location.href='evinra_dashboard_v2.html'"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="9" height="9" rx="2"/><rect x="13" y="2" width="9" height="9" rx="2"/><rect x="2" y="13" width="9" height="9" rx="2"/><rect x="13" y="13" width="9" height="9" rx="2"/></svg></span>Dashboard</div>
+            <div class="sb-item" onclick="location.href='evinra_events.html'"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>Events</div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-group">Layout</div>
+            <div class="sb-item"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>Seating Map</div>
+            <div class="sb-item"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v4M5 17v-3a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/></svg></span>Sections & Zones</div>
+            <div class="sb-item"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>Entry Points</div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-group">Reports</div>
+            <div class="sb-item" onclick="location.href='evinra_sales_overview.html'"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="6" width="4" height="15" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/><path d="M2 21h20"/></svg></span>Sales Overview</div>
+            <div class="sb-item" onclick="location.href='evinra_event_sales_report.html'"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>Sales Report</div>
+            <div class="sb-item" onclick="location.href='evinra_order_detail.html'"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></span>Order Transactions</div>
+            <div class="sb-item" onclick="location.href='evinra_inshow_analytics.html'"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span>In-Show Analytics</div>
+            <div class="sb-item" onclick="location.href='evinra_attendance_scan_report.html'"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM17 17h3v3h-3zM14 20h3"/></svg></span>Attendance / Scan</div>
+            <div class="sb-item" onclick="location.href='evinra_vendor_settlement.html'"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></span>Vendor Settlement</div>
+            <div class="sb-item" onclick="location.href='evinra_refund_report.html'"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>Refund Report</div>
+            <div class="sb-item" onclick="location.href='evinra_split_dist.html'"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></span>Split Distribution</div>
+            <div class="sb-item" onclick="location.href='evinra_credit_txn.html'"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>Credit Transactions</div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-group">Settings</div>
+            <div class="sb-item" onclick="location.href='evinra_general.html'"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>General</div>
+            <div class="sb-item"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Users</div>
+            <div class="sb-item active"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM17 17h3v3h-3zM14 20h3"/></svg></span>Experience Ticketing</div>
+            <div class="sb-item" onclick="location.href='evinra_credit_plans.html'"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M9.5 10a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 4"/></svg></span>Credit Plans</div>
+            <div class="sb-item" onclick="location.href='evinra_scan_roles.html'"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>Scan App Roles</div>
+            <div class="sb-item"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>Fee and Taxes</div>
+            <div class="sb-item"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>Discounts</div>
+            <div class="sb-item"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>Productions</div>
+            <div class="sb-item" onclick="location.href='evinra_shows.html'"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v2zM9 3v18"/></svg></span>Shows</div>
+            <div class="sb-item"><span class="ev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></span>Others Vendors</div>
+    </div>
+
+
+
+
+
+    <div class="sb-bottom">
+      <div class="sb-user">
+        <div class="sb-avatar">YP</div>
+        <div><div class="sb-user-name">Yoaldis P.</div><div class="sb-user-role">Super Admin</div></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <div class="page-title">Experience Ticketing</div>
+        <div class="breadcrumb">Flying Lions <span>/</span> WPB Evening Show I <span>/</span> 12/12/2025</div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- FILTERS -->
+      <div class="filter-strip no-print">
+        <div class="flt"><label>Production</label>
+          <select onchange="applyFilters()"><option>Flying Lions</option><option>Circus of Dreams</option></select>
+          <i class="hgi-stroke hgi-arrow-down-02 drop"></i></div>
+        <div class="flt"><label>Event</label>
+          <select onchange="applyFilters()"><option>WPB Evening Show I</option><option>WPB Evening Show II</option></select>
+          <i class="hgi-stroke hgi-arrow-down-02 drop"></i></div>
+        <div class="filter-sep"></div>
+        <div class="flt"><label>Type</label>
+          <select id="fType" onchange="applyFilters()">
+            <option value="">All types</option>
+            <option value="midway">Midway Tickets</option>
+            <option value="wb">Wristbands</option>
+          </select>
+          <i class="hgi-stroke hgi-arrow-down-02 drop"></i></div>
+        <div class="flt"><label>Status</label>
+          <select id="fStatus" onchange="applyFilters()">
+            <option value="">All statuses</option>
+            <option value="Active">Active</option>
+            <option value="Used">Used</option>
+            <option value="Expired">Expired</option>
+            <option value="Not Assigned">Not Assigned</option>
+          </select>
+          <i class="hgi-stroke hgi-arrow-down-02 drop"></i></div>
+        <div class="flt"><label>Printed</label>
+          <select id="fPrinted" onchange="applyFilters()">
+            <option value="">All</option>
+            <option value="yes">Printed</option>
+            <option value="no">Not Printed</option>
+          </select>
+          <i class="hgi-stroke hgi-arrow-down-02 drop"></i></div>
+        <div class="search-wrap">
+          <i class="hgi-stroke hgi-search-01"></i>
+          <input type="text" class="search-input" id="fSearch" placeholder="Search ID, holder, order…" oninput="applyFilters()">
+        </div>
+      </div>
+
+      <!-- TOP ACTION ROW -->
+      <div class="action-bar no-print">
+        <button class="gen-batch-btn" onclick="openModal()"><i class="hgi-stroke hgi-star"></i>Generate Batch</button>
+        <button class="print-batch-btn" id="printBatchBtn" onclick="printBatch()" style="display:none"><i class="hgi-stroke hgi-printer"></i>Print Batch (<span id="batchCount">0</span>)</button>
+        <div style="margin-left:auto;display:flex;gap:8px">
+          <button class="action-btn" onclick="selectAll()"><i class="hgi-stroke hgi-checkbox-check-01"></i>Select All</button>
+          <button class="action-btn" onclick="clearSel()"><i class="hgi-stroke hgi-cancel-circle"></i>Clear</button>
+          <button class="action-btn violet" onclick="printSelected()"><i class="hgi-stroke hgi-printer"></i>Print Selected</button>
+          <button class="action-btn green" onclick="printAll()"><i class="hgi-stroke hgi-printer"></i>Print All</button>
+        </div>
+      </div>
+
+      <!-- TABLE -->
+      <div class="table-card">
+        <table class="tbl">
+          <colgroup><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/></colgroup>
+          <thead>
+            <tr>
+              <th class="no-print"></th>
+              <th>QR</th>
+              <th class="sortable" onclick="sortBy('id')">Ticket ID</th>
+              <th class="sortable" onclick="sortBy('type')">Type</th>
+              <th class="sortable" onclick="sortBy('status')">Status</th>
+              <th>Validity</th>
+              <th class="sortable" onclick="sortBy('usageType')">Usage</th>
+              <th class="sortable" onclick="sortBy('credits')">Credits</th>
+              <th>Holder</th>
+              <th class="sortable" onclick="sortBy('printed')">Printed</th>
+              <th class="no-print">Action</th>
+            </tr>
+          </thead>
+          <tbody id="tBody"></tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- GENERATE BATCH MODAL -->
+<div class="modal-overlay" id="batchModal" onclick="overlayClick(event)">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div class="modal-title"><i class="hgi-stroke hgi-star"></i>Generate Batch</div>
+      <div class="modal-close" onclick="closeModal()"><i class="hgi-stroke hgi-cancel-circle"></i></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-row full">
+        <div class="modal-field">
+          <label class="modal-label">Type</label>
+          <div class="type-toggle">
+            <div class="type-opt midway active" id="optMidway" onclick="selectType('midway')"><i class="hgi-stroke hgi-star"></i>Midway Tickets</div>
+            <div class="type-opt wb" id="optWb" onclick="selectType('wb')"><i class="hgi-stroke hgi-ticket-01"></i>Wristbands</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-row">
+        <div class="modal-field">
+          <label class="modal-label">Quantity</label>
+          <input type="number" class="modal-input" id="mQty" value="10" min="1" max="500">
+        </div>
+      </div>
+      <div class="modal-row">
+        <div class="modal-field">
+          <label class="modal-label">Event Start Date</label>
+          <input type="date" class="modal-input" id="mStart" value="2025-12-12">
+        </div>
+        <div class="modal-field">
+          <label class="modal-label">Event End Date</label>
+          <input type="date" class="modal-input" id="mEnd" value="2025-12-14">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-cancel-btn" onclick="closeModal()">Cancel</button>
+      <button class="modal-cancel-btn" onclick="generate(false)"><i class="hgi-stroke hgi-list-view" style="font-size:12px;margin-right:4px"></i>Add to List</button>
+      <button class="modal-ok-btn" onclick="generate(true)"><i class="hgi-stroke hgi-printer"></i>Generate &amp; Print</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+
+const TICKETS = [
+  { id:'EXP-RD-0001', name:'Roller Coaster Ride',       type:'ride', icon:'ti-roller-coaster', status:'Active', uses:1, usedCount:0, maxUses:1,  usageType:'single',    event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'4:30pm', location:'Zone A · North Lot',  validFrom:'12/12/2025 3:00pm', validTo:'12/12/2025 11:00pm', holder:'Yoaldis Peña',     credits:0, creditsUsed:0, printed:true, orderId:'ORD-0044' },
+  { id:'EXP-RD-0002', name:'Ferris Wheel Pass',          type:'ride', icon:'ti-circle-dashed',  status:'Active', uses:3, usedCount:0, maxUses:3,  usageType:'multi',     event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'4:30pm', location:'Zone B · South Lot', validFrom:'12/12/2025 3:00pm', validTo:'12/12/2025 11:00pm', holder:'Rosa Milagros',    credits:0, creditsUsed:0, printed:true, orderId:'ORD-0042' },
+  { id:'EXP-RD-0003', name:'Ride Bundle — 5 Rides',     type:'ride', icon:'ti-roller-coaster', status:'Active', uses:5, usedCount:2, maxUses:5,  usageType:'multi',     event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'4:30pm', location:'Any Ride Zone',      validFrom:'12/12/2025 3:00pm', validTo:'12/12/2025 11:00pm', holder:'Carlos Vega',      credits:0, creditsUsed:0, printed:true, orderId:'ORD-0043' },
+  { id:'EXP-RD-0004', name:'Zip Line Adventure',         type:'ride', icon:'ti-wave-saw-tool',  status:'Active', uses:1, usedCount:0, maxUses:1,  usageType:'single',    event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'4:30pm', location:'Zone C · Adventure', validFrom:'12/12/2025 3:00pm', validTo:'12/12/2025 11:00pm', holder:'Maria Lopez',      credits:0, creditsUsed:0, printed:true, orderId:'ORD-0051' },
+  { id:'EXP-RD-0005', name:'Kids Carousel',              type:'ride', icon:'ti-merry-go-round', status:'Used',   uses:1, usedCount:1, maxUses:1,  usageType:'single',    event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'4:30pm', location:'Zone A · Kids Area', validFrom:'12/12/2025 3:00pm', validTo:'12/12/2025 11:00pm', holder:'Sara Mendez',      credits:0, creditsUsed:0, printed:true, orderId:'ORD-0058' },
+  { id:'EXP-RD-0006', name:'Unlimited Rides Pass',       type:'ride', icon:'ti-infinity',       status:'Active', uses:-1,usedCount:4, maxUses:-1, usageType:'unlimited', event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'4:30pm', location:'All Ride Zones',     validFrom:'12/12/2025 3:00pm', validTo:'12/12/2025 11:00pm', holder:'James Ruiz',       credits:0, creditsUsed:0, printed:true, orderId:'ORD-0061' },
+  { id:'EXP-SE-0001', name:'VIP Backstage Pass',         type:'exp',  icon:'ti-star',           status:'Active', uses:1, usedCount:0, maxUses:1,  usageType:'single',    event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'4:30pm', location:'Backstage · Gate D', validFrom:'12/12/2025 6:00pm', validTo:'12/12/2025 8:00pm',  holder:'Yoaldis Peña',     credits:0, creditsUsed:0, printed:true, orderId:'ORD-0044' },
+  { id:'EXP-SE-0002', name:'Meet & Greet Experience',    type:'exp',  icon:'ti-users',          status:'Active', uses:1, usedCount:0, maxUses:1,  usageType:'single',    event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'4:30pm', location:'Green Room · Gate E',validFrom:'12/12/2025 6:30pm', validTo:'12/12/2025 7:30pm',  holder:'Rosa Milagros',    credits:0, creditsUsed:0, printed:true, orderId:'ORD-0042' },
+  { id:'EXP-SE-0003', name:'Ringside Seats Upgrade',     type:'exp',  icon:'ti-armchair',       status:'Active', uses:1, usedCount:0, maxUses:1,  usageType:'single',    event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'4:30pm', location:'Section 101 · Row A',validFrom:'12/12/2025 4:00pm', validTo:'12/12/2025 6:30pm',  holder:'Carlos Vega',      credits:0, creditsUsed:0, printed:true, orderId:'ORD-0043' },
+  { id:'EXP-SE-0004', name:'VIP Closer Seat Upgrade',   type:'exp',  icon:'ti-eye',            status:'Active', uses:1, usedCount:0, maxUses:1,  usageType:'single',    event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'4:30pm', location:'Section 102 · Row B',validFrom:'12/12/2025 4:00pm', validTo:'12/12/2025 6:30pm',  holder:'Maria Lopez',      credits:0, creditsUsed:0, printed:true, orderId:'ORD-0051' },
+  { id:'EXP-SE-0005', name:'Encore Performance Pass',    type:'exp',  icon:'ti-star-filled',    status:'Active', uses:1, usedCount:0, maxUses:1,  usageType:'single',    event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'4:30pm', location:'Main Stage Exit',    validFrom:'12/12/2025 6:30pm', validTo:'12/12/2025 7:00pm',  holder:'Sara Mendez',      credits:0, creditsUsed:0, printed:true, orderId:'ORD-0058' },
+  { id:'EXP-WB-0001', name:'All-Day Wristband',         type:'wb',   icon:'ti-ticket', status:'Active', uses:-1,usedCount:0,  maxUses:-1, usageType:'unlimited', event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'4:30pm', location:'Gate A',     validFrom:'12/12/2025 12:00pm', validTo:'12/12/2025 11:00pm', holder:'Carlos Vega',   credits:20, creditsUsed:5, printed:true, orderId:'ORD-0071' },
+  { id:'EXP-WB-0002', name:'VIP Wristband',             type:'wb',   icon:'ti-ticket', status:'Active', uses:-1,usedCount:0,  maxUses:-1, usageType:'unlimited', event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'4:30pm', location:'Gate B',     validFrom:'12/12/2025 12:00pm', validTo:'12/12/2025 11:00pm', holder:'Rosa Milagros', credits:20, creditsUsed:5, printed:true, orderId:'ORD-0072' },
+  { id:'EXP-WB-0003', name:'Kids Wristband',            type:'wb',   icon:'ti-ticket', status:'Used',   uses:-1,usedCount:12, maxUses:-1, usageType:'unlimited', event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'4:30pm', location:'Gate A',     validFrom:'12/12/2025 12:00pm', validTo:'12/12/2025 11:00pm', holder:'Sara Mendez',   credits:20, creditsUsed:5, printed:true, orderId:'ORD-0073' },
+  { id:'EXP-SE-0006', name:'Cast Photo Package',         type:'exp',  icon:'ti-camera',         status:'Expired',uses:1, usedCount:0, maxUses:1,  usageType:'single',    event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'4:30pm', location:'Lobby · Photo Area', validFrom:'12/12/2025 7:00pm', validTo:'12/12/2025 7:30pm',  holder:'James Ruiz',       credits:0, creditsUsed:0, printed:true, orderId:'ORD-0061' },
+  /* Not Assigned — Wristbands */
+  { id:'EXP-WB-0004', name:'Wristband',     type:'wb',     icon:'ti-ticket',         status:'Not Assigned', uses:-1, usedCount:0, maxUses:-1, usageType:'unlimited', event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'', location:'Gate A', validFrom:'12/12/2025 12:00pm', validTo:'12/12/2025 11:00pm', holder:'—', credits:0, creditsUsed:0, printed:false, orderId:'BATCH' },
+  { id:'EXP-WB-0005', name:'Wristband',     type:'wb',     icon:'ti-ticket',         status:'Not Assigned', uses:-1, usedCount:0, maxUses:-1, usageType:'unlimited', event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'', location:'Gate A', validFrom:'12/12/2025 12:00pm', validTo:'12/12/2025 11:00pm', holder:'—', credits:0, creditsUsed:0, printed:false, orderId:'BATCH' },
+  { id:'EXP-WB-0006', name:'Wristband',     type:'wb',     icon:'ti-ticket',         status:'Not Assigned', uses:-1, usedCount:0, maxUses:-1, usageType:'unlimited', event:'WPB Evening Show I', date:'12/12/2025', eventStart:'12/12/2025', eventEnd:'12/14/2025', time:'', location:'Gate B', validFrom:'12/12/2025 12:00pm', validTo:'12/12/2025 11:00pm', holder:'—', credits:0, creditsUsed:0, printed:false, orderId:'BATCH' },
+];
+
+const STATUS_CFG = {
+  'Active':       { cls:'sb-active',       icon:'ti-circle-check'        },
+  'Used':         { cls:'sb-used',         icon:'ti-circle-check-filled' },
+  'Expired':      { cls:'sb-expired',      icon:'ti-clock-x'             },
+  'Not Assigned': { cls:'sb-not-assigned', icon:'ti-user-off'            },
+};
+
+const fmt$ = v => '$' + v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+
+/* ── STATE ──────────────────────────────────── */
+let filtered    = [...TICKETS];
+let sortCol     = 'id';
+let sortDir     = 1;
+let selected    = new Set();
+let batchIds    = new Set();
+let batchIdCtr  = 200;
+let genType     = 'midway';
+
+/* ── RENDER ─────────────────────────────────── */
+async function render(data){
+  const tbody = document.getElementById('tBody');
+  tbody.innerHTML = '';
+
+  for(const t of data){
+    const sc = STATUS_CFG[t.status] || STATUS_CFG['Not Assigned'];
+    const isMidway = t.type==='midway'||t.type==='ride'||t.type==='exp';
+    const typeColor  = isMidway ? '--amber' : t.type==='wb' ? '--violet' : '--blue';
+    const typeLabel  = isMidway ? 'Midway' : t.type==='wb' ? 'Wristband' : t.type;
+    const typeIcon   = isMidway ? 'ti-roller-coaster' : 'ti-ticket';
+    const isSelected = selected.has(t.id);
+
+    // validity
+    const validity = t.eventStart && t.eventEnd
+      ? (t.eventStart===t.eventEnd ? t.eventStart : t.eventStart+' – '+t.eventEnd)
+      : t.date||'—';
+
+    // usage — only Active/Used
+    const usageLabel = (t.status==='Active'||t.status==='Used')
+      ? (t.usageType==='unlimited'?'Unlimited':t.usageType==='single'?'Single Use':`${t.usedCount||0}/${t.maxUses} Uses`)
+      : '—';
+
+    const tr = document.createElement('tr');
+    if(isSelected) tr.classList.add('row-selected');
+    tr.dataset.id = t.id;
+
+    // 1 checkbox
+    const tdChk = document.createElement('td');
+    tdChk.className = 'no-print';
+    const chk = document.createElement('div');
+    chk.className = 'row-check';
+    if(isSelected) chk.innerHTML = '<i class="hgi-stroke hgi-checkmark-circle-01" style="font-size:10px;color:#fff"></i>';
+    tdChk.appendChild(chk);
+    tr.appendChild(tdChk);
+
+    // 2 QR
+    const tdQR = document.createElement('td');
+    const canvas = document.createElement('canvas');
+    canvas.width=36; canvas.height=36;
+    const qWrap = document.createElement('div');
+    qWrap.appendChild(canvas); tdQR.appendChild(qWrap);
+    tr.appendChild(tdQR);
+
+    // 3–9 text cells
+    const cells = [
+      ['<span style="font-size:10px;font-family:var(--mono);color:var(--p);font-weight:600">'+t.id+'</span>', ''],
+      ['<span class="type-badge" style="border-color:var('+typeColor+'-border);background:var('+typeColor+'-dim);color:var('+typeColor+')"><i class="ti '+typeIcon+'" style="font-size:9px"></i>'+typeLabel+'</span>', ''],
+      ['<span class="status-badge '+sc.cls+'"><i class="ti '+sc.icon+'"></i>'+t.status+'</span>', ''],
+      [validity, 'font-size:10px;font-family:var(--mono);color:var(--text3)'],
+      [usageLabel, 'font-size:10px;font-family:var(--mono);color:var(--text3)'],
+    ];
+
+    cells.forEach(([html,style])=>{
+      const td = document.createElement('td');
+      if(style) td.style.cssText=style;
+      td.innerHTML=html;
+      tr.appendChild(td);
+    });
+
+    // Credits cell
+    const tdCr = document.createElement('td');
+    if(t.type==='wb' && t.credits>0 && t.status!=='Not Assigned'){
+      const rem = t.credits-(t.creditsUsed||0);
+      const pct = Math.round(rem/t.credits*100);
+      const col = rem===0?'var(--text3)':pct<30?'var(--red)':pct<60?'var(--amber)':'var(--p)';
+      tdCr.innerHTML=`<div class="credits-wrap"><span class="credits-label" style="color:${col}">${rem}/${t.credits} cr</span><div class="credits-bar"><div class="credits-fill" style="width:${pct}%;background:${col}"></div></div></div>`;
+    } else {
+      tdCr.innerHTML='<span style="font-size:10px;font-family:var(--mono);color:var(--text3)">—</span>';
+    }
+    tr.appendChild(tdCr);
+
+    // Holder
+    const tdH = document.createElement('td');
+    tdH.style.cssText='font-size:11px;color:var(--text2)';
+    tdH.textContent=t.holder||'—';
+    tr.appendChild(tdH);
+
+    // Printed
+    const tdPr = document.createElement('td');
+    if(t.printed){
+      tdPr.innerHTML='<span style="font-size:10px;font-family:var(--mono);padding:2px 8px;border-radius:4px;border:1px solid rgba(42,155,133,.3);background:rgba(42,155,133,.1);color:#2A9B85;display:inline-flex;align-items:center;gap:4px"><i class="hgi-stroke hgi-checkmark-circle-01" style="font-size:10px"></i>Yes</span>';
+    } else {
+      tdPr.innerHTML='<span style="font-size:10px;font-family:var(--mono);padding:2px 8px;border-radius:4px;border:1px solid var(--border);background:var(--bg4);color:var(--text3);display:inline-flex;align-items:center;gap:4px"><i class="hgi-stroke hgi-cancel-01" style="font-size:10px"></i>No</span>';
+    }
+    tr.appendChild(tdPr);
+
+    // Action
+    const tdA = document.createElement('td');
+    tdA.className='no-print';
+    const pb = document.createElement('button');
+    pb.className='row-print-btn';
+    pb.innerHTML='<i class="hgi-stroke hgi-printer"></i>Print';
+    pb.onclick=(e)=>{ e.stopPropagation(); printOne(t.id); };
+    tdA.appendChild(pb);
+    tr.appendChild(tdA);
+
+    tbody.appendChild(tr);
+
+    // QR
+    try{ await QRCode.toCanvas(canvas,`EVINRA:${t.id}:${t.event||''}:${t.date||''}:${t.validTo||''}`,{width:36,margin:1,color:{dark:'#0B0F0E',light:'#ffffff'}}); }catch(e){}
+
+    // toggle
+    const toggle=()=>{
+      if(selected.has(t.id)){ selected.delete(t.id); tr.classList.remove('row-selected'); chk.innerHTML=''; }
+      else{ selected.add(t.id); tr.classList.add('row-selected'); chk.innerHTML='<i class="hgi-stroke hgi-checkmark-circle-01" style="font-size:10px;color:#fff"></i>'; }
+    };
+    chk.onclick=(e)=>{ e.stopPropagation(); toggle(); };
+    tr.onclick=toggle;
+  }
+}
+
+/* ── FILTERS & SORT ─────────────────────────── */
+function applyFilters(){
+  const type   = document.getElementById('fType').value;
+  const status = document.getElementById('fStatus').value;
+  const search  = document.getElementById('fSearch').value.toLowerCase();
+  const printed = document.getElementById('fPrinted').value;
+
+  filtered = TICKETS.filter(t=>{
+    const isMidway = t.type==='midway'||t.type==='ride'||t.type==='exp';
+    if(type==='midway' && !isMidway) return false;
+    if(type==='wb'     && t.type!=='wb') return false;
+    if(type && type!=='midway' && type!=='wb' && t.type!==type) return false;
+    if(status && t.status!==status) return false;
+    if(printed==='yes' && !t.printed) return false;
+    if(printed==='no'  &&  t.printed) return false;
+    if(search && !`${t.id} ${t.name||''} ${t.holder||''} ${t.orderId||''}`.toLowerCase().includes(search)) return false;
+    return true;
+  });
+  sortAndRender();
+}
+
+function sortBy(col){
+  if(sortCol===col) sortDir*=-1; else{ sortCol=col; sortDir=1; }
+  document.querySelectorAll('.exp-tbl thead th').forEach(th=>th.classList.remove('sort-active'));
+  sortAndRender();
+}
+
+function sortAndRender(){
+  const sorted=[...filtered].sort((a,b)=>{
+    const av=a[sortCol]||'', bv=b[sortCol]||'';
+    return av<bv?-sortDir:av>bv?sortDir:0;
+  });
+  render(sorted);
+}
+
+/* ── SELECTION ──────────────────────────────── */
+function selectAll(){ filtered.forEach(t=>{selected.add(t.id);}); render(filtered); }
+function clearSel(){ selected.clear(); render(filtered); }
+
+/* ── PRINT ──────────────────────────────────── */
+function printOne(id){
+  document.querySelectorAll('#tBody tr').forEach(tr=>tr.classList.toggle('print-hide',tr.dataset.id!==id));
+  window.print();
+  document.querySelectorAll('#tBody tr').forEach(tr=>tr.classList.remove('print-hide'));
+}
+function printSelected(){
+  if(!selected.size) return;
+  document.querySelectorAll('#tBody tr').forEach(tr=>tr.classList.toggle('print-hide',!selected.has(tr.dataset.id)));
+  window.print();
+  document.querySelectorAll('#tBody tr').forEach(tr=>tr.classList.remove('print-hide'));
+}
+function printAll(){
+  window.print();
+}
+function printBatch(){
+  if(!batchIds.size) return;
+  document.querySelectorAll('#tBody tr').forEach(tr=>tr.classList.toggle('print-hide',!batchIds.has(tr.dataset.id)));
+  window.print();
+  document.querySelectorAll('#tBody tr').forEach(tr=>tr.classList.remove('print-hide'));
+}
+
+/* ── MODAL ──────────────────────────────────── */
+function openModal(){ document.getElementById('batchModal').classList.add('open'); }
+function closeModal(){ document.getElementById('batchModal').classList.remove('open'); }
+function overlayClick(e){ if(e.target===document.getElementById('batchModal')) closeModal(); }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+function selectType(type){
+  genType=type;
+  document.getElementById('optMidway').classList.toggle('active',type==='midway');
+  document.getElementById('optWb').classList.toggle('active',type==='wb');
+}
+
+/* ── GENERATE ───────────────────────────────── */
+async function generate(andPrint){
+  const qty      = parseInt(document.getElementById('mQty').value)||10;
+  const start    = document.getElementById('mStart').value;
+  const end      = document.getElementById('mEnd').value;
+  const startD   = start ? new Date(start+'T12:00').toLocaleDateString('en-US',{month:'2-digit',day:'2-digit',year:'numeric'}) : '';
+  const endD     = end   ? new Date(end  +'T12:00').toLocaleDateString('en-US',{month:'2-digit',day:'2-digit',year:'numeric'}) : startD;
+  const prefix   = genType==='midway' ? 'EXP-MW' : 'EXP-WB';
+  const name     = genType==='midway' ? 'Midway Ticket' : 'Wristband';
+  const usageType= genType==='wb' ? 'unlimited' : 'single';
+  const maxUses  = genType==='wb' ? -1 : 1;
+  const status   = genType==='midway' ? 'Active' : 'Not Assigned';
+
+  batchIds.clear();
+  const newTickets=[];
+  for(let i=0;i<qty;i++){
+    batchIdCtr++;
+    const id=`${prefix}-${String(batchIdCtr).padStart(4,'0')}`;
+    batchIds.add(id);
+    newTickets.push({ id, name, type:genType, icon:genType==='midway'?'ti-roller-coaster':'ti-ticket',
+      status, uses:maxUses, usedCount:0, maxUses, usageType, event:'WPB Evening Show I',
+      date:startD, eventStart:startD, eventEnd:endD,
+      validFrom:`${startD} 3:00pm`, validTo:`${endD} 11:00pm`,
+      holder:'—', credits:0, creditsUsed:0, orderId:'BATCH',
+      printed: genType==='midway' });
+  }
+
+  TICKETS.unshift(...newTickets);
+  filtered=[...TICKETS];
+  applyFilters();
+
+  // auto-select batch
+  selected.clear();
+  batchIds.forEach(id=>selected.add(id));
+
+  // show print batch btn
+  document.getElementById('batchCount').textContent=qty;
+  document.getElementById('printBatchBtn').style.display='flex';
+
+  closeModal();
+  if(andPrint){ await new Promise(r=>setTimeout(r,400)); printBatch(); }
+}
+
+/* ── EXPOSE ─────────────────────────────────── */
+window.applyFilters    = applyFilters;
+window.sortBy          = sortBy;
+window.selectAll       = selectAll;
+window.clearSel        = clearSel;
+window.printSelected   = printSelected;
+window.printAll        = printAll;
+window.printBatch      = printBatch;
+window.openModal       = openModal;
+window.closeModal      = closeModal;
+window.overlayClick    = overlayClick;
+window.selectType      = selectType;
+window.generate        = generate;
+window.printOne        = printOne;
+
+/* ── INIT ───────────────────────────────────── */
+render(TICKETS);
+
+})();
+</script>
+
+<script src="evinra-theme.js"></script>
+<script>
+(function(){
+  var path = (location.pathname.split('/').pop() || 'evinra_index.html').replace('.html','');
+  if (!path) path = 'evinra_index';
+  var el = document.querySelector('.sb-item[data-page="'+path+'"]');
+  if (el) el.classList.add('active');
+})();
+</script>
+</body>
+</html>

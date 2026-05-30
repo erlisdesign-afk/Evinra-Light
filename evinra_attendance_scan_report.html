@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evinra — Attendance / Scan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+  <link rel="stylesheet" href="evinra-styles.css">
+</head>
+<body>
+
+<div class="container">
+  <aside class="sidebar">
+    <div class="sb-header" onclick="location.href='evinra_index.html'">
+      <img class="sb-logo-img dark" src="evinra-logo-dark.png" alt="Eventra">
+      <img class="sb-logo-img light" src="evinra-logo-light.png" alt="Eventra">
+    </div>
+
+    <div class="sb-nav">
+      <div class="sb-section">
+        <div class="sb-group-title">Main</div>
+        <a href="evinra_index.html" data-page="evinra_index" class="sb-item"><i class="hgi-stroke hgi-grid-01"></i><span>Dashboard</span></a>
+        <a href="evinra_events.html" data-page="evinra_events" class="sb-item"><i class="hgi-stroke hgi-calendar"></i><span>Events</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Layout</div>
+        <a href="evinra_catalog.html" data-page="evinra_catalog" class="sb-item"><i class="hgi-stroke hgi-home-02"></i><span>Seating Map</span></a>
+        <a href="evinra_rides_exp.html" data-page="evinra_rides_exp" class="sb-item"><i class="hgi-stroke hgi-hierarchy-square-01"></i><span>Sections &amp; Zones</span></a>
+        <a href="evinra_entry_points.html" data-page="evinra_entry_points" class="sb-item"><i class="hgi-stroke hgi-building-02"></i><span>Entry Points</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Reports</div>
+        <a href="evinra_sales_overview.html" data-page="evinra_sales_overview" class="sb-item"><i class="hgi-stroke hgi-chart-column"></i><span>Sales Overview</span></a>
+        <a href="evinra_event_sales_report.html" data-page="evinra_event_sales_report" class="sb-item"><i class="hgi-stroke hgi-analytics-01"></i><span>Sales Report</span></a>
+        <a href="evinra_order_detail.html" data-page="evinra_order_detail" class="sb-item"><i class="hgi-stroke hgi-file-01"></i><span>Order Transactions</span></a>
+        <a href="evinra_inshow_analytics.html" data-page="evinra_inshow_analytics" class="sb-item"><i class="hgi-stroke hgi-shopping-cart-01"></i><span>In-Show Analytics</span></a>
+        <a href="evinra_attendance_scan_report.html" data-page="evinra_attendance_scan_report" class="sb-item"><i class="hgi-stroke hgi-qr-code"></i><span>Attendance / Scan</span></a>
+        <a href="evinra_vendor_settlement.html" data-page="evinra_vendor_settlement" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Vendor Settlement</span></a>
+        <a href="evinra_refund_report.html" data-page="evinra_refund_report" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Refund Report</span></a>
+        <a href="evinra_promo_discounts.html" data-page="evinra_promo_discounts" class="sb-item"><i class="hgi-stroke hgi-discount"></i><span>Promo &amp; Discounts</span></a>
+        <a href="evinra_split_dist.html" data-page="evinra_split_dist" class="sb-item"><i class="hgi-stroke hgi-shuffle"></i><span>Split Distribution</span></a>
+        <a href="evinra_credit_txn.html" data-page="evinra_credit_txn" class="sb-item"><i class="hgi-stroke hgi-wallet-04"></i><span>Credit Transactions</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Settings</div>
+        <a href="evinra_general.html" data-page="evinra_general" class="sb-item"><i class="hgi-stroke hgi-settings-01"></i><span>General</span></a>
+        <a href="evinra_users.html" data-page="evinra_users" class="sb-item"><i class="hgi-stroke hgi-user-group"></i><span>Users</span></a>
+        <a href="evinra_experience_tickets.html" data-page="evinra_experience_tickets" class="sb-item"><i class="hgi-stroke hgi-ticket-01"></i><span>Experience Ticketing</span></a>
+        <a href="evinra_credit_plans.html" data-page="evinra_credit_plans" class="sb-item"><i class="hgi-stroke hgi-dollar-01"></i><span>Credit Plans</span></a>
+        <a href="evinra_scan_roles.html" data-page="evinra_scan_roles" class="sb-item"><i class="hgi-stroke hgi-shield-check"></i><span>Scan App Roles</span></a>
+        <a href="evinra_fees_taxes.html" data-page="evinra_fees_taxes" class="sb-item"><i class="hgi-stroke hgi-percent"></i><span>Fees &amp; Taxes</span></a>
+        <a href="evinra_discounts.html" data-page="evinra_discounts" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Discounts</span></a>
+        <a href="evinra_productions.html" data-page="evinra_productions" class="sb-item"><i class="hgi-stroke hgi-star"></i><span>Productions</span></a>
+        <a href="evinra_shows.html" data-page="evinra_shows" class="sb-item"><i class="hgi-stroke hgi-play-circle"></i><span>Shows</span></a>
+        <a href="evinra_other_vendors.html" data-page="evinra_other_vendors" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Other Vendors</span></a>
+      </div>
+    </div>
+
+    <div class="sb-user" onclick="location.href='login.html'">
+      <div class="sb-user-avatar">YP</div>
+      <div class="sb-user-info">
+        <div class="sb-user-name">Yoaldis P.</div>
+        <div class="sb-user-role">Super Admin</div>
+      </div>
+      <i class="hgi-stroke hgi-logout-01 sb-user-action"></i>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-title">Attendance / Scan</div>
+        <div class="topbar-breadcrumb">Evinra <span>/</span> Transactions / Scan</div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-btn"><i class="hgi-stroke hgi-notification-01"></i></div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-search-01"></i></div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-settings-01"></i></div>
+        <div class="theme-toggle"><i class="hgi-stroke hgi-sun"></i><span>Light</span></div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-arrow-right-02"></i></div>
+      </div>
+    </div>
+
+    <div class="content">
+          <div class="content">
+
+      <!-- FILTER STRIP -->
+      <div class="filter-strip">
+    </div>
+
+    <div class="footer">
+      <div>Evinra Ticketing OS · <strong style="color:var(--primary)">v2.1</strong></div>
+      <div class="footer-right">
+        <div class="footer-link">Documentation</div>
+        <div class="footer-link">Support</div>
+        <div class="footer-link">API</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+const SCANS=[
+  {id:1, time:'4:22pm',date:'12/12/2025',seat:'107-C-1', ticketId:'66f7e555…e13b',name:'Adult Premium Admission',type:'ap',gate:'Gate C',scanner:'SCN-05',status:'Valid',      order:'ORD-0041',section:'Section 107',mo:0 },
+  {id:2, time:'4:22pm',date:'12/12/2025',seat:'107-C-2', ticketId:'66f7e555…e13b',name:'Adult Premium Admission',type:'ap',gate:'Gate C',scanner:'SCN-05',status:'Valid',      order:'ORD-0041',section:'Section 107',mo:0 },
+  {id:3, time:'4:23pm',date:'12/12/2025',seat:'107-C-3', ticketId:'66f7e555…e13d',name:'Child VIP Admission',    type:'cv',gate:'Gate C',scanner:'SCN-05',status:'Valid',      order:'ORD-0041',section:'Section 107',mo:1 },
+  {id:4, time:'4:26pm',date:'12/12/2025',seat:'105-A-1', ticketId:'66f7e555…e14c',name:'VIP Family 4 Pack',      type:'vf',gate:'Gate B',scanner:'SCN-03',status:'Valid',      order:'ORD-0042',section:'Section 105',mo:4 },
+  {id:5, time:'4:26pm',date:'12/12/2025',seat:'105-A-2', ticketId:'66f7e555…e14c',name:'VIP Family 4 Pack',      type:'vf',gate:'Gate B',scanner:'SCN-03',status:'Valid',      order:'ORD-0042',section:'Section 105',mo:4 },
+  {id:6, time:'4:27pm',date:'12/12/2025',seat:'105-A-3', ticketId:'66f7e555…e14c',name:'VIP Family 4 Pack',      type:'vf',gate:'Gate B',scanner:'SCN-03',status:'Valid',      order:'ORD-0042',section:'Section 105',mo:5 },
+  {id:7, time:'4:27pm',date:'12/12/2025',seat:'105-A-4', ticketId:'66f7e555…e14c',name:'VIP Family 4 Pack',      type:'vf',gate:'Gate B',scanner:'SCN-03',status:'Valid',      order:'ORD-0042',section:'Section 105',mo:5 },
+  {id:8, time:'4:28pm',date:'12/12/2025',seat:'104-A-6', ticketId:'66f7e555…e141',name:'Child VIP Admission',    type:'cv',gate:'Gate A',scanner:'SCN-01',status:'Valid',      order:'ORD-0044',section:'Section 104',mo:6 },
+  {id:9, time:'4:29pm',date:'12/12/2025',seat:'104-A-9', ticketId:'66f7e555…e141',name:'Child VIP Admission',    type:'cv',gate:'Gate A',scanner:'SCN-01',status:'Valid',      order:'ORD-0044',section:'Section 104',mo:7 },
+  {id:10,time:'4:31pm',date:'12/12/2025',seat:'104-A-10',ticketId:'66f7e555…e141',name:'Child VIP Admission',    type:'cv',gate:'Gate A',scanner:'SCN-01',status:'Valid',      order:'ORD-0044',section:'Section 104',mo:9 },
+  {id:11,time:'4:32pm',date:'12/12/2025',seat:'104-A-12',ticketId:'66f7e555…e13f',name:'Adult VIP Admission',    type:'av',gate:'Gate A',scanner:'SCN-01',status:'Valid',      order:'ORD-0044',section:'Section 104',mo:10},
+  {id:12,time:'4:33pm',date:'12/12/2025',seat:'105-B-1', ticketId:'66f7e555…e14c',name:'VIP Family 4 Pack',      type:'vf',gate:'Gate B',scanner:'SCN-04',status:'Valid',      order:'ORD-0043',section:'Section 105',mo:11},
+  {id:13,time:'4:33pm',date:'12/12/2025',seat:'105-B-2', ticketId:'66f7e555…e14c',name:'VIP Family 4 Pack',      type:'vf',gate:'Gate B',scanner:'SCN-04',status:'Valid',      order:'ORD-0043',section:'Section 105',mo:11},
+  {id:14,time:'4:34pm',date:'12/12/2025',seat:'105-B-3', ticketId:'66f7e555…e14c',name:'VIP Family 4 Pack',      type:'vf',gate:'Gate B',scanner:'SCN-04',status:'Valid',      order:'ORD-0043',section:'Section 105',mo:12},
+  {id:15,time:'4:41pm',date:'12/12/2025',seat:'104-A-9', ticketId:'66f7e555…e141',name:'Child VIP Admission',    type:'cv',gate:'Gate A',scanner:'SCN-02',status:'Double Scan',order:'ORD-0044',section:'Section 104',mo:19},
+  {id:16,time:'4:48pm',date:'12/12/2025',seat:'105-C-2', ticketId:'66f7e555…e13b',name:'Adult Premium Admission',type:'ap',gate:'Gate B',scanner:'SCN-03',status:'Invalid',    order:'ORD-0061',section:'Section 105',mo:26},
+  {id:17,time:'5:02pm',date:'12/12/2025',seat:'104-C-1', ticketId:'66f7e555…e13b',name:'Adult Premium Admission',type:'ap',gate:'Gate A',scanner:'SCN-01',status:'Late Entry', order:'ORD-0058',section:'Section 104',mo:40},
+  {id:18,time:'—',date:'—',seat:'104-B-3', ticketId:'66f7e555…e13d',name:'Child VIP Admission',         type:'cv',gate:'—',scanner:'—',status:'Not Scanned',order:'ORD-0051',section:'Section 104',mo:null},
+  {id:19,time:'—',date:'—',seat:'104-B-4', ticketId:'66f7e555…e13d',name:'Child VIP Admission',         type:'cv',gate:'—',scanner:'—',status:'Not Scanned',order:'ORD-0051',section:'Section 104',mo:null},
+  {id:20,time:'—',date:'—',seat:'105-B-4', ticketId:'66f7e555…e14c',name:'VIP Family 4 Pack',           type:'vf',gate:'—',scanner:'—',status:'Not Scanned',order:'ORD-0043',section:'Section 105',mo:null},
+  {id:21,time:'—',date:'—',seat:'105-D-1', ticketId:'66f7e555…e13b',name:'Adult Premium Admission',     type:'ap',gate:'—',scanner:'—',status:'Not Scanned',order:'ORD-0062',section:'Section 105',mo:null},
+  {id:22,time:'—',date:'—',seat:'107-D-1', ticketId:'66f7e555…e13b',name:'Adult Premium Admission',     type:'ap',gate:'—',scanner:'—',status:'Not Scanned',order:'ORD-0071',section:'Section 107',mo:null},
+  {id:23,time:'—',date:'—',seat:'107-D-2', ticketId:'66f7e555…e13b',name:'Adult Premium Admission',     type:'ap',gate:'—',scanner:'—',status:'Not Scanned',order:'ORD-0071',section:'Section 107',mo:null},
+];
+
+const TOTAL_SOLD=129, CAPACITY=450;
+const scanned    =SCANS.filter(s=>s.status!=='Not Scanned').length;
+const noShow     =SCANS.filter(s=>s.status==='Not Scanned').length;
+const valid      =SCANS.filter(s=>s.status==='Valid').length;
+const doubleScans=SCANS.filter(s=>s.status==='Double Scan').length;
+const invalid    =SCANS.filter(s=>s.status==='Invalid').length;
+const lateEntry  =SCANS.filter(s=>s.status==='Late Entry').length;
+const scanRate   =Math.round(scanned/TOTAL_SOLD*100);
+
+/* Table */
+
+const SCFG={
+  'Valid':       {cls:'sb-valid',  icon:'ti-circle-check',     label:'Valid'      },
+  'Double Scan': {cls:'sb-double', icon:'ti-rotate-clockwise', label:'Double Scan'},
+  'Invalid':     {cls:'sb-invalid',icon:'ti-circle-x',         label:'Invalid'    },
+  'Late Entry':  {cls:'sb-late',   icon:'ti-clock-exclamation',label:'Late Entry' },
+  'Not Scanned': {cls:'sb-ns',     icon:'ti-minus-circle',     label:'No-Show'    },
+};
+const TCFG={
+  ap:{cls:'tt-ap',label:'Adult Prem.'},av:{cls:'tt-av',label:'Adult VIP'},
+  cv:{cls:'tt-cv',label:'Child VIP'}, vf:{cls:'tt-vf',label:'VIP Family'},
+};
+
+/* KPIs */
+const kpiDefs=[
+  {label:'Tickets Scanned',val:scanned,   sub:`${scanRate}% scan rate`,    color:'var(--p)',      bar:Math.round(scanned/TOTAL_SOLD*100),   icon:'ti-scan',             accent:'rgba(42,155,133,.05)'},
+  {label:'No-Shows',       val:noShow,    sub:`${TOTAL_SOLD-scanned} absent`,color:'var(--amber)', bar:Math.round(noShow/TOTAL_SOLD*100),   icon:'ti-user-off',         accent:'rgba(212,136,74,.05)'},
+  {label:'Scan Rate %',    val:scanRate+'%',sub:`${valid} valid entries`,   color:'var(--p)',      bar:scanRate,                            icon:'ti-percent',          accent:'rgba(42,155,133,.05)'},
+  {label:'Invalid Scans',  val:invalid,   sub:'denied at gate',             color:'var(--red)',    bar:Math.round(invalid/scanned*100)||0,  icon:'ti-circle-x',         accent:'rgba(201,75,75,.05)'},
+  {label:'Re-entry Attempts',val:doubleScans,sub:'duplicate scan events',  color:'var(--amber)',  bar:Math.round(doubleScans/scanned*100)||0,icon:'ti-rotate-clockwise',accent:'rgba(212,136,74,.05)'},
+  {label:'Late Entries',   val:lateEntry, sub:'after show start time',      color:'var(--violet)', bar:Math.round(lateEntry/scanned*100)||0,icon:'ti-clock-exclamation',accent:'rgba(139,107,212,.05)'},
+];
+
+const kpiRow=document.getElementById('kpiRow');
+kpiDefs.forEach(k=>{
+  const d=document.createElement('div');
+  d.className='kpi-card';
+  d.style.cssText=`--kc-accent:radial-gradient(ellipse at top right,${k.accent},transparent 70%)`;
+  d.innerHTML=`<div class="kpi-label"><i class="ti ${k.icon}" style="color:${k.color}"></i>${k.label}</div>
+    <div class="kpi-value" style="color:${k.color}">${k.val}</div>
+    <div class="kpi-footer"><span class="kpi-sub">${k.sub}</span>
+      <div class="kpi-bar"><div class="kpi-bar-fill" style="background:${k.color}" data-w="${k.bar}"></div></div>
+    </div>`;
+  kpiRow.appendChild(d);
+});
+setTimeout(()=>document.querySelectorAll('.kpi-bar-fill[data-w]').forEach(el=>el.style.width=el.dataset.w+'%'),300);
+
+/* Donut */
+const r=40,cx=55,cy=55,sw=14,circ=2*Math.PI*r;
+const svg=document.getElementById('donutSvg');
+const bgc=document.createElementNS('http://www.w3.org/2000/svg','circle');
+bgc.setAttribute('cx',cx);bgc.setAttribute('cy',cy);bgc.setAttribute('r',r);
+bgc.setAttribute('fill','none');bgc.setAttribute('stroke','var(--bg4)');bgc.setAttribute('stroke-width',sw);
+svg.appendChild(bgc);
+[[scanned/TOTAL_SOLD,'var(--p)'],[noShow/TOTAL_SOLD,'var(--amber)']].reduce((off,seg)=>{
+  const d=seg[0]*circ,g=circ-d;
+  const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('cx',cx);c.setAttribute('cy',cy);c.setAttribute('r',r);
+  c.setAttribute('fill','none');c.setAttribute('stroke',seg[1]);c.setAttribute('stroke-width',sw);
+  c.setAttribute('stroke-dasharray',`0 ${circ}`);c.setAttribute('stroke-linecap','round');
+  c.setAttribute('transform',`rotate(${-90+off*360} ${cx} ${cy})`);
+  c.style.transition='stroke-dasharray 1.1s cubic-bezier(.16,1,.3,1)';
+  svg.appendChild(c);
+  setTimeout(()=>c.setAttribute('stroke-dasharray',`${d} ${g}`),250);
+  return off+seg[0];
+},0);
+const t1=document.createElementNS('http://www.w3.org/2000/svg','text');
+t1.setAttribute('x',cx);t1.setAttribute('y',cy-6);t1.setAttribute('fill','var(--p)');
+t1.setAttribute('font-family','Syne,sans-serif');t1.setAttribute('font-weight','800');
+t1.setAttribute('font-size','16');t1.setAttribute('text-anchor','middle');t1.setAttribute('dominant-baseline','middle');
+t1.textContent=scanRate+'%';svg.appendChild(t1);
+const t2=document.createElementNS('http://www.w3.org/2000/svg','text');
+t2.setAttribute('x',cx);t2.setAttribute('y',cy+10);t2.setAttribute('fill','var(--text3)');
+t2.setAttribute('font-family','JetBrains Mono,monospace');t2.setAttribute('font-size','9');
+t2.setAttribute('text-anchor','middle');t2.textContent='scan rate';svg.appendChild(t2);
+
+const dlegend=document.getElementById('donutLegend');
+[{l:'Scanned In',v:scanned,c:'var(--p)'},{l:'No-Show',v:noShow,c:'var(--amber)'},
+ {l:'Total Sold',v:TOTAL_SOLD,c:'var(--text3)'},{l:'Capacity',v:CAPACITY,c:'var(--border2)'}
+].forEach(l=>{
+  const li=document.createElement('div');li.className='legend-item';
+  li.innerHTML=`<div class="legend-dot" style="background:${l.c}"></div><span class="legend-label">${l.l}</span><span class="legend-val">${l.v}</span>`;
+  dlegend.appendChild(li);
+});
+
+/* Status bars */
+const sbars=[[valid,'Valid','var(--p)'],[noShow,'No-Show','var(--amber)'],[lateEntry,'Late Entry','var(--violet)'],[doubleScans,'Double Scan','var(--amber)'],[invalid,'Invalid','var(--red)']];
+const maxBar=Math.max(...sbars.map(b=>b[0]),1);
+const sbWrap=document.getElementById('statusBars');
+sbars.forEach(b=>{
+  const row=document.createElement('div');row.className='sbar-row';
+  row.innerHTML=`<span class="sbar-label">${b[1]}</span>
+    <div class="sbar-track"><div class="sbar-fill" style="background:${b[2]}" data-w="${Math.round(b[0]/maxBar*100)}"></div></div>
+    <span class="sbar-val">${b[0]}</span>`;
+  sbWrap.appendChild(row);
+});
+setTimeout(()=>document.querySelectorAll('.sbar-fill[data-w]').forEach(el=>el.style.width=el.dataset.w+'%'),400);
+
+/* Table */
+function renderTable(data){
+  const tbody=document.getElementById('tableBody');tbody.innerHTML='';
+  data.forEach((s,i)=>{
+    const sc=SCFG[s.status];const tc=TCFG[s.type];const ns=s.status==='Not Scanned';
+    const tr=document.createElement('tr');if(ns)tr.classList.add('row-ns');
+    tr.innerHTML=`<td class="rn">${i+1}</td>
+      <td style="font-family:var(--mono);font-size:11px;color:${ns?'var(--text3)':'var(--text)'}">${s.time}</td>
+      <td style="font-family:var(--mono);font-size:11px;color:${ns?'var(--text3)':'var(--text2)'}">${s.date}</td>
+      <td><span class="seat-chip">${s.seat}</span></td>
+      <td><span class="tid-chip" title="${s.ticketId}"><i class="hgi-stroke hgi-ticket-01"></i><span class="tid-text">${s.ticketId}</span></span></td>
+      <td style="font-size:12px;color:var(--text)">${s.name}</td>
+      <td><span class="tt-badge ${tc.cls}">${tc.label}</span></td>
+      <td><span class="gate-tag"><i class="hgi-stroke hgi-location-01"></i>${s.gate}</span></td>
+      <td style="font-family:var(--mono);font-size:10px;color:var(--text2)">${s.scanner}</td>
+      <td><span class="scan-badge ${sc.cls}"><i class="ti ${sc.icon}"></i>${sc.label}</span></td>
+      <td><span class="order-ref">${s.order}</span></td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+/* Populate scan log filter dropdowns dynamically from SCANS data */
+function populateScanLogFilters(){
+  const unique=(key,exclude=[])=>[...new Set(SCANS.map(s=>s[key]).filter(v=>!exclude.includes(v)))].sort();
+
+  const fill=(id,values)=>{
+    const sel=document.getElementById(id);
+    const prev=sel.value;
+    const first=sel.options[0];
+    sel.innerHTML=''; sel.appendChild(first);
+    values.forEach(v=>{ const o=document.createElement('option');o.value=v;o.textContent=v;if(v===prev)o.selected=true;sel.appendChild(o); });
+  };
+
+  fill('nameFilter',     unique('name'));
+  fill('typeFilter',     [...new Set(SCANS.map(s=>{ const tc=TCFG[s.type]; return tc?tc.label:s.type; }))].sort());
+  fill('locationFilter', unique('gate',['—']));
+  fill('deviceFilter',   unique('scanner',['—']));
+  fill('eventDateFilter',unique('date',['—']));
+  fill('eventTimeFilter',unique('time',['—']));
+}
+
+function applyFilters(){
+  const search    = document.getElementById('searchInput').value.toLowerCase();
+  const sec       = document.getElementById('sectionFilter').value;
+  const gate      = document.getElementById('gateFilter').value;
+  const stat      = document.getElementById('statusFilter').value;
+  const name      = document.getElementById('nameFilter').value;
+  const typeLabel = document.getElementById('typeFilter').value;
+  const location  = document.getElementById('locationFilter').value;
+  const device    = document.getElementById('deviceFilter').value;
+  const evtDate   = document.getElementById('eventDateFilter').value;
+  const evtTime   = document.getElementById('eventTimeFilter').value;
+
+  renderTable(SCANS.filter(s=>{
+    if(sec       && s.section !== sec)                                   return false;
+    if(gate      && s.gate    !== gate)                                  return false;
+    if(stat      && s.status  !== stat)                                  return false;
+    if(name      && s.name    !== name)                                  return false;
+    if(typeLabel && (TCFG[s.type]?.label||s.type) !== typeLabel)        return false;
+    if(location  && s.gate    !== location)                              return false;
+    if(device    && s.scanner !== device)                                return false;
+    if(evtDate   && s.date    !== evtDate)                               return false;
+    if(evtTime   && s.time    !== evtTime)                               return false;
+    if(search    && !`${s.seat} ${s.order} ${s.name} ${s.gate} ${s.scanner} ${s.ticketId} ${s.date}`.toLowerCase().includes(search)) return false;
+    return true;
+  }));
+}
+
+document.getElementById('searchInput').addEventListener('input',   applyFilters);
+document.getElementById('sectionFilter').addEventListener('change', applyFilters);
+document.getElementById('gateFilter').addEventListener('change',    applyFilters);
+document.getElementById('statusFilter').addEventListener('change',  applyFilters);
+document.getElementById('nameFilter').addEventListener('change',    applyFilters);
+document.getElementById('typeFilter').addEventListener('change',    applyFilters);
+document.getElementById('locationFilter').addEventListener('change',applyFilters);
+document.getElementById('deviceFilter').addEventListener('change',  applyFilters);
+document.getElementById('eventDateFilter').addEventListener('change',applyFilters);
+document.getElementById('eventTimeFilter').addEventListener('change',applyFilters);
+
+populateScanLogFilters();
+
+renderTable(SCANS);
+})();
+</script>
+<script>
+(function(){
+  var path = (location.pathname.split('/').pop() || 'evinra_index.html').replace('.html','');
+  if (!path) path = 'evinra_index';
+  var el = document.querySelector('.sb-item[data-page="'+path+'"]');
+  if (el) el.classList.add('active');
+})();
+</script>
+</body>
+</html>
+
+<script src="evinra-theme.js"></script>
+</body>
+</html>

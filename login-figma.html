@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evinra - Login (Figma)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0B0F0E;
+      --bg2: #111816;
+      --bg3: #161D1B;
+      --bg4: #1C2422;
+      --primary: #2A9B85;
+      --primary-dim: rgba(42,155,133,.12);
+      --primary-border: rgba(42,155,133,.22);
+      --text: #E8F0EE;
+      --text2: #8A9E9B;
+      --text3: #4A5E5B;
+      --border: rgba(255,255,255,.06);
+      --border2: rgba(255,255,255,.10);
+    }
+
+    html, body {
+      height: 100%;
+      background: #0B0F0E;
+      color: #E8F0EE;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+    }
+
+    /* Theme toggle pill */
+    .auth-theme-toggle {
+      position: fixed;
+      top: 20px; right: 20px;
+      z-index: 50;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background: #111816;
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 999px;
+      color: #8A9E9B;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    .auth-theme-toggle i { font-size: 14px; color: #2A9B85; }
+
+    /* Shell */
+    .auth-shell {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(42,155,133,.08) 0, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(212,136,74,.05) 0, transparent 50%),
+        #0B0F0E;
+    }
+
+    /* Card */
+    .auth-card {
+      width: 100%;
+      max-width: 1040px;
+      min-height: 600px;
+      background: #111816;
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 18px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* Brand pane */
+    .auth-brand {
+      background:
+        radial-gradient(circle at 30% 30%, rgba(42,155,133,.18) 0, transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(212,136,74,.10) 0, transparent 55%),
+        #161D1B;
+      position: relative;
+      padding: 48px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      border-right: 1px solid rgba(255,255,255,.06);
+    }
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(42,155,133,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42,155,133,.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .brand-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .brand-center { position: relative; z-index: 1; }
+    .brand-features { position: relative; z-index: 1; }
+    .legal { position: relative; z-index: 1; }
+    .brand-logo {
+      width: 44px; height: 44px;
+      background: #2A9B85;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Inter', sans-serif;
+      font-weight: 800; font-size: 22px; color: white;
+      box-shadow: 0 6px 16px rgba(42,155,133,.4);
+      flex-shrink: 0;
+    }
+    .brand-wordmark {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: #E8F0EE;
+      letter-spacing: -0.5px;
+    }
+    .brand-wordmark small {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      color: #4A5E5B;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .brand-center { position: relative; z-index: 1; max-width: 340px; }
+    .brand-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700; font-size: 11px;
+      color: #2A9B85;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+    .brand-headline {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800; font-size: 36px;
+      color: #E8F0EE;
+      letter-spacing: -1.2px;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .brand-headline .accent { color: #2A9B85; }
+    .brand-copy {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: #8A9E9B;
+      line-height: 1.65;
+    }
+
+    .brand-features { display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 1; }
+    .brand-feat {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #8A9E9B;
+    }
+    .brand-feat i {
+      width: 24px; height: 24px;
+      border-radius: 6px;
+      background: rgba(42,155,133,.12);
+      color: #2A9B85;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
+      border: 1px solid rgba(42,155,133,.22);
+      flex-shrink: 0;
+    }
+    .legal {
+      position: relative; z-index: 1;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      color: #4A5E5B;
+      letter-spacing: 0.4px;
+    }
+
+    /* Form pane */
+    .auth-form {
+      padding: 56px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+    }
+    .auth-form-head h1 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800; font-size: 30px;
+      color: #E8F0EE;
+      letter-spacing: -0.8px;
+      margin-bottom: 8px;
+    }
+    .auth-form-head p {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: #8A9E9B;
+      line-height: 1.5;
+    }
+
+    .field-group { display: flex; flex-direction: column; gap: 16px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600; font-size: 11px;
+      color: #8A9E9B;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    /* Div-based input mock */
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .input-wrap i.lead {
+      position: absolute;
+      left: 13px;
+      color: #4A5E5B;
+      font-size: 15px;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .input-mock {
+      width: 100%;
+      background: #161D1B;
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 9px;
+      padding: 13px 14px 13px 40px;
+      color: #4A5E5B;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+    }
+    .input-mock.has-value { color: #E8F0EE; }
+    .input-mock .eye-icon {
+      position: absolute;
+      right: 12px;
+      color: #4A5E5B;
+      font-size: 15px;
+    }
+    .input-mock-password {
+      width: 100%;
+      background: #161D1B;
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 9px;
+      padding: 13px 40px 13px 40px;
+      color: #4A5E5B;
+      font-family: 'Inter', sans-serif;
+      font-size: 20px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      letter-spacing: 4px;
+    }
+
+    /* Row between */
+    .row-between {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .remember {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #8A9E9B;
+    }
+    .remember .box {
+      width: 16px; height: 16px;
+      border-radius: 4px;
+      border: 1.5px solid rgba(255,255,255,.10);
+      background: #161D1B;
+      flex-shrink: 0;
+    }
+    .link-action {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px; font-weight: 600;
+      color: #2A9B85;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+
+    /* Button mock */
+    .btn-auth {
+      width: 100%;
+      padding: 14px;
+      background: #2A9B85;
+      color: white;
+      border-radius: 9px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700; font-size: 13px;
+      letter-spacing: 0.3px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    .auth-footer {
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #4A5E5B;
+    }
+    .auth-footer a { color: #2A9B85; text-decoration: none; font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<!-- Floating theme toggle -->
+<div class="auth-theme-toggle">
+  <i class="hgi-stroke hgi-sun"></i><span>Light</span>
+</div>
+
+<div class="auth-shell">
+  <div class="auth-card">
+
+    <!-- LEFT — Brand panel -->
+    <div class="auth-brand">
+      <!-- Grid overlay as real div (JESSE can't capture ::before) -->
+      <div class="grid-overlay"></div>
+
+      <div class="brand-top">
+        <div class="brand-logo">E</div>
+        <div class="brand-wordmark">Evinra<small>Ticketing OS</small></div>
+      </div>
+
+      <div class="brand-center">
+        <div class="brand-eyebrow">Welcome back</div>
+        <h2 class="brand-headline">Ticketing OS for <span class="accent">live experiences</span></h2>
+        <p class="brand-copy">Evinra Suite is an integrated platform designed to manage every aspect of event production, venue operations and sales — from a single system.</p>
+      </div>
+
+      <div class="brand-features">
+        <div class="brand-feat"><i class="hgi-stroke hgi-calendar"></i>Manage events, shows and venues in real time</div>
+        <div class="brand-feat"><i class="hgi-stroke hgi-chart-column"></i>Live revenue, waterfall and channel attribution</div>
+        <div class="brand-feat"><i class="hgi-stroke hgi-qr-code"></i>Gate scan, attendance and seat-level control</div>
+        <div class="legal" style="margin-top:16px">© 2026 Evinra Ticketing OS · v2.1</div>
+      </div>
+    </div>
+
+    <!-- RIGHT — Form panel (div-based, no real form elements) -->
+    <div class="auth-form">
+      <div class="auth-form-head">
+        <h1>Log in</h1>
+        <p>Welcome, please enter your details to continue to your dashboard.</p>
+      </div>
+
+      <div class="field-group">
+
+        <!-- Email field -->
+        <div class="field">
+          <div class="field-label">Email</div>
+          <div class="input-wrap">
+            <i class="hgi-stroke hgi-mail-01 lead"></i>
+            <div class="input-mock">you@evinra.com</div>
+          </div>
+        </div>
+
+        <!-- Password field -->
+        <div class="field">
+          <div class="field-label">Password</div>
+          <div class="input-wrap">
+            <i class="hgi-stroke hgi-lock-01 lead"></i>
+            <div class="input-mock-password">••••••••</div>
+            <i class="hgi-stroke hgi-view eye-icon"></i>
+          </div>
+        </div>
+
+        <!-- Remember + Forgot -->
+        <div class="row-between">
+          <div class="remember">
+            <div class="box"></div>
+            <span>Remember me</span>
+          </div>
+          <div class="link-action">Forgot password? <i class="hgi-stroke hgi-arrow-up-right-01"></i></div>
+        </div>
+
+        <!-- Login button -->
+        <div class="btn-auth">
+          Log in
+          <i class="hgi-stroke hgi-arrow-right-02"></i>
+        </div>
+
+      </div>
+
+      <div class="auth-footer">
+        Don't have an account? <a href="#">Request access</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evinra — Seating Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+  <link rel="stylesheet" href="evinra-styles.css">
+</head>
+<body>
+
+<div class="container">
+  <aside class="sidebar">
+    <div class="sb-header" onclick="location.href='evinra_index.html'">
+      <img class="sb-logo-img dark" src="evinra-logo-dark.png" alt="Eventra">
+      <img class="sb-logo-img light" src="evinra-logo-light.png" alt="Eventra">
+    </div>
+
+    <div class="sb-nav">
+      <div class="sb-section">
+        <div class="sb-group-title">Main</div>
+        <a href="evinra_index.html" data-page="evinra_index" class="sb-item"><i class="hgi-stroke hgi-grid-01"></i><span>Dashboard</span></a>
+        <a href="evinra_events.html" data-page="evinra_events" class="sb-item"><i class="hgi-stroke hgi-calendar"></i><span>Events</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Layout</div>
+        <a href="evinra_catalog.html" data-page="evinra_catalog" class="sb-item"><i class="hgi-stroke hgi-home-02"></i><span>Seating Map</span></a>
+        <a href="evinra_rides_exp.html" data-page="evinra_rides_exp" class="sb-item"><i class="hgi-stroke hgi-hierarchy-square-01"></i><span>Sections &amp; Zones</span></a>
+        <a href="evinra_entry_points.html" data-page="evinra_entry_points" class="sb-item"><i class="hgi-stroke hgi-building-02"></i><span>Entry Points</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Reports</div>
+        <a href="evinra_sales_overview.html" data-page="evinra_sales_overview" class="sb-item"><i class="hgi-stroke hgi-chart-column"></i><span>Sales Overview</span></a>
+        <a href="evinra_event_sales_report.html" data-page="evinra_event_sales_report" class="sb-item"><i class="hgi-stroke hgi-analytics-01"></i><span>Sales Report</span></a>
+        <a href="evinra_order_detail.html" data-page="evinra_order_detail" class="sb-item"><i class="hgi-stroke hgi-file-01"></i><span>Order Transactions</span></a>
+        <a href="evinra_inshow_analytics.html" data-page="evinra_inshow_analytics" class="sb-item"><i class="hgi-stroke hgi-shopping-cart-01"></i><span>In-Show Analytics</span></a>
+        <a href="evinra_attendance_scan_report.html" data-page="evinra_attendance_scan_report" class="sb-item"><i class="hgi-stroke hgi-qr-code"></i><span>Attendance / Scan</span></a>
+        <a href="evinra_vendor_settlement.html" data-page="evinra_vendor_settlement" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Vendor Settlement</span></a>
+        <a href="evinra_refund_report.html" data-page="evinra_refund_report" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Refund Report</span></a>
+        <a href="evinra_promo_discounts.html" data-page="evinra_promo_discounts" class="sb-item"><i class="hgi-stroke hgi-discount"></i><span>Promo &amp; Discounts</span></a>
+        <a href="evinra_split_dist.html" data-page="evinra_split_dist" class="sb-item"><i class="hgi-stroke hgi-shuffle"></i><span>Split Distribution</span></a>
+        <a href="evinra_credit_txn.html" data-page="evinra_credit_txn" class="sb-item"><i class="hgi-stroke hgi-wallet-04"></i><span>Credit Transactions</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Settings</div>
+        <a href="evinra_general.html" data-page="evinra_general" class="sb-item"><i class="hgi-stroke hgi-settings-01"></i><span>General</span></a>
+        <a href="evinra_users.html" data-page="evinra_users" class="sb-item"><i class="hgi-stroke hgi-user-group"></i><span>Users</span></a>
+        <a href="evinra_experience_tickets.html" data-page="evinra_experience_tickets" class="sb-item"><i class="hgi-stroke hgi-ticket-01"></i><span>Experience Ticketing</span></a>
+        <a href="evinra_credit_plans.html" data-page="evinra_credit_plans" class="sb-item"><i class="hgi-stroke hgi-dollar-01"></i><span>Credit Plans</span></a>
+        <a href="evinra_scan_roles.html" data-page="evinra_scan_roles" class="sb-item"><i class="hgi-stroke hgi-shield-check"></i><span>Scan App Roles</span></a>
+        <a href="evinra_fees_taxes.html" data-page="evinra_fees_taxes" class="sb-item"><i class="hgi-stroke hgi-percent"></i><span>Fees &amp; Taxes</span></a>
+        <a href="evinra_discounts.html" data-page="evinra_discounts" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Discounts</span></a>
+        <a href="evinra_productions.html" data-page="evinra_productions" class="sb-item"><i class="hgi-stroke hgi-star"></i><span>Productions</span></a>
+        <a href="evinra_shows.html" data-page="evinra_shows" class="sb-item"><i class="hgi-stroke hgi-play-circle"></i><span>Shows</span></a>
+        <a href="evinra_other_vendors.html" data-page="evinra_other_vendors" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Other Vendors</span></a>
+      </div>
+    </div>
+
+    <div class="sb-user" onclick="location.href='login.html'">
+      <div class="sb-user-avatar">YP</div>
+      <div class="sb-user-info">
+        <div class="sb-user-name">Yoaldis P.</div>
+        <div class="sb-user-role">Super Admin</div>
+      </div>
+      <i class="hgi-stroke hgi-logout-01 sb-user-action"></i>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-title">Seating Map</div>
+        <div class="topbar-breadcrumb">Evinra <span>/</span> Venues & Layout / Map</div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-btn"><i class="hgi-stroke hgi-notification-01"></i></div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-search-01"></i></div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-settings-01"></i></div>
+        <div class="theme-toggle"><i class="hgi-stroke hgi-sun"></i><span>Light</span></div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-arrow-right-02"></i></div>
+      </div>
+    </div>
+
+    <div class="content">
+
+    </div>
+
+    <div class="footer">
+      <div>Evinra Ticketing OS · <strong style="color:var(--primary)">v2.1</strong></div>
+      <div class="footer-right">
+        <div class="footer-link">Documentation</div>
+        <div class="footer-link">Support</div>
+        <div class="footer-link">API</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+
+const ITEMS = [
+  {id:8, emoji:'🌮',name:'Loaded Nachos',   code:'CON0001',mainCat:'concessions',cat:'Foods',     subCat:'Grease',       stock:2500,price:8.50, webApp:true, storefront:true},
+  {id:9, emoji:'💧',name:'Bottled Water',   code:'CON0002',mainCat:'concessions',cat:'Beverages', subCat:'Water',        stock:6000,price:2.00, webApp:true, storefront:true},
+  {id:10,emoji:'🍿',name:'Popcorn Bucket',  code:'CON0003',mainCat:'concessions',cat:'Foods',     subCat:'Grease',       stock:2100,price:6.50, webApp:true, storefront:true},
+  {id:11,emoji:'🥤',name:'Coca-Cola 16oz',  code:'CON0004',mainCat:'concessions',cat:'Beverages', subCat:'Soft Drinks',  stock:4800,price:4.50, webApp:true, storefront:true},
+  {id:12,emoji:'👕',name:'Flying Lions Tee',code:'NOV0001',mainCat:'novelties',  cat:'Merchandise',subCat:'Apparel',     stock:320, price:24.99,webApp:true, storefront:true},
+  {id:13,emoji:'🧸',name:'Plush Lion',      code:'NOV0002',mainCat:'novelties',  cat:'Souvenirs', subCat:'Plush',        stock:85,  price:19.99,webApp:true, storefront:true},
+  {id:14,emoji:'🧢',name:'Flying Lions Cap',code:'NOV0003',mainCat:'novelties',  cat:'Merchandise',subCat:'Apparel',     stock:210, price:18.99,webApp:false,storefront:false},
+];
+let nextId=15, editingId=null, deletingId=null;
+let currentCat='all', sortCol='name', sortDir=1, curPage=1;
+let filtered=[...ITEMS];
+
+const CAT_CFG={
+  concessions:{badge:'badge-blue',  icon:'hgi-add-01', label:'Concession',color:'--blue'},
+  novelties:  {badge:'badge-teal',  icon:'hgi-tag-01', label:'Novelty',   color:'--p'},
+};
+
+function set(id,v){const e=document.getElementById(id);if(e)e.textContent=v;}
+
+function updateStats(){
+  set('statTotal',ITEMS.length);
+  set('statConc', ITEMS.filter(i=>i.mainCat==='concessions').length);
+  set('statNov',  ITEMS.filter(i=>i.mainCat==='novelties').length);
+  set('statSF',   ITEMS.filter(i=>i.storefront).length);
+}
+
+function switchCat(cat){
+  currentCat=cat; curPage=1;
+  document.querySelectorAll('.cat-tab-btn').forEach(b=>b.classList.remove('active'));
+  const ids={all:'tabAll',concessions:'tabConc',novelties:'tabNov'};
+  const btn=document.getElementById(ids[cat]); if(btn)btn.classList.add('active');
+  applyFilters();
+}
+
+function applyFilters(){
+  const mc=(document.getElementById('fMainCat').value||'');
+  const cat=(document.getElementById('fCat').value||'');
+  const q=(document.getElementById('fSearch').value||'').toLowerCase();
+  filtered=ITEMS.filter(it=>{
+    if(currentCat!=='all'&&it.mainCat!==currentCat)return false;
+    if(mc&&it.mainCat!==mc)return false;
+    if(cat&&it.cat!==cat)return false;
+    if(q&&!`${it.name} ${it.code} ${it.cat||''} ${it.subCat||''}`.toLowerCase().includes(q))return false;
+    return true;
+  });
+  curPage=1; sortAndRender();
+}
+
+function sortBy(col){
+  if(sortCol===col)sortDir*=-1;else{sortCol=col;sortDir=1;}
+  sortAndRender();
+}
+function sortAndRender(){
+  const sorted=[...filtered].sort((a,b)=>{
+    const av=a[sortCol]??'',bv=b[sortCol]??'';
+    return av<bv?-sortDir:av>bv?sortDir:0;
+  });
+  renderPage(sorted);
+}
+
+function renderPage(data){
+  data=data||filtered;
+  const per=parseInt(document.getElementById('perPage').value)||10;
+  const total=data.length,pages=Math.max(1,Math.ceil(total/per));
+  if(curPage>pages)curPage=pages;
+  const start=(curPage-1)*per,slice=data.slice(start,start+per);
+  const tb=document.getElementById('tBody'),es=document.getElementById('emptyState');
+  if(!slice.length){tb.innerHTML='';es.style.display='flex';return;}
+  es.style.display='none';
+  tb.innerHTML=slice.map(it=>{
+    const cc=CAT_CFG[it.mainCat]||CAT_CFG.concessions;
+    const pct=Math.min(100,Math.round(it.stock/Math.max(it.stock,1000)*100));
+    const sc=pct<30?'var(--red)':pct<60?'var(--amber)':'var(--p)';
+    const webBtn=`<button class="toggle ${it.webApp?'on':'off'}" onclick="toggleCh(${it.id},'webApp',event)"><div class="toggle-thumb"></div></button>`;
+    const sfBtn=`<button class="toggle ${it.storefront?'on':'off'}" onclick="toggleCh(${it.id},'storefront',event)"><div class="toggle-thumb"></div></button>`;
+    return `<tr>
+      <td><div class="item-thumb">${it.emoji}</div></td>
+      <td><div style="font-size:12px;font-weight:500;color:var(--text)">${it.name}</div><div style="font-size:10px;font-family:var(--mono);color:var(--text3)">${it.code}</div></td>
+      <td style="font-size:10px;font-family:var(--mono);color:var(--text3)">${it.code}</td>
+      <td><span class="badge ${cc.badge}"><i class="hgi-stroke ${cc.icon}" style="font-size:9px"></i>${cc.label}</span></td>
+      <td style="font-size:11px;color:var(--text2)">${it.cat}</td>
+      <td style="font-size:11px;color:var(--text3)">${it.subCat}</td>
+      <td style="font-family:var(--mono);font-size:12px;font-weight:600;color:var(--text)">$${it.price.toFixed(2)}</td>
+      <td><div style="display:flex;flex-direction:column;gap:2px">
+        <span style="font-size:11px;font-family:var(--mono);color:var(--text)">${it.stock.toLocaleString()}</span>
+        <div style="height:3px;width:44px;background:var(--bg4);border-radius:2px;overflow:hidden">
+          <div style="height:100%;width:${pct}%;background:${sc};border-radius:2px"></div>
+        </div>
+      </div></td>
+      <td>${webBtn}</td>
+      <td>${sfBtn}</td>
+      <td><div class="act-wrap">
+        <div class="act-btn" onclick="editItem(${it.id})"><i class="hgi-stroke hgi-pencil-edit-01"></i></div>
+        <div class="act-btn red" onclick="deleteItem(${it.id})"><i class="hgi-stroke hgi-delete-01"></i></div>
+      </div></td>
+    </tr>`;
+  }).join('');
+  set('pageInfo',`Showing ${start+1}–${Math.min(start+per,total)} of ${total} items`);
+  const pb=document.getElementById('pageBtns');
+  let h=`<div class="page-btn" onclick="goPage(${curPage-1})"><i class="hgi-stroke hgi-arrow-left-02" style="font-size:12px"></i></div>`;
+  for(let p=1;p<=pages;p++){
+    if(pages>6&&p>2&&p<pages-1&&Math.abs(p-curPage)>1){if(p===3||p===pages-2)h+=`<div class="page-btn">…</div>`;continue;}
+    h+=`<div class="page-btn ${p===curPage?'active':''}" onclick="goPage(${p})">${p}</div>`;
+  }
+  h+=`<div class="page-btn" onclick="goPage(${curPage+1})"><i class="hgi-stroke hgi-arrow-right-02" style="font-size:12px"></i></div>`;
+  pb.innerHTML=h;
+}
+
+function goPage(p){const per=parseInt(document.getElementById('perPage').value)||10,pages=Math.ceil(filtered.length/per);if(p<1||p>pages)return;curPage=p;sortAndRender();}
+function toggleCh(id,ch,e){e.stopPropagation();const it=ITEMS.find(x=>x.id===id);if(it){it[ch]=!it[ch];sortAndRender();}}
+
+function openNew(){
+  editingId=null;
+  document.getElementById('mTitle').textContent='Add Item';
+  ['mName','mCode','mPrice','mStock'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  ['mMainCat','mCat','mSubCat'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  document.getElementById('mSF').className='toggle on';
+  document.getElementById('mWebApp').className='toggle on';
+  document.getElementById('itemModal').classList.add('open');
+}
+
+function editItem(id){
+  const it=ITEMS.find(x=>x.id===id);if(!it)return;
+  editingId=id;
+  document.getElementById('mTitle').textContent='Edit — '+it.name;
+  document.getElementById('mName').value=it.name;
+  document.getElementById('mCode').value=it.code;
+  document.getElementById('mPrice').value=it.price;
+  document.getElementById('mStock').value=it.stock;
+  document.getElementById('mMainCat').value=it.mainCat;
+  document.getElementById('mCat').value=it.cat||'';
+  document.getElementById('mSubCat').value=it.subCat||'';
+  document.getElementById('mSF').className='toggle '+(it.storefront?'on':'off');
+  document.getElementById('mWebApp').className='toggle '+(it.webApp?'on':'off');
+  document.getElementById('itemModal').classList.add('open');
+}
+
+function saveItem(){
+  const name=document.getElementById('mName').value.trim();
+  const code=document.getElementById('mCode').value.trim();
+  const mainCat=document.getElementById('mMainCat').value;
+  const cat=document.getElementById('mCat').value.trim();
+  const subCat=document.getElementById('mSubCat').value;
+  const price=parseFloat(document.getElementById('mPrice').value)||0;
+  const stock=parseInt(document.getElementById('mStock').value)||0;
+  const storefront=document.getElementById('mSF').classList.contains('on');
+  const webApp=document.getElementById('mWebApp').classList.contains('on');
+  if(!name){alert('Item name required.');return;}
+  if(!mainCat){alert('Category required.');return;}
+  const emojis={concessions:'🍔',novelties:'🎁'};
+  if(editingId){
+    const it=ITEMS.find(x=>x.id===editingId);
+    if(it)Object.assign(it,{name,code,mainCat,cat,subCat,price,stock,storefront,webApp,emoji:emojis[mainCat]||'📦'});
+  }else{
+    ITEMS.push({id:nextId++,emoji:emojis[mainCat]||'📦',name,code,mainCat,cat,subCat,price,stock,storefront,webApp});
+  }
+  closeModal(); updateStats(); applyFilters();
+}
+
+function closeModal(){document.getElementById('itemModal').classList.remove('open');editingId=null;}
+function deleteItem(id){const it=ITEMS.find(x=>x.id===id);if(!it)return;deletingId=id;document.getElementById('dName').textContent=it.name;document.getElementById('deleteModal').classList.add('open');}
+function closeDelete(){document.getElementById('deleteModal').classList.remove('open');deletingId=null;}
+function confirmDelete(){const idx=ITEMS.findIndex(x=>x.id===deletingId);if(idx>-1)ITEMS.splice(idx,1);closeDelete();updateStats();applyFilters();}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeDelete();}});
+
+window.switchCat=switchCat;window.applyFilters=applyFilters;window.sortBy=sortBy;
+window.goPage=goPage;window.toggleCh=toggleCh;window.openNew=openNew;
+window.editItem=editItem;window.saveItem=saveItem;window.closeModal=closeModal;
+window.deleteItem=deleteItem;window.closeDelete=closeDelete;window.confirmDelete=confirmDelete;
+
+updateStats(); applyFilters();
+
+})();
+</script>
+
+<script src="evinra-theme.js"></script>
+<script>
+(function(){
+  var path = (location.pathname.split('/').pop() || 'evinra_index.html').replace('.html','');
+  if (!path) path = 'evinra_index';
+  var el = document.querySelector('.sb-item[data-page="'+path+'"]');
+  if (el) el.classList.add('active');
+})();
+</script>
+</body>
+</html>

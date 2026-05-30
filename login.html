@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evinra - Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+  <link rel="stylesheet" href="evinra-styles.css">
+  <link rel="stylesheet" href="evinra-auth.css">
+</head>
+<body>
+
+<div class="auth-theme-toggle theme-toggle" title="Toggle theme">
+  <i class="hgi-stroke hgi-sun"></i><span>Light</span>
+</div>
+
+<div class="auth-shell">
+  <div class="auth-card">
+    <!-- LEFT — Brand -->
+    <div class="auth-brand">
+      <div class="brand-top">
+        <img class="brand-wordmark-img dark" src="evinra-logo-dark.png" alt="Eventra" style="height: 60px">
+        <img class="brand-wordmark-img light" src="evinra-logo-light.png" alt="Eventra">
+      </div>
+
+      <div class="brand-center">
+        <div class="brand-eyebrow">Welcome back</div>
+        <h2 class="brand-headline">Ticketing OS for <span class="accent">live experiences</span></h2>
+        <p class="brand-copy">Evinra Suite is an integrated platform designed to manage every aspect of event production, venue operations and sales — from a single system.</p>
+      </div>
+
+      <div class="brand-features">
+        <div class="brand-feat"><i class="hgi-stroke hgi-calendar"></i>Manage events, shows and venues in real time</div>
+        <div class="brand-feat"><i class="hgi-stroke hgi-chart-column"></i>Live revenue, waterfall and channel attribution</div>
+        <div class="brand-feat"><i class="hgi-stroke hgi-qr-code"></i>Gate scan, attendance and seat-level control</div>
+        <div class="legal" style="margin-top:16px">© 2026 Evinra Ticketing OS · v2.1</div>
+      </div>
+    </div>
+
+    <!-- RIGHT — Form -->
+    <form class="auth-form" onsubmit="event.preventDefault();doLogin();">
+      <div class="auth-form-head">
+        <h1>Log in</h1>
+        <p>Welcome, please enter your details to continue to your dashboard.</p>
+      </div>
+
+      <div class="field-group">
+        <div class="field">
+          <label for="email">Email</label>
+          <div class="input-wrap">
+            <i class="hgi-stroke hgi-mail-01 lead"></i>
+            <input type="email" id="email" placeholder="you@evinra.com" autocomplete="email" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <i class="hgi-stroke hgi-lock-01 lead"></i>
+            <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" required>
+            <i class="hgi-stroke hgi-view eye" id="eyeBtn" onclick="togglePw()"></i>
+          </div>
+        </div>
+
+        <div class="row-between">
+          <label class="remember">
+            <input type="checkbox" id="remember">
+            <span class="box"></span>
+            <span>Remember me</span>
+          </label>
+          <a class="link-action" href="forgot-password.html">Forgot password? <i class="hgi-stroke hgi-arrow-up-right-01"></i></a>
+        </div>
+
+        <button type="submit" class="btn-auth">
+          Log in
+          <i class="hgi-stroke hgi-arrow-right-02"></i>
+        </button>
+      </div>
+
+      <div class="auth-footer">
+        Don't have an account? <a href="#" onclick="alert('Contact sales for an Evinra account')">Request access</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+function togglePw(){
+  const inp = document.getElementById('password');
+  const eye = document.getElementById('eyeBtn');
+  if(inp.type === 'password'){
+    inp.type = 'text';
+    eye.classList.remove('hgi-view');
+    eye.classList.add('hgi-view-off');
+  } else {
+    inp.type = 'password';
+    eye.classList.remove('hgi-view-off');
+    eye.classList.add('hgi-view');
+  }
+}
+function doLogin(){
+  window.location.href = 'evinra_index.html';
+}
+</script>
+<script src="evinra-theme.js"></script>
+</body>
+</html>

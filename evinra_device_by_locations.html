@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evinra — Devices by Location</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #2A9B85;
+      --primary-dim: rgba(42, 155, 133, 0.1);
+      --primary-border: #1e7d6b;
+      --bg: #ffffff;
+      --bg2: #f9f9f9;
+      --bg3: #f3f3f3;
+      --bg4: #efefef;
+      --text: #1a1a1a;
+      --text2: #666666;
+      --text3: #999999;
+      --border: #e0e0e0;
+    }
+    html, body { height: 100%; background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 13px; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Inter', sans-serif; font-weight: 700; }
+    .container { display: flex; height: 100vh; width: 1920px; margin: 0 auto; }
+    .sidebar { width: 280px; background: var(--bg2); border-right: 1px solid var(--border); overflow-y: auto; padding: 24px 0; position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; }
+    .sb-header { padding: 0 20px 24px; border-bottom: 1px solid var(--border); margin-bottom: 16px; display: flex; gap: 12px; align-items: center; cursor: pointer; }
+    .sb-logo { width: 40px; height: 40px; background: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: 'Inter', sans-serif; color: white; }
+    .sb-nav { flex: 1; overflow-y: auto; min-height: 0; }
+    .sb-section { padding: 0 12px 16px; }
+    .sb-group-title { font-size: 9px; font-weight: 700; color: var(--text3); text-transform: uppercase; padding: 12px 12px 8px; border-bottom: 1px solid var(--border); }
+    .sb-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 6px; color: var(--text2); font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.2s; border: 1px solid transparent; text-decoration: none; }
+    .sb-item:hover { background: var(--primary-dim); color: var(--text); }
+    .sb-item.active { background: var(--primary-dim); color: var(--primary); }
+    .sb-user { border-top: 1px solid var(--border); padding: 14px 18px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; margin-top: auto; }
+    .sb-user-avatar { width: 36px; height: 36px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; color: white; }
+    .sb-user-name { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12px; }
+    .sb-user-role { font-family: 'Inter', sans-serif; font-size: 10px; color: var(--text3); text-transform: uppercase; }
+    .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .topbar { background: var(--bg2); border-bottom: 1px solid var(--border); height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; gap: 20px; }
+    .topbar-title { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; }
+    .topbar-breadcrumb { font-size: 11px; color: var(--text3); }
+    .topbar-right { display: flex; gap: 8px; margin-left: auto; }
+    .topbar-btn { width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg3); display: flex; align-items: center; justify-content: center; color: var(--text2); cursor: pointer; }
+    .theme-toggle { display: flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg3); font-size: 12px; }
+    .content { flex: 1; overflow-y: auto; padding: 40px; }
+    .footer { border-top: 1px solid var(--border); padding: 20px 40px; display: flex; justify-content: space-between; font-size: 10px; color: var(--text3); }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--text3); border-radius: 4px; }
+    .sb-logo-img { height: 26px; width: auto; display: block; }
+    .sb-logo-img.dark { display: none; }
+    .sb-logo-img.light { display: block; }
+
+    .section-title { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .section-subtitle { font-size: 13px; color: var(--text2); margin-bottom: 20px; }
+    .filter-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .filter-dropdown { position: relative; }
+    .filter-dropdown select { appearance: none; background: var(--bg3); border: 1px solid var(--border); border-radius: 7px; color: var(--text2); font-size: 11px; font-family: 'Inter', sans-serif; padding: 8px 28px 8px 12px; cursor: pointer; outline: none; min-width: 140px; }
+    .filter-dropdown::after { content: ''; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); pointer-events: none; width: 11px; height: 11px; background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="none" stroke="%23999999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M6 9l6 6 6-6"/></svg>'); background-size: contain; }
+    .location-badge { display: inline-block; padding: 4px 12px; background: rgba(42, 155, 133, 0.1); color: var(--primary); border: 1px solid var(--primary-border); border-radius: 6px; font-size: 11px; font-weight: 600; }
+    .btn-action { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: var(--bg3); border: 1px solid var(--border); color: var(--text3); border-radius: 6px; cursor: pointer; }
+    .btn-action:hover { color: var(--primary); border-color: var(--primary); background: var(--primary-dim); }
+    .location-section { margin-bottom: 32px; }
+    .location-header { display: flex; align-items: center; gap: 8px; padding: 12px 0; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
+    .location-name { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--text); text-transform: uppercase; letter-spacing: 0.5px; }
+    .device-count { margin-left: auto; font-size: 11px; color: var(--text3); background: var(--bg3); padding: 4px 12px; border-radius: 4px; }
+    .device-list { display: flex; flex-direction: column; gap: 8px; }
+    .device-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; }
+    .device-info { flex: 1; min-width: 0; }
+    .device-name { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: var(--text); }
+    .device-type { font-size: 10px; color: var(--text3); margin-top: 2px; }
+    .device-id { font-size: 10px; color: var(--text3); margin-top: 2px; font-family: monospace; }
+    .device-status { display: flex; align-items: center; gap: 6px; font-size: 11px; }
+    .device-status.online::before { content: ''; width: 8px; height: 8px; background: #22C55E; border-radius: 50%; }
+    .device-status.offline { color: var(--text3); }
+    .device-status.offline::before { content: ''; width: 8px; height: 8px; background: #9CA3AF; border-radius: 50%; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <aside class="sidebar">
+    <div class="sb-header" onclick="location.href='evinra_index.html'">
+      <img class="sb-logo-img dark" src="evinra-logo-dark.png" alt="Evinra" style="height: 26px;">
+      <img class="sb-logo-img light" src="evinra-logo-light.png" alt="Evinra" style="height: 26px;">
+    </div>
+
+    <div class="sb-nav">
+      <div class="sb-section">
+        <div class="sb-group-title">Main</div>
+        <a href="evinra_index.html" class="sb-item"><i class="hgi-stroke hgi-grid-01"></i><span>Dashboard</span></a>
+        <a href="evinra_events.html" class="sb-item"><i class="hgi-stroke hgi-calendar"></i><span>Events</span></a>
+        <a href="evinra_orders.html" class="sb-item"><i class="hgi-stroke hgi-shopping-cart-01"></i><span>Orders</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Layout Management</div>
+        <a href="evinra_layout_management.html" class="sb-item"><i class="hgi-stroke hgi-hierarchy-square-01"></i><span>Layout Management</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Financial Reports</div>
+        <a href="evinra_sales_overview.html" class="sb-item"><i class="hgi-stroke hgi-chart-column"></i><span>Sales Overview</span></a>
+        <a href="evinra_sales_report.html" class="sb-item"><i class="hgi-stroke hgi-analytics-01"></i><span>Sales Report</span></a>
+        <a href="evinra_attendance_scan.html" class="sb-item"><i class="hgi-stroke hgi-qr-code"></i><span>Attendance / Scan</span></a>
+        <a href="evinra_vendor_settlement.html" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Vendor Settlement</span></a>
+        <a href="evinra_refund_report.html" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Refund Report</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Settings</div>
+        <a href="evinra_general.html" class="sb-item"><i class="hgi-stroke hgi-settings-01"></i><span>Generals</span></a>
+        <a href="evinra_users.html" class="sb-item"><i class="hgi-stroke hgi-user-group"></i><span>Users</span></a>
+        <a href="evinra_experience_ticketing.html" class="sb-item"><i class="hgi-stroke hgi-ticket-01"></i><span>Experience Ticketing</span></a>
+        <a href="evinra_fees_taxes.html" class="sb-item"><i class="hgi-stroke hgi-percent"></i><span>Fee and Taxes</span></a>
+        <a href="evinra_promo_codes.html" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Promo Codes</span></a>
+        <a href="evinra_shows.html" class="sb-item"><i class="hgi-stroke hgi-play-circle"></i><span>Shows</span></a>
+        <a href="evinra_other_vendors.html" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Others Vendors</span></a>
+        <a href="evinra_device_by_locations.html" class="sb-item active"><i class="hgi-stroke hgi-map-01"></i><span>Vendor Sales Links</span></a>
+      </div>
+    </div>
+
+    <div class="sb-user" onclick="location.href='login.html'">
+      <div class="sb-user-avatar">YP</div>
+      <div class="sb-user-info">
+        <div class="sb-user-name">Yoaldis P.</div>
+        <div class="sb-user-role">Super Admin</div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-title">Devices by Location</div>
+        <div class="topbar-breadcrumb">Evinra <span style="color: var(--primary);">/</span> Settings <span style="color: var(--primary);">/</span> Devices by Location</div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-btn"><i class="hgi-stroke hgi-notification-01"></i></div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-settings-01"></i></div>
+        <div class="theme-toggle"><i class="hgi-stroke hgi-sun"></i><span>Light</span></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="section-title">Devices by Location</div>
+      <div class="section-subtitle">Assign devices to your sales locations</div>
+
+      <div class="filter-bar">
+        <div class="filter-dropdown">
+          <select>
+            <option>Location</option>
+            <option>Main Box Office Gate 1</option>
+            <option>Stadium Gate A</option>
+            <option>North Entrance</option>
+          </select>
+        </div>
+        <button style="width: 36px; height: 36px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg3); display: flex; align-items: center; justify-content: center; cursor: pointer;"><i class="hgi-stroke hgi-link-01"></i></button>
+      </div>
+
+      <!-- LOCATION 1 -->
+      <div class="location-section">
+        <div class="location-header">
+          <div class="location-name">LOCATION: MAIN BOX OFFICE GATE 1</div>
+          <span class="location-badge">OnSite Sales</span>
+          <div class="device-count">10 devices</div>
+        </div>
+        <div class="device-list">
+          <div class="device-item">
+            <div class="device-info">
+              <div class="device-name">TOYS HANDHELD 4</div>
+              <div class="device-type">Handheld</div>
+              <div class="device-id">531WS216078010176</div>
+            </div>
+            <div class="device-status online">Online</div>
+            <button class="btn-action"><i class="hgi-stroke hgi-edit-02"></i></button>
+          </div>
+
+          <div class="device-item">
+            <div class="device-info">
+              <div class="device-name">Star TSP100IV 557</div>
+              <div class="device-type">Register</div>
+              <div class="device-id">261B025071407557</div>
+            </div>
+            <div class="device-status offline">N/A</div>
+            <button class="btn-action"><i class="hgi-stroke hgi-edit-02"></i></button>
+          </div>
+
+          <div class="device-item">
+            <div class="device-info">
+              <div class="device-name">Star TSP100IV 485</div>
+              <div class="device-type">Register</div>
+              <div class="device-id">261B025071407485</div>
+            </div>
+            <div class="device-status online">Online</div>
+            <button class="btn-action"><i class="hgi-stroke hgi-edit-02"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOCATION 2 -->
+      <div class="location-section">
+        <div class="location-header">
+          <div class="location-name">LOCATION: STADIUM GATE A</div>
+          <span class="location-badge">OnSite Sales</span>
+          <div class="device-count">5 devices</div>
+        </div>
+        <div class="device-list">
+          <div class="device-item">
+            <div class="device-info">
+              <div class="device-name">TOYS HANDHELD 2</div>
+              <div class="device-type">Handheld</div>
+              <div class="device-id">538WS216086807115</div>
+            </div>
+            <div class="device-status online">Online</div>
+            <button class="btn-action"><i class="hgi-stroke hgi-edit-02"></i></button>
+          </div>
+
+          <div class="device-item">
+            <div class="device-info">
+              <div class="device-name">TOYS HANDHELD</div>
+              <div class="device-type">Handheld</div>
+              <div class="device-id">538WS216086805685</div>
+            </div>
+            <div class="device-status online">Online</div>
+            <button class="btn-action"><i class="hgi-stroke hgi-edit-02"></i></button>
+          </div>
+
+          <div class="device-item">
+            <div class="device-info">
+              <div class="device-name">TOYS</div>
+              <div class="device-type">Register</div>
+              <div class="device-id">546CS134A9B00671</div>
+            </div>
+            <div class="device-status offline">N/A</div>
+            <button class="btn-action"><i class="hgi-stroke hgi-edit-02"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>Evinra Ticketing OS · <strong style="color:var(--primary)">v2.1</strong></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

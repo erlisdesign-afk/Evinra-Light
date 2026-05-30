@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evinra - Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+  <link rel="stylesheet" href="evinra-styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <style>
+    /* Dashboard-specific KPI styling */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    /* Two-row layout for smaller screens */
+    .kpi-grid.row-2 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .kpi {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 22px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .kpi::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--kpi-accent, var(--primary));
+    }
+    .kpi-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--kpi-accent, var(--primary));
+    }
+    .kpi-value {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 26px;
+      color: var(--text);
+      letter-spacing: -0.5px;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+    .kpi-sub {
+      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .kpi-sub.up { color: oklch(0.78 0.13 165); }
+    .kpi-sub.down { color: var(--red); }
+    .kpi[data-tone="blue"] { --kpi-accent: var(--blue); }
+    .kpi[data-tone="amber"] { --kpi-accent: var(--amber); }
+    .kpi[data-tone="violet"] { --kpi-accent: var(--violet); }
+
+    /* Chart card */
+    .chart-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 22px 24px;
+    }
+    .chart-card .ch-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .chart-card .ch-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .chart-card .ch-title i {
+      color: var(--primary);
+      font-size: 16px;
+    }
+    .chart-card .ch-meta {
+      display: flex;
+      gap: 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: var(--text3);
+    }
+    .chart-card .ch-meta strong {
+      color: var(--primary);
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+    }
+    .chart-container {
+      position: relative;
+      height: 280px;
+    }
+
+    /* Event activity table */
+    .table-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 4px 16px 16px;
+      overflow-x: auto;
+    }
+    .table-card .tbl th {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text2);
+    }
+    .table-card .tbl td {
+      font-size: 12px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+    }
+    .table-card .tbl tr.row-link { cursor: pointer; }
+    .capacity-cell { display: flex; flex-direction: column; gap: 5px; min-width: 140px; }
+    .capacity-bar { height: 5px; background: var(--bg4); border-radius: 3px; overflow: hidden; }
+    .capacity-fill { height: 100%; background: var(--primary); border-radius: 3px; transition: width 1.2s cubic-bezier(.16,1,.3,1); }
+    .cap-pct { font-size: 10px; color: var(--text3); font-family: 'Inter', sans-serif; }
+
+    @media (max-width: 1600px) {
+      .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 1280px) {
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .kpi-grid { grid-template-columns: repeat(1, 1fr); }
+      .filter-group { flex-wrap: wrap; }
+      .filter-group select { flex: 1; min-width: 120px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-header" onclick="location.href='evinra_index.html'">
+      <img class="sb-logo-img dark" src="evinra-logo-dark.png" alt="Eventra">
+      <img class="sb-logo-img light" src="evinra-logo-light.png" alt="Eventra">
+    </div>
+
+    <div class="sb-nav">
+      <div class="sb-section">
+        <div class="sb-group-title">Main</div>
+        <a href="evinra_index.html" data-page="evinra_index" class="sb-item"><i class="hgi-stroke hgi-grid-01"></i><span>Dashboard</span></a>
+        <a href="evinra_events.html" data-page="evinra_events" class="sb-item"><i class="hgi-stroke hgi-calendar"></i><span>Events</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Layout</div>
+        <a href="evinra_catalog.html" data-page="evinra_catalog" class="sb-item"><i class="hgi-stroke hgi-home-02"></i><span>Seating Map</span></a>
+        <a href="evinra_rides_exp.html" data-page="evinra_rides_exp" class="sb-item"><i class="hgi-stroke hgi-hierarchy-square-01"></i><span>Sections &amp; Zones</span></a>
+        <a href="evinra_entry_points.html" data-page="evinra_entry_points" class="sb-item"><i class="hgi-stroke hgi-building-02"></i><span>Entry Points</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Reports</div>
+        <a href="evinra_sales_overview.html" data-page="evinra_sales_overview" class="sb-item"><i class="hgi-stroke hgi-chart-column"></i><span>Sales Overview</span></a>
+        <a href="evinra_event_sales_report.html" data-page="evinra_event_sales_report" class="sb-item"><i class="hgi-stroke hgi-analytics-01"></i><span>Sales Report</span></a>
+        <a href="evinra_order_detail.html" data-page="evinra_order_detail" class="sb-item"><i class="hgi-stroke hgi-file-01"></i><span>Order Transactions</span></a>
+        <a href="evinra_inshow_analytics.html" data-page="evinra_inshow_analytics" class="sb-item"><i class="hgi-stroke hgi-shopping-cart-01"></i><span>In-Show Analytics</span></a>
+        <a href="evinra_attendance_scan_report.html" data-page="evinra_attendance_scan_report" class="sb-item"><i class="hgi-stroke hgi-qr-code"></i><span>Attendance / Scan</span></a>
+        <a href="evinra_vendor_settlement.html" data-page="evinra_vendor_settlement" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Vendor Settlement</span></a>
+        <a href="evinra_refund_report.html" data-page="evinra_refund_report" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Refund Report</span></a>
+        <a href="evinra_promo_discounts.html" data-page="evinra_promo_discounts" class="sb-item"><i class="hgi-stroke hgi-discount"></i><span>Promo &amp; Discounts</span></a>
+        <a href="evinra_split_dist.html" data-page="evinra_split_dist" class="sb-item"><i class="hgi-stroke hgi-shuffle"></i><span>Split Distribution</span></a>
+        <a href="evinra_credit_txn.html" data-page="evinra_credit_txn" class="sb-item"><i class="hgi-stroke hgi-wallet-04"></i><span>Credit Transactions</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Settings</div>
+        <a href="evinra_general.html" data-page="evinra_general" class="sb-item"><i class="hgi-stroke hgi-settings-01"></i><span>General</span></a>
+        <a href="evinra_users.html" data-page="evinra_users" class="sb-item"><i class="hgi-stroke hgi-user-group"></i><span>Users</span></a>
+        <a href="evinra_experience_tickets.html" data-page="evinra_experience_tickets" class="sb-item"><i class="hgi-stroke hgi-ticket-01"></i><span>Experience Ticketing</span></a>
+        <a href="evinra_credit_plans.html" data-page="evinra_credit_plans" class="sb-item"><i class="hgi-stroke hgi-dollar-01"></i><span>Credit Plans</span></a>
+        <a href="evinra_scan_roles.html" data-page="evinra_scan_roles" class="sb-item"><i class="hgi-stroke hgi-shield-check"></i><span>Scan App Roles</span></a>
+        <a href="evinra_fees_taxes.html" data-page="evinra_fees_taxes" class="sb-item"><i class="hgi-stroke hgi-percent"></i><span>Fees &amp; Taxes</span></a>
+        <a href="evinra_discounts.html" data-page="evinra_discounts" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Discounts</span></a>
+        <a href="evinra_productions.html" data-page="evinra_productions" class="sb-item"><i class="hgi-stroke hgi-star"></i><span>Productions</span></a>
+        <a href="evinra_shows.html" data-page="evinra_shows" class="sb-item"><i class="hgi-stroke hgi-play-circle"></i><span>Shows</span></a>
+        <a href="evinra_other_vendors.html" data-page="evinra_other_vendors" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Other Vendors</span></a>
+      </div>
+    </div>
+
+    <div class="sb-user" onclick="location.href='login.html'">
+      <div class="sb-user-avatar">YP</div>
+      <div class="sb-user-info">
+        <div class="sb-user-name">Yoaldis P.</div>
+        <div class="sb-user-role">Super Admin</div>
+      </div>
+      <i class="hgi-stroke hgi-logout-01 sb-user-action"></i>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-title">Dashboard</div>
+        <div class="topbar-breadcrumb">Evinra <span>/</span> Operations <span>/</span> Main</div>
+      </div>
+      <div class="topbar-right">
+        <div class="filter-group" style="display:flex;gap:10px;margin-right:20px;align-items:center">
+          <select id="filterRange" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:12px;cursor:pointer;font-family:'Inter',sans-serif">
+            <option value="today">Today</option>
+            <option value="week">Current Week</option>
+            <option value="month" selected>Current Month</option>
+            <option value="lastweek">Last Week</option>
+            <option value="lastmonth">Last Month</option>
+          </select>
+          <select id="filterShows" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:12px;cursor:pointer;font-family:'Inter',sans-serif">
+            <option value="all" selected>All Shows</option>
+            <option value="active">Active</option>
+            <option value="upcoming">Upcoming</option>
+          </select>
+          <select id="filterVenue" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:12px;cursor:pointer;font-family:'Inter',sans-serif">
+            <option value="all" selected>All Venues</option>
+            <option value="miami">Miami</option>
+            <option value="westpalmbeach">West Palm Beach</option>
+            <option value="tampa">Tampa</option>
+            <option value="jacksonville">Jacksonville</option>
+          </select>
+        </div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-notification-01"></i></div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-search-01"></i></div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-settings-01"></i></div>
+        <div class="theme-toggle"><i class="hgi-stroke hgi-sun"></i><span>Light</span></div>
+        <a href="login.html" class="topbar-btn" title="Sign out" style="text-decoration:none"><i class="hgi-stroke hgi-logout-01"></i></a>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+<!-- KPI SECTION -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-pip"></div>
+          <div class="section-title">Performance Snapshot</div>
+          <div class="section-count">vs last period</div>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi-label"><i class="hgi-stroke hgi-dollar-01"></i>Total Revenue</div>
+            <div class="kpi-value">$1.16M</div>
+            <div class="kpi-sub up"><i class="hgi-stroke hgi-arrow-up-01"></i>+12.5% vs last period</div>
+          </div>
+          <div class="kpi" data-tone="blue">
+            <div class="kpi-label"><i class="hgi-stroke hgi-ticket-01"></i>Tickets Sold</div>
+            <div class="kpi-value">14,235</div>
+            <div class="kpi-sub up"><i class="hgi-stroke hgi-arrow-up-01"></i>+5.2% this period</div>
+          </div>
+          <div class="kpi" data-tone="amber">
+            <div class="kpi-label"><i class="hgi-stroke hgi-tag-01"></i>Avg Ticket Price</div>
+            <div class="kpi-value">$1,840</div>
+            <div class="kpi-sub down"><i class="hgi-stroke hgi-arrow-down-01"></i>-1.0% vs last period</div>
+          </div>
+          <div class="kpi" data-tone="violet">
+            <div class="kpi-label"><i class="hgi-stroke hgi-user-group"></i>Attendance Rate</div>
+            <div class="kpi-value">84%</div>
+            <div class="kpi-sub down"><i class="hgi-stroke hgi-arrow-down-01"></i>-1.1% vs last period</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label"><i class="hgi-stroke hgi-shopping-cart-01"></i>Tickets Today</div>
+            <div class="kpi-value">2,847</div>
+            <div class="kpi-sub up"><i class="hgi-stroke hgi-arrow-up-01"></i>+3% vs yesterday</div>
+          </div>
+          <div class="kpi" data-tone="blue">
+            <div class="kpi-label"><i class="hgi-stroke hgi-check-circle-01"></i>Scan Success Rate</div>
+            <div class="kpi-value">94%</div>
+            <div class="kpi-sub up"><i class="hgi-stroke hgi-arrow-up-01"></i>Best this month</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REVENUE TREND -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-pip"></div>
+          <div class="section-title">Revenue Trend</div>
+          <div class="section-count">12 months</div>
+        </div>
+
+        <div class="chart-card">
+          <div class="ch-head">
+            <div class="ch-title"><i class="hgi-stroke hgi-analytics-01"></i>Monthly Revenue</div>
+            <div class="ch-meta">
+              <span>YTD Total: <strong>$1.16M</strong></span>
+              <span>Avg/month: <strong>$96.7K</strong></span>
+              <span>Peak: <strong>May · $210K</strong></span>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="revChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHARTS ROW 1: Channel Distribution & Promo Code -->
+      <div class="section">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <!-- PIE CHART: BY CHANNEL -->
+          <div class="chart-card">
+            <div class="ch-head">
+              <div class="ch-title"><i class="hgi-stroke hgi-layers-01"></i>By Channel</div>
+              <div class="ch-meta">
+                <span>Total: <strong>14,235</strong></span>
+              </div>
+            </div>
+            <div class="chart-container" style="height:240px">
+              <canvas id="channelChart"></canvas>
+            </div>
+          </div>
+
+          <!-- BAR CHART: PROMO CODE USAGE -->
+          <div class="chart-card">
+            <div class="ch-head">
+              <div class="ch-title"><i class="hgi-stroke hgi-discount"></i>Promo Code Usage</div>
+              <div class="ch-meta">
+                <span>Active: <strong>1,245</strong></span>
+              </div>
+            </div>
+            <div class="chart-container" style="height:240px">
+              <canvas id="promoChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHARTS ROW 2: Ticket Type & Revenue by Show -->
+      <div class="section">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <!-- BAR CHART: REVENUE BY TICKET TYPE -->
+          <div class="chart-card">
+            <div class="ch-head">
+              <div class="ch-title"><i class="hgi-stroke hgi-ticket-01"></i>Revenue by Ticket Type</div>
+              <div class="ch-meta">
+                <span>Total: <strong>$1.16M</strong></span>
+              </div>
+            </div>
+            <div class="chart-container" style="height:240px">
+              <canvas id="ticketTypeChart"></canvas>
+            </div>
+          </div>
+
+          <!-- BAR CHART: REVENUE BY SHOW -->
+          <div class="chart-card">
+            <div class="ch-head">
+              <div class="ch-title"><i class="hgi-stroke hgi-chart-column"></i>Revenue by Show</div>
+              <div class="ch-meta">
+                <span>Active Events: <strong>5</strong></span>
+              </div>
+            </div>
+            <div class="chart-container" style="height:240px">
+              <canvas id="showRevenueChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EVENT PERFORMANCE -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-pip"></div>
+          <div class="section-title">Event Performance</div>
+          <div class="section-count">5 events</div>
+        </div>
+
+        <div class="table-card">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Event</th>
+                <th>City</th>
+                <th>Status</th>
+                <th style="text-align:right">Tickets Sold</th>
+                <th style="text-align:right">Revenue</th>
+                <th>Capacity</th>
+              </tr>
+            </thead>
+            <tbody id="eventActivityBody">
+              <tr class="row-link">
+                <td><strong style="font-family:'Inter',sans-serif;color:var(--text)">Flying Lions</strong></td>
+                <td style="color:var(--text2)">West Palm Beach</td>
+                <td><span class="badge badge-teal"><i class="hgi-stroke hgi-check-circle-01" style="font-size:10px"></i> Active</span></td>
+                <td style="text-align:right;font-family:'Inter',sans-serif;color:var(--text2)">8,200</td>
+                <td style="text-align:right;font-family:'Inter',sans-serif;font-weight:700;color:var(--primary)">$310,500</td>
+                <td>
+                  <div class="capacity-cell">
+                    <div class="capacity-bar"><div class="capacity-fill" data-w="75"></div></div>
+                    <div class="cap-pct"><strong style="color:var(--text2)">75%</strong> · 6,000 / 8,000</div>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row-link">
+                <td><strong style="font-family:'Inter',sans-serif;color:var(--text)">Chains of Dreams</strong></td>
+                <td style="color:var(--text2)">Miami</td>
+                <td><span class="badge badge-teal"><i class="hgi-stroke hgi-check-circle-01" style="font-size:10px"></i> Active</span></td>
+                <td style="text-align:right;font-family:'Inter',sans-serif;color:var(--text2)">4,320</td>
+                <td style="text-align:right;font-family:'Inter',sans-serif;font-weight:700;color:var(--primary)">$225,480</td>
+                <td>
+                  <div class="capacity-cell">
+                    <div class="capacity-bar"><div class="capacity-fill" data-w="68"></div></div>
+                    <div class="cap-pct"><strong style="color:var(--text2)">68%</strong> · 4,100 / 6,000</div>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row-link">
+                <td><strong style="font-family:'Inter',sans-serif;color:var(--text)">Acrobat Power</strong></td>
+                <td style="color:var(--text2)">Tampa</td>
+                <td><span class="badge badge-teal"><i class="hgi-stroke hgi-check-circle-01" style="font-size:10px"></i> Active</span></td>
+                <td style="text-align:right;font-family:'Inter',sans-serif;color:var(--text2)">1,280</td>
+                <td style="text-align:right;font-family:'Inter',sans-serif;font-weight:700;color:var(--primary)">$308,640</td>
+                <td>
+                  <div class="capacity-cell">
+                    <div class="capacity-bar"><div class="capacity-fill" data-w="82"></div></div>
+                    <div class="cap-pct"><strong style="color:var(--text2)">82%</strong> · 3,280 / 4,000</div>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row-link">
+                <td><strong style="font-family:'Inter',sans-serif;color:var(--text)">Fire &amp; Silk</strong></td>
+                <td style="color:var(--text2)">Jacksonville</td>
+                <td><span class="badge badge-amber"><i class="hgi-stroke hgi-clock-01" style="font-size:10px"></i> Upcoming</span></td>
+                <td style="text-align:right;font-family:'Inter',sans-serif;color:var(--text2)">0</td>
+                <td style="text-align:right;font-family:'Inter',sans-serif;font-weight:700;color:var(--text2)">$0</td>
+                <td>
+                  <div class="capacity-cell">
+                    <div class="capacity-bar"><div class="capacity-fill" data-w="0" style="background:var(--amber)"></div></div>
+                    <div class="cap-pct"><strong style="color:var(--text2)">0%</strong> · 0 / 5,000</div>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row-link">
+                <td><strong style="font-family:'Inter',sans-serif;color:var(--text)">Night Cargo</strong></td>
+                <td style="color:var(--text2)">Orlando</td>
+                <td><span class="badge badge-amber"><i class="hgi-stroke hgi-clock-01" style="font-size:10px"></i> Upcoming</span></td>
+                <td style="text-align:right;font-family:'Inter',sans-serif;color:var(--text2)">0</td>
+                <td style="text-align:right;font-family:'Inter',sans-serif;font-weight:700;color:var(--text2)">$0</td>
+                <td>
+                  <div class="capacity-cell">
+                    <div class="capacity-bar"><div class="capacity-fill" data-w="0" style="background:var(--amber)"></div></div>
+                    <div class="cap-pct"><strong style="color:var(--text2)">0%</strong> · 0 / 4,500</div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div>Evinra Ticketing OS · <strong style="color:var(--primary)">v2.1</strong></div>
+      <div class="footer-right">
+        <div class="footer-link">Documentation</div>
+        <div class="footer-link">Support</div>
+        <div class="footer-link">API</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="evinra-theme.js"></script>
+<script>
+(function(){
+  // Animate capacity bars
+  setTimeout(() => {
+    document.querySelectorAll('.capacity-fill[data-w]').forEach(el => {
+      el.style.width = el.dataset.w + '%';
+    });
+  }, 300);
+
+  // Revenue chart
+  const ctx = document.getElementById('revChart');
+  if (!ctx || !window.Chart) return;
+
+  // Theme-aware colors
+  const isLight = () => document.body.classList.contains('light-mode');
+  const gridColor = () => isLight() ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.05)';
+  const tickColor = () => isLight() ? '#5A6B6B' : '#8A9E9B';
+
+  const grad = ctx.getContext('2d').createLinearGradient(0, 0, 0, 280);
+  grad.addColorStop(0, 'rgba(42,155,133,0.25)');
+  grad.addColorStop(1, 'rgba(42,155,133,0.00)');
+
+  const chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+      datasets: [{
+        label: 'Monthly Revenue',
+        data: [95000, 87000, 102000, 89000, 210000, 92000, 105000, 98000, 110000, 103000, 97000, 186400],
+        borderColor: '#2A9B85',
+        backgroundColor: grad,
+        borderWidth: 2.5,
+        tension: 0.4,
+        fill: true,
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        pointBackgroundColor: '#2A9B85',
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#161D1B',
+          titleColor: '#E8F0EE',
+          bodyColor: '#E8F0EE',
+          borderColor: '#2A9B85',
+          borderWidth: 1,
+          padding: 10,
+          titleFont: { family: 'Inter', size: 12, weight: '700' },
+          bodyFont: { family: 'Inter', size: 12 },
+          callbacks: {
+            label: c => '$' + c.parsed.y.toLocaleString()
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: false,
+          border: { display: false },
+          grid: { color: gridColor() },
+          ticks: {
+            font: { size: 10, family: 'Inter' },
+            color: tickColor(),
+            callback: v => '$' + (v / 1000).toFixed(0) + 'K'
+          }
+        },
+        x: {
+          border: { display: false },
+          grid: { display: false },
+          ticks: {
+            font: { size: 11, family: 'Inter' },
+            color: tickColor()
+          }
+        }
+      }
+    }
+  });
+
+  // CHANNEL PIE CHART
+  const channelCtx = document.getElementById('channelChart');
+  if (channelCtx && window.Chart) {
+    new Chart(channelCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Website', 'Box Office', 'Mobile App'],
+        datasets: [{
+          data: [52, 31, 17],
+          backgroundColor: ['#2A9B85', '#5B7B78', '#8A9E9B'],
+          borderColor: [getComputedStyle(document.body).getPropertyValue('--bg2')].flat(),
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {
+              font: { family: 'Inter', size: 11 },
+              color: tickColor(),
+              padding: 12,
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            backgroundColor: '#161D1B',
+            titleColor: '#E8F0EE',
+            bodyColor: '#E8F0EE',
+            borderColor: '#2A9B85',
+            borderWidth: 1,
+            padding: 8,
+            callbacks: {
+              label: c => c.label + ': ' + c.parsed + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  // PROMO CODE USAGE CHART
+  const promoCtx = document.getElementById('promoChart');
+  if (promoCtx && window.Chart) {
+    new Chart(promoCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Barcode', 'Standard', 'Discount', 'Family'],
+        datasets: [{
+          label: 'Usage',
+          data: [485, 340, 285, 135],
+          backgroundColor: ['#2A9B85', '#5B7B78', '#8A9E9B', '#A8B9B5'],
+          borderRadius: 4,
+          borderSkipped: false
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#161D1B',
+            titleColor: '#E8F0EE',
+            bodyColor: '#E8F0EE',
+            borderColor: '#2A9B85',
+            borderWidth: 1,
+            padding: 8
+          }
+        },
+        scales: {
+          x: {
+            border: { display: false },
+            grid: { color: gridColor() },
+            ticks: { font: { size: 10, family: 'Inter' }, color: tickColor() }
+          },
+          y: {
+            border: { display: false },
+            grid: { display: false },
+            ticks: { font: { size: 11, family: 'Inter' }, color: tickColor() }
+          }
+        }
+      }
+    });
+  }
+
+  // REVENUE BY TICKET TYPE
+  const ticketTypeCtx = document.getElementById('ticketTypeChart');
+  if (ticketTypeCtx && window.Chart) {
+    new Chart(ticketTypeCtx, {
+      type: 'bar',
+      data: {
+        labels: ['VIP', 'General', 'Child'],
+        datasets: [{
+          label: 'Revenue',
+          data: [520000, 480000, 160000],
+          backgroundColor: ['#2A9B85', '#5B7B78', '#8A9E9B'],
+          borderRadius: 4,
+          borderSkipped: false
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#161D1B',
+            titleColor: '#E8F0EE',
+            bodyColor: '#E8F0EE',
+            borderColor: '#2A9B85',
+            borderWidth: 1,
+            padding: 8,
+            callbacks: {
+              label: c => '$' + c.parsed.y.toLocaleString()
+            }
+          }
+        },
+        scales: {
+          y: {
+            border: { display: false },
+            grid: { color: gridColor() },
+            ticks: {
+              font: { size: 10, family: 'Inter' },
+              color: tickColor(),
+              callback: v => '$' + (v / 1000).toFixed(0) + 'K'
+            }
+          },
+          x: {
+            border: { display: false },
+            grid: { display: false },
+            ticks: { font: { size: 11, family: 'Inter' }, color: tickColor() }
+          }
+        }
+      }
+    });
+  }
+
+  // REVENUE BY SHOW
+  const showRevenueCtx = document.getElementById('showRevenueChart');
+  if (showRevenueCtx && window.Chart) {
+    new Chart(showRevenueCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Flying Lions', 'Chains of Dreams', 'Acrobat Power', 'Fire & Silk', 'Night Cargo'],
+        datasets: [{
+          label: 'Revenue',
+          data: [310500, 225480, 308640, 0, 0],
+          backgroundColor: ['#2A9B85', '#2A9B85', '#2A9B85', '#C4CCCA', '#C4CCCA'],
+          borderRadius: 4,
+          borderSkipped: false
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#161D1B',
+            titleColor: '#E8F0EE',
+            bodyColor: '#E8F0EE',
+            borderColor: '#2A9B85',
+            borderWidth: 1,
+            padding: 8,
+            callbacks: {
+              label: c => '$' + c.parsed.x.toLocaleString()
+            }
+          }
+        },
+        scales: {
+          x: {
+            border: { display: false },
+            grid: { color: gridColor() },
+            ticks: {
+              font: { size: 10, family: 'Inter' },
+              color: tickColor(),
+              callback: v => '$' + (v / 1000).toFixed(0) + 'K'
+            }
+          },
+          y: {
+            border: { display: false },
+            grid: { display: false },
+            ticks: { font: { size: 11, family: 'Inter' }, color: tickColor() }
+          }
+        }
+      }
+    });
+  }
+
+  // Re-color chart when theme changes
+  const obs = new MutationObserver(() => {
+    chart.options.scales.y.grid.color = gridColor();
+    chart.options.scales.y.ticks.color = tickColor();
+    chart.options.scales.x.ticks.color = tickColor();
+    chart.update('none');
+  });
+  obs.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+})();
+</script>
+<script>
+(function(){
+  var path = (location.pathname.split('/').pop() || 'evinra_index.html').replace('.html','');
+  if (!path) path = 'evinra_index';
+  var el = document.querySelector('.sb-item[data-page="'+path+'"]');
+  if (el) el.classList.add('active');
+})();
+
+// FILTERS FUNCTIONALITY
+(function(){
+  const filterRange = document.getElementById('filterRange');
+  const filterShows = document.getElementById('filterShows');
+  const filterVenue = document.getElementById('filterVenue');
+
+  function onFilterChange() {
+    const range = filterRange?.value || 'month';
+    const shows = filterShows?.value || 'all';
+    const venue = filterVenue?.value || 'all';
+
+    console.log('Filters applied:', { range, shows, venue });
+    // Here you would typically fetch new data based on these filters
+    // For now, we just log the values
+  }
+
+  filterRange?.addEventListener('change', onFilterChange);
+  filterShows?.addEventListener('change', onFilterChange);
+  filterVenue?.addEventListener('change', onFilterChange);
+})();
+</script>
+</body>
+</html>
