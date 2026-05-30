@@ -1,0 +1,3133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evinra - Events</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
+<style>/* EVINRA GLOBAL STYLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* DARK MODE (DEFAULT) */
+  --bg: #0B0F0E;
+  --bg2: #111816;
+  --bg3: #161D1B;
+  --bg4: #1C2422;
+  --primary: #2A9B85;
+  --primary-dim: rgba(42,155,133,.12);
+  --primary-border: rgba(42,155,133,.22);
+  --accent: #D4884A;
+  --accent-dim: rgba(212,136,74,.12);
+  --red: #EF4444;
+  --red-dim: rgba(239,68,68,.12);
+  --red-border: rgba(239,68,68,.22);
+  --amber: #F59E0B;
+  --amber-dim: rgba(245,158,11,.12);
+  --amber-border: rgba(245,158,11,.22);
+  --blue: #3B82F6;
+  --blue-dim: rgba(59,130,246,.12);
+  --blue-border: rgba(59,130,246,.22);
+  --violet: #A78BFA;
+  --violet-dim: rgba(167,139,250,.12);
+  --violet-border: rgba(167,139,250,.22);
+  --text: #E8F0EE;
+  --text2: #8A9E9B;
+  --text3: #4A5E5B;
+  --border: rgba(255,255,255,.06);
+  --border2: rgba(255,255,255,.10);
+}
+
+/* LIGHT MODE */
+body.light-mode {
+  --bg: #FAFAFE;
+  --bg2: #F5F7FA;
+  --bg3: #EEF1F5;
+  --bg4: #E8EBF0;
+  --primary: #2A9B85;
+  --primary-dim: rgba(42,155,133,.08);
+  --primary-border: rgba(42,155,133,.2);
+  --accent: #D4884A;
+  --accent-dim: rgba(212,136,74,.08);
+  --red: #EF4444;
+  --red-dim: rgba(239,68,68,.08);
+  --red-border: rgba(239,68,68,.2);
+  --amber: #F59E0B;
+  --amber-dim: rgba(245,158,11,.08);
+  --amber-border: rgba(245,158,11,.2);
+  --blue: #3B82F6;
+  --blue-dim: rgba(59,130,246,.08);
+  --blue-border: rgba(59,130,246,.2);
+  --violet: #A78BFA;
+  --violet-dim: rgba(167,139,250,.08);
+  --violet-border: rgba(167,139,250,.2);
+  --text: #1A1A2E;
+  --text2: #5A6B6B;
+  --text3: #8A9B9B;
+  --border: rgba(0,0,0,.06);
+  --border2: rgba(0,0,0,.10);
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* TYPOGRAPHY - INTER ONLY */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* ━━━━━ SIDEBAR ━━━━━ */
+.sidebar {
+  width: 280px;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 24px 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.sb-header {
+  padding: 0 20px 24px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sb-header:hover {
+  background: rgba(255,255,255,.02);
+}
+
+.sb-logo {
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  color: white;
+}
+
+.sb-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.sb-section {
+  padding: 0 12px 16px;
+}
+
+.sb-group-title {
+  font-size: 9px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 12px 12px 8px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+
+.sb-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 6px;
+  color: var(--text2);
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 2px;
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+
+.sb-item:hover {
+  background: var(--primary-dim);
+  color: var(--text);
+  border-color: var(--primary-border);
+}
+
+.sb-item.active {
+  background: var(--primary-dim);
+  color: var(--primary);
+  border-color: var(--primary-border);
+}
+
+.sb-item i {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* ━━━━━ MAIN ━━━━━ */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ━━━━━ TOPBAR ━━━━━ */
+.topbar {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  flex-shrink: 0;
+  gap: 20px;
+}
+
+.topbar-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.topbar-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.topbar-breadcrumb {
+  font-size: 11px;
+  color: var(--text3);
+  font-family: 'Inter', sans-serif;
+}
+
+.topbar-breadcrumb span {
+  color: var(--primary);
+}
+
+.topbar-right {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.topbar-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text2);
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.topbar-btn:hover {
+  border-color: var(--primary-border);
+  color: var(--text);
+  background: var(--bg4);
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 12px;
+  color: var(--text2);
+}
+
+.theme-toggle:hover {
+  border-color: var(--primary-border);
+  color: var(--text);
+  background: var(--bg4);
+}
+
+/* ━━━━━ CONTENT ━━━━━ */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 40px;
+}
+
+.hero {
+  margin-bottom: 48px;
+}
+
+.hero-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 12px;
+  letter-spacing: -1px;
+}
+
+.hero-title .highlight {
+  color: var(--primary);
+}
+
+.hero-sub {
+  font-size: 14px;
+  color: var(--text2);
+  font-family: 'Inter', sans-serif;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-value {
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.stat-label {
+  font-size: 10px;
+  font-family: 'Inter', sans-serif;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ━━━━━ CARDS ━━━━━ */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--primary);
+}
+
+.card:hover {
+  border-color: var(--primary);
+  background: var(--bg3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(42,155,133,0.15);
+}
+
+.card-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--primary-dim);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--primary);
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.card-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.card-desc {
+  font-size: 11px;
+  color: var(--text3);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.4;
+}
+
+/* ━━━━━ SECTION ━━━━━ */
+.section {
+  margin-bottom: 40px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-pip {
+  width: 3px;
+  height: 20px;
+  background: var(--primary);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.section-count {
+  margin-left: auto;
+  font-size: 10px;
+  font-family: 'Inter', sans-serif;
+  color: var(--text3);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* ━━━━━ INPUTS ━━━━━ */
+.search-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 220px;
+}
+
+.search-wrap .si {
+  position: absolute;
+  left: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text3);
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  background: var(--bg4);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--text2);
+  font-size: 11.5px;
+  font-family: 'Inter', sans-serif;
+  padding: 6px 10px 6px 30px;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: var(--primary-border);
+  color: var(--text);
+}
+
+input[type="date"],
+.date-input {
+  background: var(--bg4);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--text2);
+  font-size: 11px;
+  font-family: 'Inter', sans-serif;
+  padding: 5px 9px;
+  outline: none;
+}
+
+input[type="date"]:focus,
+.date-input:focus {
+  border-color: var(--primary-border);
+  color: var(--text);
+}
+
+/* ━━━━━ TABLES ━━━━━ */
+.table-wrap {
+  flex: 1;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+table.tbl {
+  width: 100%;
+}
+
+th {
+  background: var(--bg3);
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  font-family: 'Inter', sans-serif;
+}
+
+tr:hover {
+  background: var(--bg3);
+}
+
+/* ━━━━━ BUTTONS ━━━━━ */
+.btn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover {
+  background: transparent;
+  color: var(--primary);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--bg3);
+  border-color: var(--primary);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text2);
+  border: 1px solid var(--border);
+}
+
+.btn-ghost:hover {
+  background: var(--bg3);
+  color: var(--text);
+  border-color: var(--border2);
+}
+
+.btn-red {
+  background: var(--red);
+  color: white;
+  border: 1px solid var(--red);
+}
+
+.btn-red:hover {
+  background: transparent;
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.btn-amber {
+  background: var(--amber);
+  color: white;
+  border: 1px solid var(--amber);
+}
+
+.btn-amber:hover {
+  background: transparent;
+  color: var(--amber);
+  border-color: var(--amber);
+}
+
+.btn-sm {
+  height: 26px;
+  font-size: 10px;
+  padding: 0 12px;
+}
+
+/* ━━━━━ BADGES ━━━━━ */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+
+.badge-teal {
+  background: var(--primary-dim);
+  color: var(--primary);
+  border: 1px solid var(--primary-border);
+}
+
+.badge-red {
+  background: var(--red-dim);
+  color: var(--red);
+  border: 1px solid var(--red-border);
+}
+
+.badge-amber {
+  background: var(--amber-dim);
+  color: var(--amber);
+  border: 1px solid var(--amber-border);
+}
+
+.badge-blue {
+  background: var(--blue-dim);
+  color: var(--blue);
+  border: 1px solid var(--blue-border);
+}
+
+.badge-violet {
+  background: var(--violet-dim);
+  color: var(--violet);
+  border: 1px solid var(--violet-border);
+}
+
+.badge-muted {
+  background: var(--bg3);
+  color: var(--text3);
+  border: 1px solid var(--border);
+}
+
+/* ━━━━━ CARDS ━━━━━ */
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ━━━━━ STAT CARDS ━━━━━ */
+.stats-row {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stat-lbl {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-val {
+  font-family: 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.stat-sub {
+  font-size: 10px;
+  font-family: 'Inter', sans-serif;
+  color: var(--text3);
+}
+
+/* ━━━━━ FILTER STRIP ━━━━━ */
+.filter-strip {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.flt {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.flt label {
+  font-size: 10px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.flt select {
+  appearance: none;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text2);
+  font-size: 11px;
+  font-family: 'Inter', sans-serif;
+  padding: 6px 8px;
+  cursor: pointer;
+  outline: none;
+  min-width: 100px;
+}
+
+.flt select:focus {
+  border-color: var(--primary-border);
+  color: var(--text);
+}
+
+.flt .drop {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text3);
+}
+
+.filter-sep {
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+}
+
+/* ━━━━━ MODALS ━━━━━ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.modal-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.modal-x {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text3);
+  transition: color 0.2s;
+}
+
+.modal-x:hover {
+  color: var(--text);
+}
+
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+}
+
+.modal-footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+/* ━━━━━ FOOTER ━━━━━ */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  font-family: 'Inter', sans-serif;
+  color: var(--text3);
+  flex-shrink: 0;
+}
+
+.footer-right {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-link {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--text2);
+}
+
+/* ━━━━━ SCROLLBAR ━━━━━ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text2);
+}
+
+/* ━━━━━ RESPONSIVE ━━━━━ */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 220px;
+  }
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+    padding: 12px 6px;
+  }
+  .sb-header {
+    padding: 0;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  .sb-logo {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+  .sb-title, .sb-item span, .sb-group-title {
+    display: none;
+  }
+  .sb-section {
+    padding: 8px 0;
+  }
+  .sb-item {
+    justify-content: center;
+    padding: 8px;
+  }
+  .topbar {
+    padding: 0 20px;
+  }
+  .content {
+    padding: 20px;
+  }
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ━━━━━ SIDEBAR LOGO IMAGE (theme-aware) ━━━━━ */
+.sb-logo-img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+.sb-logo-img.dark { display: block; }
+.sb-logo-img.light { display: none; }
+body.light-mode .sb-logo-img.dark { display: none; }
+body.light-mode .sb-logo-img.light { display: block; }
+
+/* ━━━━━ SIDEBAR USER PROFILE (bottom) ━━━━━ */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+}
+.sb-nav {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+.sb-user {
+  border-top: 1px solid var(--border);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  margin-top: auto;
+}
+.sb-user:hover { background: var(--bg3); }
+.sb-user-avatar {
+  width: 36px;
+  height: 36px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  color: white;
+  flex-shrink: 0;
+}
+.sb-user-info { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.sb-user-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sb-user-role {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.sb-user-action {
+  margin-left: auto;
+  color: var(--text3);
+  font-size: 14px;
+  transition: color 0.2s;
+}
+.sb-user:hover .sb-user-action { color: var(--primary); }
+@media (max-width: 768px) {
+  .sb-user { padding: 10px 6px; justify-content: center; }
+  .sb-user-info, .sb-user-action { display: none; }
+}
+
+@media (max-width: 768px) {
+  .sb-logo-img { height: 22px; }
+}</style>
+  <style>
+    /* Page-specific harmonization */
+    .tbl th { font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text2); }
+    .tbl td { font-size: 12px; color: var(--text); }
+    .tbl tr.row-link { cursor: pointer; transition: background 0.15s; }
+    .tbl tr.row-link:hover { background: var(--bg3); }
+    .tbl .ev-name { display: flex; flex-direction: column; gap: 2px; }
+    .tbl .ev-name strong { font-family: 'Inter', sans-serif; font-weight: 700; color: var(--text); font-size: 12px; }
+    .tbl .ev-name small { font-size: 10px; color: var(--text3); font-family: 'Inter', sans-serif; }
+    .act-wrap { display: flex; gap: 6px; }
+    .act-btn { width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg3); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text2); font-size: 13px; transition: all 0.2s; }
+    .act-btn:hover { border-color: var(--primary-border); color: var(--primary); background: var(--primary-dim); }
+    .act-btn.amber:hover { border-color: var(--amber-border); color: var(--amber); background: var(--amber-dim); }
+    .pagination { display: flex; justify-content: space-between; align-items: center; padding: 14px 4px; }
+    .pagination .info { font-size: 11px; color: var(--text3); font-family: 'Inter', sans-serif; }
+    .page-btns { display: flex; gap: 4px; }
+    .page-btn { min-width: 28px; height: 28px; padding: 0 8px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg3); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text2); font-size: 11px; transition: all 0.2s; }
+    .page-btn:hover { border-color: var(--primary-border); color: var(--text); }
+    .page-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+    .filter-strip .btn-new { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; font-size: 11.5px; }
+    /* Event Detail */
+    .seg-ctrl { display: flex; gap: 4px; background: var(--bg3); padding: 4px; border-radius: 8px; border: 1px solid var(--border); width: fit-content; }
+    .seg-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; background: transparent; border: none; border-radius: 6px; color: var(--text2); font-size: 11.5px; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .seg-btn:hover { color: var(--text); }
+    .seg-btn.active { background: var(--primary); color: white; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-row.full { grid-template-columns: 1fr; }
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: 10px; font-family: 'Inter', sans-serif; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; }
+    .form-input, .form-select { background: var(--bg3); border: 1px solid var(--border); border-radius: 7px; color: var(--text); font-size: 12px; font-family: 'Inter', sans-serif; padding: 9px 11px; outline: none; transition: all 0.2s; }
+    .form-input:focus, .form-select:focus { border-color: var(--primary); }
+    .modal-card { width: 600px; max-width: 90vw; }
+    .breadcrumb-link { color: var(--text2); cursor: pointer; }
+    .breadcrumb-link:hover { color: var(--primary); }
+    .date-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter', sans-serif; color: var(--primary); font-size: 11px; background: var(--primary-dim); border: 1px solid var(--primary-border); border-radius: 12px; padding: 2px 10px; }
+
+    /* New Event modal — segmented tabs */
+    .ne-tabs {
+      display: flex;
+      gap: 6px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 5px;
+      margin-bottom: 18px;
+    }
+    .ne-tab {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 7px;
+      background: transparent;
+      border: none;
+      color: var(--text2);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ne-tab:hover { color: var(--text); }
+    .ne-tab.active {
+      background: var(--primary-dim);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+    }
+    .ne-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      background: var(--primary-dim);
+      border: 1px solid var(--primary-border);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+    .ne-info i { font-size: 16px; flex-shrink: 0; }
+    .ne-events { display: flex; flex-direction: column; gap: 10px; }
+    .ne-event {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px 16px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ne-event:hover { border-color: var(--primary-border); background: var(--bg4); }
+    .ne-event.checked { border-color: var(--primary); background: var(--primary-dim); }
+    .ne-event-cb {
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--border2);
+      border-radius: 4px;
+      background: var(--bg2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      margin-top: 1px;
+    }
+    .ne-event.checked .ne-event-cb {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+    .ne-event.checked .ne-event-cb::after {
+      content: '';
+      width: 8px; height: 5px;
+      border-left: 2px solid white;
+      border-bottom: 2px solid white;
+      transform: rotate(-45deg) translate(1px, -1px);
+    }
+    .ne-event-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .ne-event-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: var(--text3);
+      margin-bottom: 2px;
+    }
+    .ne-event-dates {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: var(--text3);
+    }
+    .ne-prod-select {
+      width: 100%;
+      appearance: none;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      padding: 11px 32px 11px 14px;
+      cursor: pointer;
+      outline: none;
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='12' height='12' fill='none' stroke='%238A9E9B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      margin-bottom: 14px;
+    }
+    .ne-prod-select:focus { border-color: var(--primary); }
+    .modal-body { max-height: 70vh; overflow-y: auto; }
+    .modal-card.ne-card { width: 680px; max-width: 92vw; }
+
+    /* Date-range button row */
+    .range-bar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .range-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      color: var(--text2);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .range-btn i { font-size: 13px; }
+    .range-btn:hover { color: var(--text); border-color: var(--border2); background: var(--bg3); }
+    .range-btn.active {
+      background: var(--red-dim);
+      color: var(--red);
+      border-color: var(--red-border);
+    }
+    .range-btn.primary {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      margin-left: auto;
+    }
+    .range-btn.primary:hover { background: oklch(0.62 0.10 165); color: white; border-color: var(--primary); }
+
+    /* Top filter row (label-above-dropdown style) */
+    .top-filters {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr) 2fr;
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 16px;
+    }
+    .top-filt { display: flex; flex-direction: column; gap: 6px; }
+    .top-filt label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .top-filt select {
+      appearance: none;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      padding: 10px 30px 10px 12px;
+      cursor: pointer;
+      outline: none;
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='12' height='12' fill='none' stroke='%238A9E9B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 11px center;
+      transition: all 0.2s;
+    }
+    .top-filt select:focus, .top-filt select:hover { border-color: var(--primary); color: var(--text); }
+    .top-search {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .top-search i {
+      position: absolute;
+      left: 12px;
+      color: var(--text3);
+      font-size: 14px;
+      pointer-events: none;
+    }
+    .top-search input {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      padding: 10px 14px 10px 38px;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .top-search input::placeholder { color: var(--text3); }
+    .top-search input:focus { border-color: var(--primary); }
+
+    /* Source + Status badges */
+    .badge-source {
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg3);
+      color: var(--text3);
+      border: 1px solid var(--border);
+    }
+    .badge-status {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+    }
+    .badge-status.complete {
+      background: var(--primary-dim);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+    }
+    .badge-status.running {
+      background: var(--amber-dim);
+      color: var(--amber);
+      border: 1px solid var(--amber-border);
+    }
+    .badge-status.draft {
+      background: var(--bg3);
+      color: var(--text3);
+      border: 1px solid var(--border);
+    }
+
+    /* New Event Modal */
+    .modal-card.lg { width: 680px; max-width: 92vw; }
+    .modal-tabs {
+      display: flex;
+      gap: 6px;
+      padding: 4px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 22px;
+    }
+    .modal-tab {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 14px;
+      background: transparent;
+      border: none;
+      border-radius: 7px;
+      color: var(--text2);
+      font-family: 'Inter', sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .modal-tab:hover { color: var(--text); }
+    .modal-tab.active {
+      background: var(--primary-dim);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+    }
+    .modal-tab i { font-size: 14px; }
+    .modal-tab-panel { display: none; }
+    .modal-tab-panel.active { display: flex; flex-direction: column; gap: 14px; }
+    .info-banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      background: var(--primary-dim);
+      border: 1px solid var(--primary-border);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .info-banner i { font-size: 15px; flex-shrink: 0; }
+    .ev-import-list { display: flex; flex-direction: column; gap: 10px; max-height: 360px; overflow-y: auto; padding-right: 4px; }
+    .ev-import-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ev-import-card:hover {
+      border-color: var(--primary-border);
+      background: var(--bg4);
+    }
+    .ev-import-card.selected {
+      border-color: var(--primary);
+      background: var(--primary-dim);
+    }
+    .ev-import-checkbox {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1.5px solid var(--border2);
+      background: var(--bg2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: all 0.15s;
+    }
+    .ev-import-card.selected .ev-import-checkbox {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+    .ev-import-card.selected .ev-import-checkbox::after {
+      content: '';
+      width: 9px; height: 5px;
+      border-left: 2px solid white;
+      border-bottom: 2px solid white;
+      transform: rotate(-45deg) translate(1px, -1px);
+    }
+    .ev-import-body { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .ev-import-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 13.5px;
+      color: var(--text);
+      letter-spacing: -0.2px;
+    }
+    .ev-import-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 11.5px;
+      color: var(--text2);
+    }
+    .ev-import-dates {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: var(--text3);
+    }
+
+    @media (max-width: 1100px) {
+      .top-filters { grid-template-columns: repeat(2, 1fr); }
+      .top-filters .top-search { grid-column: span 2; }
+    }
+    /* ─── EVENT DETAIL — top bar (imported / back) ─── */
+    .ed-topbar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .ed-crumb {
+      font-family: 'Inter', sans-serif;
+      font-size: 12.5px;
+      color: var(--text2);
+    }
+    .ed-crumb a { color: var(--primary); text-decoration: none; cursor: pointer; }
+    .ed-crumb a:hover { color: var(--text); }
+    .ed-crumb .sep { color: var(--text3); margin: 0 6px; }
+    .ed-date-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--primary-dim);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .ed-date-chip i { font-size: 12px; }
+    .ed-actions { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+    .ed-readonly {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      background: var(--primary-dim);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+      font-family: 'Inter', sans-serif;
+      font-size: 11.5px;
+      font-weight: 600;
+    }
+    .ed-readonly i { font-size: 12px; }
+    .ed-readonly strong { color: var(--primary); font-weight: 700; }
+    .ed-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ed-back-btn:hover { color: var(--text); border-color: var(--border2); }
+
+    /* Tab bar — full width, simpler style */
+    .ed-tabs {
+      display: flex;
+      gap: 4px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 5px;
+      margin-bottom: 24px;
+    }
+    .ed-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 7px;
+      background: transparent;
+      border: none;
+      color: var(--text2);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ed-tab:hover { color: var(--text); }
+    .ed-tab.active {
+      background: var(--primary-dim);
+      color: var(--primary);
+    }
+    .ed-tab i { font-size: 13px; }
+
+    /* Inheritance banners */
+    .inherit-banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 16px;
+      border-radius: 9px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      margin-bottom: 20px;
+    }
+    .inherit-banner i { font-size: 16px; flex-shrink: 0; }
+    .inherit-banner .grow { flex: 1; }
+    .inherit-banner strong { font-weight: 700; }
+    .inherit-banner .pill {
+      padding: 3px 12px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .inherit-banner.teal {
+      background: var(--primary-dim);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+    }
+    .inherit-banner.teal .pill { background: var(--primary); color: white; }
+    .inherit-banner.amber {
+      background: var(--amber-dim);
+      color: var(--amber);
+      border: 1px solid var(--amber-border);
+    }
+    .inherit-banner.amber .pill { background: var(--amber); color: white; }
+    .inherit-banner.muted {
+      background: var(--bg3);
+      color: var(--text2);
+      border: 1px solid var(--border);
+    }
+    .inherit-banner.muted i { color: var(--primary); }
+
+    /* Section subtitle */
+    .ed-section-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .ed-section-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--text3);
+      margin-bottom: 18px;
+    }
+    .ed-section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .ed-section-head .lhs { flex: 1; }
+
+    /* Event Status pill */
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .status-row .lbl {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text3);
+    }
+    .status-pill {
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--amber-dim);
+      color: var(--amber);
+      border: 1px solid var(--amber-border);
+    }
+    .status-row .ts {
+      margin-left: auto;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--text2);
+    }
+    .status-row .ts strong { color: var(--text); font-family: 'Inter', sans-serif; font-weight: 600; }
+
+    /* Form input with leading icon */
+    .input-with-icon { position: relative; }
+    .input-with-icon i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text3);
+      font-size: 13px;
+      pointer-events: none;
+    }
+    .input-with-icon input { padding-left: 36px !important; }
+
+    /* Description textarea */
+    .ed-textarea {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      color: var(--text);
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      padding: 11px 12px;
+      outline: none;
+      resize: vertical;
+      min-height: 110px;
+      transition: all 0.2s;
+    }
+    .ed-textarea:focus { border-color: var(--primary); }
+
+    /* Image upload */
+    .ed-upload {
+      border: 2px dashed var(--border2);
+      border-radius: 10px;
+      padding: 38px 20px;
+      text-align: center;
+      background: var(--bg2);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ed-upload:hover { border-color: var(--primary); background: var(--bg3); }
+    .ed-upload i { font-size: 22px; color: var(--text3); margin-bottom: 10px; display: block; }
+    .ed-upload-main {
+      font-family: 'Inter', sans-serif;
+      font-size: 12.5px;
+      color: var(--text2);
+      margin-bottom: 6px;
+    }
+    .ed-upload-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--primary);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* Filter row inside detail panels */
+    .ed-filters {
+      display: flex;
+      gap: 14px;
+      align-items: end;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .ed-filt { display: flex; flex-direction: column; gap: 6px; min-width: 160px; }
+    .ed-filt label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+    }
+    .ed-filt select {
+      appearance: none;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      padding: 9px 32px 9px 14px;
+      cursor: pointer;
+      outline: none;
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='12' height='12' fill='none' stroke='%238A9E9B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 11px center;
+    }
+    .ed-filt select:focus { border-color: var(--primary); }
+    .ed-filt-search {
+      flex: 1;
+      max-width: 280px;
+      min-width: 200px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .ed-filt-search i {
+      position: absolute;
+      left: 12px;
+      color: var(--text3);
+      font-size: 13px;
+      pointer-events: none;
+    }
+    .ed-filt-search input {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      padding: 9px 14px 9px 36px;
+      outline: none;
+    }
+    .ed-filt-search input:focus { border-color: var(--primary); }
+
+    /* Ticket types table */
+    .tk-tbl { width: 100%; border-collapse: collapse; }
+    .tk-tbl th {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 9.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--text3);
+      padding: 14px 14px;
+      text-align: left;
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+    }
+    .tk-tbl th.num, .tk-tbl td.num { text-align: right; }
+    .tk-tbl td {
+      padding: 14px 14px;
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+    }
+    .tk-tbl tbody tr:hover { background: var(--bg3); }
+    .tk-name { display: flex; align-items: center; gap: 10px; }
+    .tk-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .tk-dot.teal { background: var(--primary); }
+    .tk-dot.blue { background: var(--blue); }
+    .tk-dot.violet { background: var(--violet); }
+    .tk-dot.amber { background: var(--amber); }
+    .tk-dot.red { background: var(--red); }
+    .tk-dot.muted { background: var(--text3); }
+    .tk-name strong {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .pill-onsale {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      background: var(--primary-dim);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+    }
+    .pill-offsale {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg3);
+      color: var(--text3);
+      border: 1px solid var(--border);
+    }
+    .pill-type {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 5px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: var(--text2);
+    }
+    .pill-type.ride { background: var(--amber-dim); color: var(--amber); border: 1px solid var(--amber-border); }
+    .pill-type.exp { background: var(--violet-dim); color: var(--violet); border: 1px solid var(--violet-border); }
+    .tk-action {
+      width: 28px; height: 28px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text3);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+      margin-left: 4px;
+    }
+    .tk-action:hover { color: var(--primary); border-color: var(--primary-border); }
+    .tk-action.danger:hover { color: var(--red); border-color: var(--red-border); background: var(--red-dim); }
+
+    /* Toggle switch */
+    .swc {
+      position: relative;
+      width: 34px; height: 18px;
+      background: var(--bg4);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: inline-block;
+      vertical-align: middle;
+      border: 1px solid var(--border);
+    }
+    .swc::after {
+      content: '';
+      position: absolute;
+      top: 1px; left: 1px;
+      width: 14px; height: 14px;
+      background: white;
+      border-radius: 50%;
+      transition: all 0.2s;
+    }
+    .swc.on { background: var(--primary); border-color: var(--primary); }
+    .swc.on::after { left: 17px; }
+
+    .credit-cell {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--primary-dim);
+      color: var(--primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 10.5px;
+      font-weight: 700;
+      gap: 1px;
+      border: 1px solid var(--primary-border);
+    }
+    .credit-cell .price { font-size: 10px; opacity: 0.8; }
+
+    .price-cell {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .qty-cell {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Fees & Taxes tables */
+    .ft-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .ft-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .ft-head h3 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .ft-head .meta { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--text3); }
+
+    /* Visibility */
+    .vis-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 14px;
+    }
+    .vis-row h4 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .vis-row p {
+      font-family: 'Inter', sans-serif;
+      font-size: 11.5px;
+      color: var(--text3);
+    }
+    .swc.lg { width: 44px; height: 24px; }
+    .swc.lg::after { width: 20px; height: 20px; }
+    .swc.lg.on::after { left: 21px; }
+
+    /* Seat map designer */
+    .seats-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+    }
+    .seats-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .seats-card-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .seats-card-title .badge {
+      background: var(--amber-dim);
+      color: var(--amber);
+      padding: 3px 10px;
+      border-radius: 5px;
+      font-size: 10.5px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      border: 1px solid var(--amber-border);
+    }
+    .seats-empty {
+      text-align: center;
+      padding: 80px 20px;
+      background: var(--bg3);
+      border-radius: 10px;
+    }
+    .seats-empty i { font-size: 28px; color: var(--text3); margin-bottom: 14px; display: block; }
+    .seats-empty h4 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .seats-empty p {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--text3);
+      margin-bottom: 16px;
+    }
+    .seats-empty .btn-amber {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      background: var(--amber-dim);
+      color: var(--amber);
+      border: 1px solid var(--amber-border);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .seats-empty .btn-amber:hover { background: var(--amber); color: white; }
+
+    .seats-keys {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      flex-wrap: wrap;
+    }
+    .seats-keys .kf { display: flex; align-items: center; gap: 8px; }
+    .seats-keys .kf label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      color: var(--text3);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .seats-keys input {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 7px 10px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      outline: none;
+      min-width: 140px;
+    }
+    .seats-keys input:focus { border-color: var(--primary); }
+    .seats-keys .grow { flex: 1; }
+    .seats-keys .dash-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 11.5px;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .seats-keys .dash-link:hover { text-decoration: underline; }
+
+    /* Btn variants for tab content */
+    .btn-add {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 16px;
+      border-radius: 8px;
+      background: var(--primary-dim);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-add:hover { background: var(--primary); color: white; }
+    .btn-add.amber {
+      background: var(--amber-dim); color: var(--amber); border-color: var(--amber-border);
+    }
+    .btn-add.amber:hover { background: var(--amber); color: white; }
+  
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-header" onclick="location.href='evinra_index.html'">
+      <img class="sb-logo-img dark" src="evinra-logo-dark.png" alt="Eventra">
+      <img class="sb-logo-img light" src="evinra-logo-light.png" alt="Eventra">
+    </div>
+
+    <div class="sb-nav">
+      <div class="sb-section">
+        <div class="sb-group-title">Main</div>
+        <a href="evinra_index.html" data-page="evinra_index" class="sb-item"><i class="hgi-stroke hgi-grid-01"></i><span>Dashboard</span></a>
+        <a href="evinra_events.html" data-page="evinra_events" class="sb-item"><i class="hgi-stroke hgi-calendar"></i><span>Events</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Layout</div>
+        <a href="evinra_catalog.html" data-page="evinra_catalog" class="sb-item"><i class="hgi-stroke hgi-home-02"></i><span>Seating Map</span></a>
+        <a href="evinra_rides_exp.html" data-page="evinra_rides_exp" class="sb-item"><i class="hgi-stroke hgi-hierarchy-square-01"></i><span>Sections &amp; Zones</span></a>
+        <a href="evinra_entry_points.html" data-page="evinra_entry_points" class="sb-item"><i class="hgi-stroke hgi-building-02"></i><span>Entry Points</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Reports</div>
+        <a href="evinra_sales_overview.html" data-page="evinra_sales_overview" class="sb-item"><i class="hgi-stroke hgi-chart-column"></i><span>Sales Overview</span></a>
+        <a href="evinra_event_sales_report.html" data-page="evinra_event_sales_report" class="sb-item"><i class="hgi-stroke hgi-analytics-01"></i><span>Sales Report</span></a>
+        <a href="evinra_order_detail.html" data-page="evinra_order_detail" class="sb-item"><i class="hgi-stroke hgi-file-01"></i><span>Order Transactions</span></a>
+        <a href="evinra_inshow_analytics.html" data-page="evinra_inshow_analytics" class="sb-item"><i class="hgi-stroke hgi-shopping-cart-01"></i><span>In-Show Analytics</span></a>
+        <a href="evinra_attendance_scan_report.html" data-page="evinra_attendance_scan_report" class="sb-item"><i class="hgi-stroke hgi-qr-code"></i><span>Attendance / Scan</span></a>
+        <a href="evinra_vendor_settlement.html" data-page="evinra_vendor_settlement" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Vendor Settlement</span></a>
+        <a href="evinra_refund_report.html" data-page="evinra_refund_report" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Refund Report</span></a>
+        <a href="evinra_promo_discounts.html" data-page="evinra_promo_discounts" class="sb-item"><i class="hgi-stroke hgi-discount"></i><span>Promo &amp; Discounts</span></a>
+        <a href="evinra_split_dist.html" data-page="evinra_split_dist" class="sb-item"><i class="hgi-stroke hgi-shuffle"></i><span>Split Distribution</span></a>
+        <a href="evinra_credit_txn.html" data-page="evinra_credit_txn" class="sb-item"><i class="hgi-stroke hgi-wallet-04"></i><span>Credit Transactions</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Settings</div>
+        <a href="evinra_general.html" data-page="evinra_general" class="sb-item"><i class="hgi-stroke hgi-settings-01"></i><span>General</span></a>
+        <a href="evinra_users.html" data-page="evinra_users" class="sb-item"><i class="hgi-stroke hgi-user-group"></i><span>Users</span></a>
+        <a href="evinra_experience_tickets.html" data-page="evinra_experience_tickets" class="sb-item"><i class="hgi-stroke hgi-ticket-01"></i><span>Experience Ticketing</span></a>
+        <a href="evinra_credit_plans.html" data-page="evinra_credit_plans" class="sb-item"><i class="hgi-stroke hgi-dollar-01"></i><span>Credit Plans</span></a>
+        <a href="evinra_scan_roles.html" data-page="evinra_scan_roles" class="sb-item"><i class="hgi-stroke hgi-shield-check"></i><span>Scan App Roles</span></a>
+        <a href="evinra_fees_taxes.html" data-page="evinra_fees_taxes" class="sb-item"><i class="hgi-stroke hgi-percent"></i><span>Fees &amp; Taxes</span></a>
+        <a href="evinra_discounts.html" data-page="evinra_discounts" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Discounts</span></a>
+        <a href="evinra_productions.html" data-page="evinra_productions" class="sb-item"><i class="hgi-stroke hgi-star"></i><span>Productions</span></a>
+        <a href="evinra_shows.html" data-page="evinra_shows" class="sb-item"><i class="hgi-stroke hgi-play-circle"></i><span>Shows</span></a>
+        <a href="evinra_other_vendors.html" data-page="evinra_other_vendors" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Other Vendors</span></a>
+      </div>
+    </div>
+
+    <div class="sb-user" onclick="location.href='login.html'">
+      <div class="sb-user-avatar">YP</div>
+      <div class="sb-user-info">
+        <div class="sb-user-name">Yoaldis P.</div>
+        <div class="sb-user-role">Super Admin</div>
+      </div>
+      <i class="hgi-stroke hgi-logout-01 sb-user-action"></i>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-title">Events</div>
+        <div class="topbar-breadcrumb">Evinra <span>/</span> Operations <span>/</span> Events</div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-btn"><i class="hgi-stroke hgi-notification-01"></i></div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-search-01"></i></div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-settings-01"></i></div>
+        <div class="theme-toggle"><i class="hgi-stroke hgi-sun"></i><span>Light</span></div>
+        <a href="login.html" class="topbar-btn" title="Sign out" style="text-decoration:none"><i class="hgi-stroke hgi-logout-01"></i></a>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <!-- ══ VIEW 1: EVENTS LIST ══════════════════════════════════════════ -->
+      <div id="view-events-list">
+<!-- SECTION: Play Dates -->
+        <div class="section">
+          <div class="section-header">
+            <div class="section-pip"></div>
+            <div class="section-title">Play Dates</div>
+            <div class="section-count" id="pdCountChip">7 dates</div>
+          </div>
+
+          <!-- DATE-RANGE QUICK BUTTONS -->
+          <div class="range-bar">
+            <button class="range-btn" data-range="range" onclick="setRange('range')"><i class="hgi-stroke hgi-calendar"></i>Range</button>
+            <button class="range-btn" data-range="today" onclick="setRange('today')"><i class="hgi-stroke hgi-clock-01"></i>Today</button>
+            <button class="range-btn active" data-range="week" onclick="setRange('week')">Current Week</button>
+            <button class="range-btn" data-range="lastweek" onclick="setRange('lastweek')">Last Week</button>
+            <button class="range-btn" data-range="lastmonth" onclick="setRange('lastmonth')">Last Month</button>
+          </div>
+
+          <!-- TOP FILTERS -->
+          <div class="top-filters">
+            <div class="top-filt">
+              <label>Production</label>
+              <select id="fProduction" onchange="filterPlayDates()">
+                <option value="">All Productions</option>
+                <option>Flying Lions</option>
+                <option>Nova Circus</option>
+                <option>SunPeak Events</option>
+                <option>Solar Spectacular</option>
+              </select>
+            </div>
+            <div class="top-filt">
+              <label>Show</label>
+              <select id="fShow" onchange="filterPlayDates()">
+                <option value="">All Shows</option>
+                <option>Flying Lions Circus</option>
+                <option>Solar Spectacular</option>
+                <option>Nova Circus</option>
+                <option>SunPeak Events</option>
+              </select>
+            </div>
+            <div class="top-filt">
+              <label>Event</label>
+              <select id="fEvent" onchange="filterPlayDates()">
+                <option value="">All Events</option>
+                <option>MIA Opening Night</option>
+                <option>MIA Weekend Matinée</option>
+                <option>MIA Closing Night</option>
+                <option>ORL Premiere</option>
+                <option>ORL Valentine's Show</option>
+                <option>TPA Opening Show</option>
+                <option>TPA Weekend Show</option>
+              </select>
+            </div>
+            <div class="top-filt">
+              <label>On Sale</label>
+              <select id="fSale" onchange="filterPlayDates()">
+                <option value="">All</option>
+                <option value="on">On Sale</option>
+                <option value="off">Off Sale</option>
+              </select>
+            </div>
+            <div class="top-filt">
+              <label>&nbsp;</label>
+              <div class="top-search">
+                <i class="hgi-stroke hgi-search-01"></i>
+                <input type="text" id="fSearch" oninput="filterPlayDates()" placeholder="Search date, venue, show...">
+              </div>
+            </div>
+          </div>
+
+          <div class="range-bar" style="margin-bottom:14px">
+            <button class="range-btn primary" onclick="openNewEvent()"><i class="hgi-stroke hgi-plus-sign"></i>New Event</button>
+          </div>
+
+          <!-- TABLE -->
+          <div class="table-wrap" style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:4px 16px 16px;">
+            <table class="tbl">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Start Time</th>
+                  <th>End Time</th>
+                  <th>Event</th>
+                  <th>Show</th>
+                  <th style="text-align:right">Seats</th>
+                  <th>Source</th>
+                  <th>On Sale</th>
+                  <th>Status</th>
+                  <th style="text-align:right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="playDateListBody"></tbody>
+            </table>
+            <!-- Pagination -->
+            <div class="pagination">
+              <span class="info" id="pdPageInfo">Showing 1–7 of 7 play dates</span>
+              <div class="page-btns" id="pdPageBtns"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ VIEW 2: EVENT DETAIL ══════════════════════════════════════════ -->
+      <div id="view-event-detail" style="display:none">
+        <!-- TOP BAR: crumbs + date chip + imported badge + back -->
+        <div class="ed-topbar">
+          <div class="ed-crumb">
+            <a onclick="showView('events-list')">Events</a>
+            <span class="sep">/</span>
+            <span>Event Settings</span>
+            <span class="sep">/</span>
+          </div>
+          <span class="ed-date-chip">
+            <i class="hgi-stroke hgi-calendar"></i>
+            <span id="evDateText">08/01/2026</span>
+            <i class="hgi-stroke hgi-clock-01"></i>
+            <span id="evTimeText">7:00 PM – 9:30 PM</span>
+          </span>
+          <div class="ed-actions">
+            <span class="ed-readonly" id="evImportedBadge"><i class="hgi-stroke hgi-lock-key"></i>Imported from <strong>Evinra Management</strong> — read only</span>
+            <button class="ed-back-btn" onclick="showView('events-list')"><i class="hgi-stroke hgi-arrow-left-02"></i>Back</button>
+          </div>
+        </div>
+
+        <!-- TABS -->
+        <div class="ed-tabs">
+          <button class="ed-tab active" id="seg-info" onclick="switchSeg('info')"><i class="hgi-stroke hgi-file-01"></i>Basic Information</button>
+          <button class="ed-tab" id="seg-tickets" onclick="switchSeg('tickets')"><i class="hgi-stroke hgi-ticket-01"></i>Tickets</button>
+          <button class="ed-tab" id="seg-addons" onclick="switchSeg('addons')"><i class="hgi-stroke hgi-plus-sign-circle"></i>Add-Ons</button>
+          <button class="ed-tab" id="seg-fees" onclick="switchSeg('fees')"><i class="hgi-stroke hgi-dollar-01"></i>Fees &amp; Taxes</button>
+          <button class="ed-tab" id="seg-layout" onclick="switchSeg('layout')"><i class="hgi-stroke hgi-grid"></i>Layout / Seat Map</button>
+          <button class="ed-tab" id="seg-visibility" onclick="switchSeg('visibility')"><i class="hgi-stroke hgi-view"></i>Visibility</button>
+        </div>
+
+        <div id="segContent"></div>
+      </div>
+      </div>
+
+        
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div>Evinra Ticketing OS · <strong style="color:var(--primary)">v2.1</strong></div>
+      <div class="footer-right">
+        <div class="footer-link">Documentation</div>
+        <div class="footer-link">Support</div>
+        <div class="footer-link">API</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NEW EVENT MODAL ══════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="newEventModal" onclick="if(event.target===this)closeNewEvent()">
+  <div class="modal-card ne-card">
+    <div class="modal-header">
+      <div class="modal-title"><i class="hgi-stroke hgi-calendar"></i>New Event</div>
+      <div class="modal-x" onclick="closeNewEvent()"><i class="hgi-stroke hgi-cancel-01"></i></div>
+    </div>
+    <div class="modal-body">
+
+      <!-- TABS -->
+      <div class="ne-tabs">
+        <button class="ne-tab" id="ne-tab-import" onclick="switchNeTab('import')"><i class="hgi-stroke hgi-download-01"></i>Import from Evinra EM</button>
+        <button class="ne-tab active" id="ne-tab-manual" onclick="switchNeTab('manual')"><i class="hgi-stroke hgi-edit-01"></i>Create Manually</button>
+      </div>
+
+      <!-- TAB CONTENT: CREATE MANUALLY -->
+      <div id="ne-panel-manual" style="display:flex;flex-direction:column;gap:14px">
+        <div class="form-row full">
+          <div class="form-field">
+            <label class="form-label">Show / Event Name *</label>
+            <input class="form-input" placeholder="e.g. Flying Lions Circus 2026">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">Production</label>
+            <input class="form-input" placeholder="e.g. Flying Lions Circus">
+          </div>
+          <div class="form-field">
+            <label class="form-label">Layout</label>
+            <select class="form-select">
+              <option>General Admission</option>
+              <option>Reserved Seating</option>
+              <option>Festival</option>
+              <option>VIP Tiered</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">City *</label>
+            <input class="form-input" placeholder="e.g. Miami">
+          </div>
+          <div class="form-field">
+            <label class="form-label">Venue / Place Name *</label>
+            <input class="form-input" placeholder="e.g. AmericanAirlines Arena">
+          </div>
+        </div>
+        <div class="form-row full">
+          <div class="form-field">
+            <label class="form-label">Address</label>
+            <input class="form-input" placeholder="Full venue address">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">Start Date *</label>
+            <input type="date" class="form-input">
+          </div>
+          <div class="form-field">
+            <label class="form-label">End Date *</label>
+            <input type="date" class="form-input">
+          </div>
+        </div>
+        <div class="form-row full">
+          <div class="form-field">
+            <label class="form-label">Total Seats</label>
+            <input type="number" class="form-input" placeholder="2500">
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB CONTENT: IMPORT FROM EVINRA EM -->
+      <div id="ne-panel-import" style="display:none">
+        <div class="ne-info">
+          <i class="hgi-stroke hgi-information-circle"></i>
+          <span>Select events from Evinra EM to import. Already-imported events are hidden.</span>
+        </div>
+        <select class="ne-prod-select" id="ne-prod-filter">
+          <option>All Productions</option>
+          <option>Nova Circus</option>
+          <option>Solar Spectacular</option>
+          <option>Flying Lions Circus</option>
+          <option>Circus of Dreams</option>
+        </select>
+        <div class="ne-events">
+          <div class="ne-event" onclick="this.classList.toggle('checked');updateImportCount()">
+            <div class="ne-event-cb"></div>
+            <div>
+              <div class="ne-event-title">Nova Winter Grand Tour 2026</div>
+              <div class="ne-event-meta">Nova Circus · Denver · Ball Arena</div>
+              <div class="ne-event-dates">2026-10-12 — 2026-10-18 · 4,000 seats</div>
+            </div>
+          </div>
+          <div class="ne-event" onclick="this.classList.toggle('checked');updateImportCount()">
+            <div class="ne-event-cb"></div>
+            <div>
+              <div class="ne-event-title">Solar Year-End Gala 2026</div>
+              <div class="ne-event-meta">Solar Spectacular · Phoenix · Footprint Center</div>
+              <div class="ne-event-dates">2026-11-05 — 2026-11-09 · 4,500 seats</div>
+            </div>
+          </div>
+          <div class="ne-event" onclick="this.classList.toggle('checked');updateImportCount()">
+            <div class="ne-event-cb"></div>
+            <div>
+              <div class="ne-event-title">Flying Lions 2027 — World Stage</div>
+              <div class="ne-event-meta">Flying Lions Circus · Las Vegas · T-Mobile Arena</div>
+              <div class="ne-event-dates">2027-01-15 — 2027-01-21 · 5,200 seats</div>
+            </div>
+          </div>
+          <div class="ne-event" onclick="this.classList.toggle('checked');updateImportCount()">
+            <div class="ne-event-cb"></div>
+            <div>
+              <div class="ne-event-title">Circus of Dreams — Grand Finale</div>
+              <div class="ne-event-meta">Circus of Dreams · New York · Madison Square Garden</div>
+              <div class="ne-event-dates">2027-02-10 — 2027-02-16 · 6,000 seats</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeNewEvent()">Cancel</button>
+      <button class="btn" id="ne-cta-manual" onclick="closeNewEvent();openEvent(0,{date:'05/22/2026',start:'2:00 PM',end:'4:00 PM'})"><i class="hgi-stroke hgi-check-circle-01"></i>Create &amp; Configure</button>
+      <button class="btn" id="ne-cta-import" style="display:none" onclick="doImport()"><i class="hgi-stroke hgi-download-01"></i>Import Selected <span id="ne-cta-count"></span></button>
+    </div>
+  </div>
+</div>
+
+<script src="evinra-theme.js"></script>
+<script>
+(function(){
+
+const VIEWS = ['events-list','event-detail'];
+function showView(id){
+  VIEWS.forEach(v=>{
+    const el=document.getElementById('view-'+v);
+    if(el) el.style.display = v===id ? 'block' : 'none';
+  });
+}
+window.showView = showView;
+
+const EVENTS=[
+  {city:'West Palm Beach',place:'Flying Lions Big Top',  show:'Flying Lions Circus'},
+  {city:'Miami',          place:'AmericanAirlines Arena',show:'Solar Spectacular'},
+  {city:'Orlando',        place:'Orange County Arena',   show:'Nova Circus'},
+  {city:'Tampa',          place:'Amalie Arena',          show:'SunPeak Events'},
+];
+
+// ISO date format: YYYY-MM-DD makes filtering easy. display() formats to MM/DD/YYYY.
+function display(iso){const [y,m,d]=iso.split('-');return `${m}/${d}/${y}`;}
+
+// Today is 2026-05-21. Current Week = 2026-05-18..2026-05-24.
+const PLAY_DATES=[
+  // Last week (May 11-17)
+  {iso:'2026-05-12',start:'7:30 PM', end:'9:30 PM', place:'AmericanAirlines Arena',event:'MIA Preview Night',     show:'Solar Spectacular', production:'Solar Spectacular', seats:6000, sale:true,  source:'Manual', idx:1},
+  {iso:'2026-05-15',start:'8:00 PM', end:'10:00 PM',place:'Flying Lions Big Top',  event:'WPB Friday Show',       show:'Flying Lions Circus',production:'Flying Lions',     seats:2500, sale:true,  source:'Manual', idx:0},
+  // Current week (May 18-24)
+  {iso:'2026-05-20',start:'7:30 PM', end:'9:30 PM', place:'AmericanAirlines Arena',event:'MIA Opening Night',     show:'Solar Spectacular', production:'Solar Spectacular', seats:6000, sale:true,  source:'Manual', idx:1},
+  {iso:'2026-05-20',start:'3:00 PM', end:'5:00 PM', place:'AmericanAirlines Arena',event:'MIA Weekend Matinée',   show:'Solar Spectacular', production:'Solar Spectacular', seats:6000, sale:true,  source:'Manual', idx:1},
+  {iso:'2026-05-20',start:'7:30 PM', end:'9:30 PM', place:'AmericanAirlines Arena',event:'MIA Closing Night',     show:'Solar Spectacular', production:'Solar Spectacular', seats:6000, sale:false, source:'Manual', idx:1},
+  {iso:'2026-05-21',start:'2:00 PM', end:'4:30 PM', place:'Orange County Arena',   event:'ORL Premiere',          show:'Nova Circus',       production:'Nova Circus',      seats:6000, sale:true,  source:'Manual', idx:2},
+  {iso:'2026-05-21',start:'6:00 PM', end:'8:30 PM', place:'Orange County Arena',   event:"ORL Valentine's Show",  show:'Nova Circus',       production:'Nova Circus',      seats:6000, sale:true,  source:'Manual', idx:2},
+  {iso:'2026-05-21',start:'5:00 PM', end:'7:30 PM', place:'Amalie Arena',          event:'TPA Opening Show',      show:'SunPeak Events',    production:'SunPeak Events',   seats:5200, sale:false, source:'Manual', idx:3},
+  {iso:'2026-05-21',start:'2:00 PM', end:'4:00 PM', place:'Amalie Arena',          event:'TPA Weekend Show',      show:'SunPeak Events',    production:'SunPeak Events',   seats:5200, sale:true,  source:'Manual', idx:3},
+  // Future (next month)
+  {iso:'2026-06-05',start:'7:00 PM', end:'9:30 PM', place:'Flying Lions Big Top',  event:'WPB Summer Gala',       show:'Flying Lions Circus',production:'Flying Lions',     seats:2500, sale:true,  source:'Manual', idx:0},
+  // Last month (April)
+  {iso:'2026-04-12',start:'7:30 PM', end:'9:30 PM', place:'Flying Lions Big Top',  event:'WPB Easter Show',       show:'Flying Lions Circus',production:'Flying Lions',     seats:2500, sale:true,  source:'Manual', idx:0},
+  {iso:'2026-04-20',start:'2:00 PM', end:'4:00 PM', place:'Orange County Arena',   event:'ORL Spring Show',       show:'Nova Circus',       production:'Nova Circus',      seats:6000, sale:true,  source:'Manual', idx:2},
+];
+
+// Today, hard-coded so demo is stable
+const TODAY = '2026-05-21';
+function status(iso){
+  if (iso < TODAY) return 'complete';   // past → Complete
+  if (iso === TODAY) return 'running';   // today → Running
+  return 'draft';                        // future → Draft
+}
+function statusLabel(s){return s==='complete'?'Complete':s==='running'?'Running':'Draft';}
+
+let currentRange = 'week';
+let filteredDates=[], pdPage=1;
+const PD_PER_PAGE=10;
+
+function dateInRange(iso, range){
+  const d = new Date(iso + 'T00:00:00');
+  const today = new Date(TODAY + 'T00:00:00');
+  // Week start: Sunday of current week
+  const dow = today.getDay();
+  const weekStart = new Date(today); weekStart.setDate(today.getDate() - dow);
+  const weekEnd   = new Date(weekStart); weekEnd.setDate(weekStart.getDate() + 6);
+  const lastWeekStart = new Date(weekStart); lastWeekStart.setDate(weekStart.getDate() - 7);
+  const lastWeekEnd   = new Date(weekStart); lastWeekEnd.setDate(weekStart.getDate() - 1);
+  const lastMonthStart = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+  const lastMonthEnd   = new Date(today.getFullYear(), today.getMonth(), 0);
+  if (range === 'today')     return iso === TODAY;
+  if (range === 'week')      return d >= weekStart && d <= weekEnd;
+  if (range === 'lastweek')  return d >= lastWeekStart && d <= lastWeekEnd;
+  if (range === 'lastmonth') return d >= lastMonthStart && d <= lastMonthEnd;
+  return true; // 'range' (custom) shows all by default
+}
+
+function setRange(r){
+  currentRange = r;
+  document.querySelectorAll('.range-btn[data-range]').forEach(b => {
+    b.classList.toggle('active', b.dataset.range === r);
+  });
+  pdPage = 1;
+  filterPlayDates();
+}
+window.setRange = setRange;
+
+function renderPlayDateList(){
+  const body=document.getElementById('playDateListBody');
+  if(!body)return;
+  const total=filteredDates.length,pages=Math.max(1,Math.ceil(total/PD_PER_PAGE));
+  if(pdPage>pages)pdPage=pages;
+  const start=(pdPage-1)*PD_PER_PAGE,slice=filteredDates.slice(start,start+PD_PER_PAGE);
+  if (total === 0) {
+    body.innerHTML = `<tr><td colspan="10" style="text-align:center;padding:40px;color:var(--text3);font-family:'Inter',sans-serif">No play dates match your filters.</td></tr>`;
+  } else {
+    body.innerHTML=slice.map(p=>{
+      const sw=p.sale
+        ?`<span class="badge badge-teal"><i class="hgi-stroke hgi-check-circle-01" style="font-size:10px"></i> On Sale</span>`
+        :`<span class="badge badge-muted">Off Sale</span>`;
+      const st = status(p.iso);
+      const stLbl = statusLabel(st);
+      return `<tr class="row-link" onclick="openEvent(${p.idx},{date:'${display(p.iso)}',start:'${p.start}',end:'${p.end}'})">
+        <td style="font-family:'Inter',sans-serif;font-weight:600;font-size:11.5px">${display(p.iso)}</td>
+        <td style="color:var(--primary);font-weight:700">${p.start}</td>
+        <td style="color:var(--text3)">${p.end}</td>
+        <td><div class="ev-name"><strong>${p.event}</strong><small>${p.place}</small></div></td>
+        <td style="color:var(--text2)">${p.show}</td>
+        <td style="text-align:right;font-family:'Inter',sans-serif;font-weight:600">${p.seats.toLocaleString()}</td>
+        <td><span class="badge-source">${p.source}</span></td>
+        <td>${sw}</td>
+        <td><span class="badge-status ${st}">${stLbl}</span></td>
+        <td style="text-align:right">
+          <div class="act-wrap" style="justify-content:flex-end">
+            <div class="act-btn" onclick="event.stopPropagation();openEvent(${p.idx},{date:'${display(p.iso)}',start:'${p.start}',end:'${p.end}'})" title="Configure"><i class="hgi-stroke hgi-settings-01"></i></div>
+            <div class="act-btn amber" onclick="event.stopPropagation()" title="Toggle visibility"><i class="hgi-stroke hgi-view"></i></div>
+          </div>
+        </td>
+      </tr>`;
+    }).join('');
+  }
+  const info=document.getElementById('pdPageInfo');
+  if(info)info.textContent=`Showing ${total===0?0:start+1}–${Math.min(start+PD_PER_PAGE,total)} of ${total} play dates`;
+  const chip=document.getElementById('pdCountChip');
+  if(chip)chip.textContent=`${total} ${total===1?'date':'dates'}`;
+  const pb=document.getElementById('pdPageBtns');
+  if(pb){
+    let h=`<div class="page-btn" onclick="gopdPage(${pdPage-1})">‹</div>`;
+    for(let p=1;p<=pages;p++){
+      if(pages>7&&p>2&&p<pages-1&&Math.abs(p-pdPage)>1){if(p===3||p===pages-2)h+=`<div class="page-btn">…</div>`;continue;}
+      h+=`<div class="page-btn ${p===pdPage?'active':''}" onclick="gopdPage(${p})">${p}</div>`;
+    }
+    h+=`<div class="page-btn" onclick="gopdPage(${pdPage+1})">›</div>`;
+    pb.innerHTML=h;
+  }
+}
+
+function gopdPage(p){const pages=Math.ceil(filteredDates.length/PD_PER_PAGE);if(p<1||p>pages)return;pdPage=p;renderPlayDateList();}
+window.gopdPage = gopdPage;
+
+function filterPlayDates(){
+  const prod=(document.getElementById('fProduction')||{}).value||'';
+  const show=(document.getElementById('fShow')||{}).value||'';
+  const sale=(document.getElementById('fSale')||{}).value||'';
+  const ev=((document.getElementById('fEvent')||{}).value||'');
+  const q=((document.getElementById('fSearch')||{}).value||'').toLowerCase().trim();
+  filteredDates=PLAY_DATES.filter(p=>{
+    if(!dateInRange(p.iso, currentRange))return false;
+    if(prod&&p.production!==prod)return false;
+    if(show&&p.show!==show)return false;
+    if(ev&&p.event!==ev)return false;
+    if(sale==='on'&&!p.sale)return false;
+    if(sale==='off'&&p.sale)return false;
+    if(q){
+      const hay = `${display(p.iso)} ${p.event} ${p.place} ${p.show}`.toLowerCase();
+      if(!hay.includes(q))return false;
+    }
+    return true;
+  });
+  pdPage=1;
+  renderPlayDateList();
+}
+window.filterPlayDates = filterPlayDates;
+
+function openEvent(idx,pd){
+  document.getElementById('evDateText').textContent=pd.date;
+  document.getElementById('evTimeText').textContent=`${pd.start} – ${pd.end}`;
+  showView('event-detail');
+  switchSeg('info');
+}
+window.openEvent = openEvent;
+
+function openNewEvent(){document.getElementById('newEventModal').classList.add('open');}
+window.openNewEvent = openNewEvent;
+function closeNewEvent(){document.getElementById('newEventModal').classList.remove('open');}
+window.closeNewEvent = closeNewEvent;
+
+function switchNeTab(t){
+  document.getElementById('ne-tab-manual').classList.toggle('active', t==='manual');
+  document.getElementById('ne-tab-import').classList.toggle('active', t==='import');
+  document.getElementById('ne-panel-manual').style.display = t==='manual' ? 'flex' : 'none';
+  document.getElementById('ne-panel-import').style.display = t==='import' ? 'block' : 'none';
+  document.getElementById('ne-cta-manual').style.display = t==='manual' ? 'inline-flex' : 'none';
+  document.getElementById('ne-cta-import').style.display = t==='import' ? 'inline-flex' : 'none';
+}
+window.switchNeTab = switchNeTab;
+
+function updateImportCount(){
+  const n = document.querySelectorAll('#ne-panel-import .ne-event.checked').length;
+  const lbl = document.getElementById('ne-cta-count');
+  if (lbl) lbl.textContent = n > 0 ? `(${n})` : '';
+}
+window.updateImportCount = updateImportCount;
+
+function doImport(){
+  const n = document.querySelectorAll('#ne-panel-import .ne-event.checked').length;
+  if (n === 0) { alert('Select at least one event to import.'); return; }
+  alert(`Importing ${n} event${n>1?'s':''} from Evinra EM...`);
+  closeNewEvent();
+}
+window.doImport = doImport;
+
+function switchSeg(id){
+  document.querySelectorAll('.ed-tab').forEach(b=>b.classList.remove('active'));
+  const btn = document.getElementById('seg-'+id);
+  if(btn) btn.classList.add('active');
+  const content=document.getElementById('segContent');
+  if(!content) return;
+  const TEMPLATES = {
+    info: `
+      <div class="inherit-banner teal">
+        <i class="hgi-stroke hgi-lock-key"></i>
+        <span class="grow">This event was imported from <strong>Evinra Management</strong> and cannot be edited here. Manage it directly in EM.</span>
+      </div>
+
+      <div class="ed-section-head">
+        <div class="lhs">
+          <div class="ed-section-title">Venue Information</div>
+          <div class="ed-section-sub">Basic details about this event location</div>
+        </div>
+      </div>
+
+      <div class="status-row">
+        <span class="lbl">Event Status</span>
+        <span class="status-pill">Waiting</span>
+        <span class="ts"><strong>08/01/2026</strong> · <strong>7:00 PM – 9:30 PM</strong></span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">Event / Place Name *</label>
+            <input class="form-input" value="Bridgestone Arena">
+          </div>
+          <div class="form-field">
+            <label class="form-label">City *</label>
+            <input class="form-input" value="Nashville">
+          </div>
+        </div>
+        <div class="form-row full">
+          <div class="form-field">
+            <label class="form-label">Full Address</label>
+            <input class="form-input" placeholder="Full venue address">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">Start Date</label>
+            <input type="date" class="form-input" value="2026-08-01">
+          </div>
+          <div class="form-field">
+            <label class="form-label">End Date</label>
+            <input type="date" class="form-input" value="2026-08-07">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">Total Seats</label>
+            <div class="input-with-icon">
+              <i class="hgi-stroke hgi-user-group"></i>
+              <input class="form-input" value="2800">
+            </div>
+            <div style="font-family:'Inter',sans-serif;font-size:11px;color:var(--text3);margin-top:6px">Total capacity for this event venue</div>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Show</label>
+            <input class="form-input" value="Circus of Dreams — West Coast Tour">
+          </div>
+        </div>
+        <div class="form-row full">
+          <div class="form-field">
+            <label class="form-label">Description</label>
+            <textarea class="ed-textarea" placeholder="Describe this event..."></textarea>
+          </div>
+        </div>
+        <div class="form-row full">
+          <div class="form-field">
+            <label class="form-label">Event Image</label>
+            <div class="ed-upload">
+              <i class="hgi-stroke hgi-upload-04"></i>
+              <div class="ed-upload-main">Drag files here or click to upload event banner</div>
+              <span class="ed-upload-link">browse for files</span>
+            </div>
+          </div>
+        </div>
+      </div>`,
+
+    tickets: `
+      <div class="inherit-banner teal">
+        <i class="hgi-stroke hgi-ticket-01"></i>
+        <span class="grow"><strong>Inherited from Show.</strong> Ticket types are templated from <strong>Flying Lions Circus 2026</strong>. Changes here override the show template for this event only.</span>
+        <span class="pill">SHOW TEMPLATE</span>
+      </div>
+
+      <div class="ed-section-head">
+        <div class="lhs">
+          <div class="ed-section-title">Ticket Types</div>
+          <div class="ed-section-sub">Define ticket categories, pricing and availability</div>
+        </div>
+        <button class="btn-add"><i class="hgi-stroke hgi-plus-sign"></i>Add Ticket</button>
+      </div>
+
+      <div class="ed-filters">
+        <div class="ed-filt">
+          <label>Ticket Type</label>
+          <select><option>All Types</option><option>General Admission</option><option>VIP</option><option>Family Pack</option><option>Student</option><option>Senior</option></select>
+        </div>
+        <div class="ed-filt">
+          <label>Status</label>
+          <select><option>All</option><option>On Sale</option><option>Off Sale</option></select>
+        </div>
+        <div class="ed-filt-search">
+          <i class="hgi-stroke hgi-search-01"></i>
+          <input type="text" placeholder="Search ticket name...">
+        </div>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden">
+        <table class="tk-tbl">
+          <thead>
+            <tr>
+              <th>Ticket Name</th>
+              <th>Ticket Type</th>
+              <th class="num">Qty</th>
+              <th class="num">Price</th>
+              <th>Status</th>
+              <th style="text-align:right"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="tk-name"><span class="tk-dot teal"></span><strong>Adult General Admission</strong></div></td>
+              <td style="color:var(--text2)">General Admission</td>
+              <td class="num qty-cell">500</td>
+              <td class="num price-cell">$29.99</td>
+              <td><span class="pill-onsale"><i class="hgi-stroke hgi-check-circle-01" style="font-size:11px"></i>On Sale</span></td>
+              <td style="text-align:right"><button class="tk-action"><i class="hgi-stroke hgi-edit-01"></i></button><button class="tk-action danger"><i class="hgi-stroke hgi-delete-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><div class="tk-name"><span class="tk-dot teal"></span><strong>Child General Admission</strong></div></td>
+              <td style="color:var(--text2)">General Admission</td>
+              <td class="num qty-cell">200</td>
+              <td class="num price-cell">$14.99</td>
+              <td><span class="pill-onsale"><i class="hgi-stroke hgi-check-circle-01" style="font-size:11px"></i>On Sale</span></td>
+              <td style="text-align:right"><button class="tk-action"><i class="hgi-stroke hgi-edit-01"></i></button><button class="tk-action danger"><i class="hgi-stroke hgi-delete-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><div class="tk-name"><span class="tk-dot violet"></span><strong>VIP Front Row</strong></div></td>
+              <td style="color:var(--text2)">VIP</td>
+              <td class="num qty-cell">100</td>
+              <td class="num price-cell">$89.99</td>
+              <td><span class="pill-onsale"><i class="hgi-stroke hgi-check-circle-01" style="font-size:11px"></i>On Sale</span></td>
+              <td style="text-align:right"><button class="tk-action"><i class="hgi-stroke hgi-edit-01"></i></button><button class="tk-action danger"><i class="hgi-stroke hgi-delete-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><div class="tk-name"><span class="tk-dot amber"></span><strong>Family Pack (2+2)</strong></div></td>
+              <td style="color:var(--text2)">Family Pack</td>
+              <td class="num qty-cell">200</td>
+              <td class="num price-cell">$99.99</td>
+              <td><span class="pill-offsale">Off Sale</span></td>
+              <td style="text-align:right"><button class="tk-action"><i class="hgi-stroke hgi-edit-01"></i></button><button class="tk-action danger"><i class="hgi-stroke hgi-delete-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><div class="tk-name"><span class="tk-dot blue"></span><strong>Student ID</strong></div></td>
+              <td style="color:var(--text2)">Student</td>
+              <td class="num qty-cell">150</td>
+              <td class="num price-cell">$19.99</td>
+              <td><span class="pill-onsale"><i class="hgi-stroke hgi-check-circle-01" style="font-size:11px"></i>On Sale</span></td>
+              <td style="text-align:right"><button class="tk-action"><i class="hgi-stroke hgi-edit-01"></i></button><button class="tk-action danger"><i class="hgi-stroke hgi-delete-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><div class="tk-name"><span class="tk-dot amber"></span><strong>Senior 65+</strong></div></td>
+              <td style="color:var(--text2)">Senior</td>
+              <td class="num qty-cell">100</td>
+              <td class="num price-cell">$24.99</td>
+              <td><span class="pill-onsale"><i class="hgi-stroke hgi-check-circle-01" style="font-size:11px"></i>On Sale</span></td>
+              <td style="text-align:right"><button class="tk-action"><i class="hgi-stroke hgi-edit-01"></i></button><button class="tk-action danger"><i class="hgi-stroke hgi-delete-02"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>`,
+
+    addons: `
+      <div class="inherit-banner amber">
+        <i class="hgi-stroke hgi-plus-sign-circle"></i>
+        <span class="grow"><strong>Inherited from Show.</strong> Rides &amp; Experiences are templated from <strong>Flying Lions Circus 2026</strong>. Credit overrides here apply to this event only.</span>
+        <span class="pill">SHOW TEMPLATE</span>
+      </div>
+
+      <div class="ed-section-head">
+        <div class="lhs">
+          <div class="ed-section-title"><i class="hgi-stroke hgi-plus-sign-circle" style="color:var(--amber);font-size:14px"></i> Rides &amp; Experiences</div>
+          <div class="ed-section-sub">Credit-based items assigned to this event. Credits required per scan are set here.</div>
+        </div>
+        <button class="btn-add amber"><i class="hgi-stroke hgi-plus-sign"></i>Add Ride / Experience</button>
+      </div>
+
+      <div class="ed-filters">
+        <div class="ed-filt">
+          <label>Type</label>
+          <select><option>All Types</option><option>Ride</option><option>Experience</option></select>
+        </div>
+        <div class="ed-filt">
+          <label>In-Show Sales</label>
+          <select><option>All</option><option>Enabled</option><option>Disabled</option></select>
+        </div>
+        <div class="ed-filt-search">
+          <i class="hgi-stroke hgi-search-01"></i>
+          <input type="text" placeholder="Search name...">
+        </div>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden">
+        <table class="tk-tbl">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th class="num">Price</th>
+              <th>Credits</th>
+              <th style="text-align:center">In-Show</th>
+              <th style="text-align:center">POS</th>
+              <th style="text-align:right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="tk-name"><span class="tk-dot amber"></span><strong>Roller Coaster</strong></div></td>
+              <td><span class="pill-type ride">Ride</span></td>
+              <td class="num price-cell">$5.00</td>
+              <td><span class="credit-cell"><span>3 cr</span><span class="price">$3.00</span></span></td>
+              <td style="text-align:center"><span class="swc on"></span></td>
+              <td style="text-align:center"><span class="swc on"></span></td>
+              <td style="text-align:right"><button class="tk-action"><i class="hgi-stroke hgi-edit-01"></i></button><button class="tk-action danger"><i class="hgi-stroke hgi-delete-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><div class="tk-name"><span class="tk-dot amber"></span><strong>Ferris Wheel</strong></div></td>
+              <td><span class="pill-type ride">Ride</span></td>
+              <td class="num price-cell">$4.00</td>
+              <td><span class="credit-cell"><span>2 cr</span><span class="price">$2.00</span></span></td>
+              <td style="text-align:center"><span class="swc on"></span></td>
+              <td style="text-align:center"><span class="swc on"></span></td>
+              <td style="text-align:right"><button class="tk-action"><i class="hgi-stroke hgi-edit-01"></i></button><button class="tk-action danger"><i class="hgi-stroke hgi-delete-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><div class="tk-name"><span class="tk-dot amber"></span><strong>Carousel</strong></div></td>
+              <td><span class="pill-type ride">Ride</span></td>
+              <td class="num price-cell">$2.00</td>
+              <td><span class="credit-cell"><span>1 cr</span><span class="price">$1.00</span></span></td>
+              <td style="text-align:center"><span class="swc on"></span></td>
+              <td style="text-align:center"><span class="swc on"></span></td>
+              <td style="text-align:right"><button class="tk-action"><i class="hgi-stroke hgi-edit-01"></i></button><button class="tk-action danger"><i class="hgi-stroke hgi-delete-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><div class="tk-name"><span class="tk-dot violet"></span><strong>VIP Backstage Pass</strong></div></td>
+              <td><span class="pill-type exp">Experience</span></td>
+              <td class="num price-cell">$79.99</td>
+              <td><span class="credit-cell"><span>10 cr</span><span class="price">$10.00</span></span></td>
+              <td style="text-align:center"><span class="swc on"></span></td>
+              <td style="text-align:center"><span class="swc"></span></td>
+              <td style="text-align:right"><button class="tk-action"><i class="hgi-stroke hgi-edit-01"></i></button><button class="tk-action danger"><i class="hgi-stroke hgi-delete-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><div class="tk-name"><span class="tk-dot violet"></span><strong>Cast Photo Package</strong></div></td>
+              <td><span class="pill-type exp">Experience</span></td>
+              <td class="num price-cell">$24.99</td>
+              <td><span class="credit-cell"><span>5 cr</span><span class="price">$5.00</span></span></td>
+              <td style="text-align:center"><span class="swc on"></span></td>
+              <td style="text-align:center"><span class="swc on"></span></td>
+              <td style="text-align:right"><button class="tk-action"><i class="hgi-stroke hgi-edit-01"></i></button><button class="tk-action danger"><i class="hgi-stroke hgi-delete-02"></i></button></td>
+            </tr>
+            <tr>
+              <td><div class="tk-name"><span class="tk-dot violet"></span><strong>Meet &amp; Greet</strong></div></td>
+              <td><span class="pill-type exp">Experience</span></td>
+              <td class="num price-cell">$49.99</td>
+              <td><span class="credit-cell"><span>8 cr</span><span class="price">$8.00</span></span></td>
+              <td style="text-align:center"><span class="swc"></span></td>
+              <td style="text-align:center"><span class="swc on"></span></td>
+              <td style="text-align:right"><button class="tk-action"><i class="hgi-stroke hgi-edit-01"></i></button><button class="tk-action danger"><i class="hgi-stroke hgi-delete-02"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>`,
+
+    fees: `
+      <div class="ed-section-head">
+        <div class="lhs">
+          <div class="ed-section-title">Fees &amp; Taxes</div>
+          <div class="ed-section-sub">Inherited from global Settings. Override values for this event if needed.</div>
+        </div>
+      </div>
+
+      <div class="inherit-banner muted">
+        <i class="hgi-stroke hgi-diamond"></i>
+        <span class="grow">These fees and taxes are pulled from <strong>Settings → Fees &amp; Taxes</strong>. You can override the value for this specific event. Overridden items are marked <strong style="color:var(--amber)">OVERRIDE</strong>. Toggle active/inactive to exclude a fee from this event.</span>
+      </div>
+
+      <div class="ft-card">
+        <div class="ft-head">
+          <h3>Fees</h3>
+          <span class="meta">From Settings · 3 items</span>
+        </div>
+        <table class="tk-tbl">
+          <thead>
+            <tr>
+              <th>Fee Name</th>
+              <th class="num">Default</th>
+              <th class="num">Override</th>
+              <th style="text-align:center">Active</th>
+              <th style="text-align:right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="font-family:'Inter',sans-serif">Service Fee</strong></td>
+              <td class="num">5%</td>
+              <td class="num" style="color:var(--text3)">—</td>
+              <td style="text-align:center"><span class="swc on"></span></td>
+              <td style="text-align:right"><button class="tk-action"><i class="hgi-stroke hgi-edit-01"></i></button></td>
+            </tr>
+            <tr>
+              <td><strong style="font-family:'Inter',sans-serif">Facility Fee</strong></td>
+              <td class="num">$2.00</td>
+              <td class="num" style="color:var(--text3)">—</td>
+              <td style="text-align:center"><span class="swc on"></span></td>
+              <td style="text-align:right"><button class="tk-action"><i class="hgi-stroke hgi-edit-01"></i></button></td>
+            </tr>
+            <tr style="opacity:0.55">
+              <td><strong style="font-family:'Inter',sans-serif">Processing Fee</strong></td>
+              <td class="num">2.5%</td>
+              <td class="num" style="color:var(--text3)">—</td>
+              <td style="text-align:center"><span class="swc"></span></td>
+              <td style="text-align:right"><button class="tk-action"><i class="hgi-stroke hgi-edit-01"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ft-card">
+        <div class="ft-head">
+          <h3>Taxes</h3>
+          <span class="meta">From Settings · 1 item</span>
+        </div>
+        <table class="tk-tbl">
+          <thead>
+            <tr>
+              <th>Tax Name</th>
+              <th class="num">Default</th>
+              <th class="num">Override</th>
+              <th style="text-align:center">Active</th>
+              <th style="text-align:right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="font-family:'Inter',sans-serif">Florida Sales Tax</strong></td>
+              <td class="num">7%</td>
+              <td class="num" style="color:var(--text3)">—</td>
+              <td style="text-align:center"><span class="swc on"></span></td>
+              <td style="text-align:right"><button class="tk-action"><i class="hgi-stroke hgi-edit-01"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>`,
+
+    layout: `
+      <div class="ed-section-head">
+        <div class="lhs">
+          <div class="ed-section-title">Layout / Seat Map</div>
+          <div class="ed-section-sub">Assign a seating layout to this event and configure zone visibility</div>
+        </div>
+      </div>
+
+      <div class="seats-card">
+        <div class="seats-card-head">
+          <div class="seats-card-title"><i class="hgi-stroke hgi-hierarchy-square-01" style="color:var(--primary)"></i>Seating Layout</div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">Select Layout *</label>
+            <select class="form-select">
+              <option>— Select a layout —</option>
+              <option>Bridgestone Arena · Reserved</option>
+              <option>Flying Lions Big Top · GA</option>
+              <option>Amalie Arena · Mixed</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Zones / Sections</label>
+            <select class="form-select"><option>Select a layout to see zones</option></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="seats-card" style="padding:0">
+        <div class="seats-card-head" style="padding:18px 20px">
+          <div class="seats-card-title"><i class="hgi-stroke hgi-grid" style="color:var(--amber)"></i>Seat Map Designer <span class="badge">Seats.io</span></div>
+          <button class="btn-add amber"><i class="hgi-stroke hgi-arrow-expand-01"></i>Full Screen</button>
+        </div>
+        <div style="padding:0 20px 20px">
+          <div class="seats-empty">
+            <i class="hgi-stroke hgi-grid"></i>
+            <h4>Seats.io Chart Designer</h4>
+            <p>Enter your Secret Key and Chart Key below to open the designer</p>
+            <button class="btn-amber"><i class="hgi-stroke hgi-edit-01"></i>Open Designer</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="seats-keys">
+        <div class="kf">
+          <label>Secret Key</label>
+          <input type="password" value="••••••••••••">
+        </div>
+        <div class="kf">
+          <label>Chart Key</label>
+          <input type="text" placeholder="e.g. 83c5e5b7-3c7d-...">
+        </div>
+        <button class="btn-add"><i class="hgi-stroke hgi-download-01"></i>Load Designer</button>
+        <button class="ed-back-btn"><i class="hgi-stroke hgi-cancel-circle"></i>Close</button>
+        <span class="grow"></span>
+        <a class="dash-link"><i class="hgi-stroke hgi-link-square-01"></i>Seats.io Dashboard ↗</a>
+      </div>`,
+
+    visibility: `
+      <div class="ed-section-head">
+        <div class="lhs">
+          <div class="ed-section-title">Visibility Settings</div>
+          <div class="ed-section-sub">Control when and how this event appears to customers</div>
+        </div>
+      </div>
+
+      <div class="vis-row">
+        <div>
+          <h4>On Sale</h4>
+          <p>Make this event visible and purchasable on the event list page</p>
+        </div>
+        <span class="swc lg on"></span>
+      </div>
+
+      <div class="inherit-banner muted">
+        <i class="hgi-stroke hgi-diamond"></i>
+        <span class="grow">The settings that are set as visible will be effective once the event is published on the Event List Page. Make sure all ticket types and play dates are configured before enabling.</span>
+      </div>`
+  };
+  content.innerHTML = TEMPLATES[id] || '';
+
+  // Wire toggle clicks inside content
+  content.querySelectorAll('.swc').forEach(t => {
+    t.addEventListener('click', () => t.classList.toggle('on'));
+  });
+}
+window.switchSeg = switchSeg;
+
+function saveEvent(){alert('Event saved successfully');showView('events-list');}
+window.saveEvent = saveEvent;
+
+// Initial render — Current Week is preselected
+filterPlayDates();
+
+})();
+</script>
+<script>
+(function(){
+  var path = (location.pathname.split('/').pop() || 'evinra_index.html').replace('.html','');
+  if (!path) path = 'evinra_index';
+  var el = document.querySelector('.sb-item[data-page="'+path+'"]');
+  if (el) el.classList.add('active');
+})();
+</script>
+</body>
+</html>

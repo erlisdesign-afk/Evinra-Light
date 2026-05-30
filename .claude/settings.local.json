@@ -17,7 +17,18 @@
       "Bash(git commit -m 'Initial commit: Evinra HTML pages with standardized sidebar and light mode styling *)",
       "Bash(gh --version)",
       "PowerShell(gh --version)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "mcp__scrapling__get",
+      "Bash(git rm *)",
+      "Bash(mv -v login.html forgot-password.html reset-password.html auth/)",
+      "Bash(mv -v evinra_index.html evinra_dashboard_v2.html dashboard/)",
+      "Bash(mv -v evinra_events.html evinra_event_sales_report.html events/)",
+      "Bash(mv -v evinra_products*.html orders/)",
+      "Bash(mv -v evinra_sales_overview.html sales-overview/)",
+      "Bash(xargs -0 sh -c 'for f; do *)"
     ]
   }
 }

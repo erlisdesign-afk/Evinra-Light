@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Evinra - Dashboard</title>
+  <title>Evinra - Event Sales Report</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css">
@@ -1045,190 +1045,476 @@ body.light-mode .sb-logo-img.light { display: block; }
 @media (max-width: 768px) {
   .sb-logo-img { height: 22px; }
 }</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <style>
+    /* Date-range button row */
+    .range-bar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+    .range-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      color: var(--text2);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .range-btn i { font-size: 13px; }
+    .range-btn:hover { color: var(--text); border-color: var(--border2); background: var(--bg3); }
+    .range-btn.active {
+      background: var(--red-dim);
+      color: var(--red);
+      border-color: var(--red-border);
+    }
+    .range-bar select.range-select {
+      appearance: none;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      padding: 9px 32px 9px 14px;
+      cursor: pointer;
+      outline: none;
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='12' height='12' fill='none' stroke='%238A9E9B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 11px center;
+      transition: all 0.2s;
+      min-width: 140px;
+    }
+    .range-bar select.range-select:focus, .range-bar select.range-select:hover { border-color: var(--primary); }
+    .range-search {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex: 1;
+      max-width: 320px;
+    }
+    .range-search i {
+      position: absolute;
+      left: 12px;
+      color: var(--text3);
+      font-size: 13px;
+      pointer-events: none;
+    }
+    .range-search input {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      padding: 9px 14px 9px 36px;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .range-search input::placeholder { color: var(--text3); }
+    .range-search input:focus { border-color: var(--primary); }
+    .results-count {
+      margin-left: auto;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--text3);
+    }
+    .results-count strong { color: var(--text); font-family: 'Inter', sans-serif; font-weight: 700; }
+
+    /* Report table */
+    .esr-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Inter', sans-serif;
+    }
+    .esr-table th {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 9.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--text3);
+      text-align: left;
+      padding: 16px 12px 12px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .esr-table th.sort::after {
+      content: ' ↑';
+      color: var(--primary);
+    }
+    .esr-table th.num { text-align: right; }
+    .esr-table td {
+      padding: 11px 12px;
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+    }
+    .esr-table td.num { text-align: right; font-family: 'Inter', sans-serif; font-weight: 600; }
+    .esr-table td.num.bold { font-weight: 700; }
+
+    /* Venue header row */
+    .esr-vh-cell {
+      padding-top: 22px !important;
+      padding-bottom: 14px !important;
+      border-left: 2px solid var(--primary);
+      border-bottom: 1px solid var(--border);
+    }
+    .esr-vh-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 13.5px;
+      color: var(--text);
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+    .esr-vh-cap {
+      font-size: 10.5px;
+      color: var(--text3);
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.3px;
+    }
+    .venue-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--primary-dim);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+    }
+    .venue-chip i { font-size: 11px; }
+
+    /* Day chip */
+    .day-chip {
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 10.5px;
+      font-weight: 700;
+      background: var(--bg3);
+      color: var(--text2);
+      border: 1px solid var(--border);
+      text-transform: capitalize;
+    }
+
+    /* Channel pills (multiple per cell) */
+    .ch-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-start;
+    }
+    .ch-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 10.5px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .ch-pill i { font-size: 11px; }
+    .ch-pill.boxoffice { background: var(--primary-dim); color: var(--primary); border: 1px solid var(--primary-border); }
+    .ch-pill.storefront { background: var(--blue-dim); color: var(--blue); border: 1px solid var(--blue-border); }
+    .ch-pill.vendor { background: var(--amber-dim); color: var(--amber); border: 1px solid var(--amber-border); }
+    .ch-pill.thirdparty { background: var(--violet-dim); color: var(--violet); border: 1px solid var(--violet-border); }
+
+    /* Data row */
+    .esr-data { transition: background 0.15s; }
+    .esr-data:hover { background: var(--bg3); }
+    .esr-data td { color: var(--text); }
+    .esr-data .date-cell {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+    }
+    .pos { color: oklch(0.78 0.13 165); }
+    .neg { color: var(--red); }
+    .net { color: var(--primary); }
+
+    /* Subtotal row */
+    .esr-subtotal td {
+      background: var(--bg3);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 11px 12px;
+      font-size: 11px;
+    }
+    .esr-subtotal td:first-child {
+      color: var(--text2);
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 10.5px;
+    }
+    .esr-subtotal td.num { color: var(--text); font-weight: 700; }
+    .esr-subtotal td.num.neg { color: var(--red); }
+    .esr-subtotal td.num.pos { color: oklch(0.78 0.13 165); }
+    .esr-subtotal td.num.net { color: var(--primary); }
+
+    /* Grand total */
+    .esr-grand td {
+      background: var(--primary-dim);
+      border-top: 2px solid var(--primary);
+      padding: 16px 12px;
+      font-size: 12.5px;
+    }
+    .esr-grand td:first-child {
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 11.5px;
+    }
+    .esr-grand td.num { color: var(--text); font-family: 'Inter', sans-serif; font-weight: 700; }
+    .esr-grand td.num.neg { color: var(--red); }
+    .esr-grand td.num.pos { color: oklch(0.78 0.13 165); }
+    .esr-grand td.num.net { color: var(--primary); font-size: 14px; }
+
+    /* index col */
+    .esr-table td.idx, .esr-table th.idx { color: var(--text3); width: 30px; }
+  </style>
 </head>
 <body>
 
 <div class="container">
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sb-header" onclick="location.href='evinra_index.html'">
-      <div class="sb-logo">E</div>
-      <div class="sb-title">Evinra</div>
+      <img class="sb-logo-img dark" src="evinra-logo-dark.png" alt="Eventra">
+      <img class="sb-logo-img light" src="evinra-logo-light.png" alt="Eventra">
     </div>
 
-    <div class="sb-section">
-      <div class="sb-group-title">Operations</div>
-      <a href="evinra_index.html" class="sb-item"><i class="hgi-stroke hgi-grid-01"></i><span>Dashboard</span></a>
-      <a href="evinra_events.html" class="sb-item"><i class="hgi-stroke hgi-calendar"></i><span>Events</span></a>
-      <a href="evinra_shows.html" class="sb-item"><i class="hgi-stroke hgi-play-circle"></i><span>Shows</span></a>
+    <div class="sb-nav">
+      <div class="sb-section">
+        <div class="sb-group-title">Main</div>
+        <a href="evinra_index.html" data-page="evinra_index" class="sb-item"><i class="hgi-stroke hgi-grid-01"></i><span>Dashboard</span></a>
+        <a href="evinra_events.html" data-page="evinra_events" class="sb-item"><i class="hgi-stroke hgi-calendar"></i><span>Events</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Layout</div>
+        <a href="evinra_catalog.html" data-page="evinra_catalog" class="sb-item"><i class="hgi-stroke hgi-home-02"></i><span>Seating Map</span></a>
+        <a href="evinra_rides_exp.html" data-page="evinra_rides_exp" class="sb-item"><i class="hgi-stroke hgi-hierarchy-square-01"></i><span>Sections &amp; Zones</span></a>
+        <a href="evinra_entry_points.html" data-page="evinra_entry_points" class="sb-item"><i class="hgi-stroke hgi-building-02"></i><span>Entry Points</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Reports</div>
+        <a href="evinra_sales_overview.html" data-page="evinra_sales_overview" class="sb-item"><i class="hgi-stroke hgi-chart-column"></i><span>Sales Overview</span></a>
+        <a href="evinra_event_sales_report.html" data-page="evinra_event_sales_report" class="sb-item"><i class="hgi-stroke hgi-analytics-01"></i><span>Sales Report</span></a>
+        <a href="evinra_order_detail.html" data-page="evinra_order_detail" class="sb-item"><i class="hgi-stroke hgi-file-01"></i><span>Order Transactions</span></a>
+        <a href="evinra_inshow_analytics.html" data-page="evinra_inshow_analytics" class="sb-item"><i class="hgi-stroke hgi-shopping-cart-01"></i><span>In-Show Analytics</span></a>
+        <a href="evinra_attendance_scan_report.html" data-page="evinra_attendance_scan_report" class="sb-item"><i class="hgi-stroke hgi-qr-code"></i><span>Attendance / Scan</span></a>
+        <a href="evinra_vendor_settlement.html" data-page="evinra_vendor_settlement" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Vendor Settlement</span></a>
+        <a href="evinra_refund_report.html" data-page="evinra_refund_report" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Refund Report</span></a>
+        <a href="evinra_promo_discounts.html" data-page="evinra_promo_discounts" class="sb-item"><i class="hgi-stroke hgi-discount"></i><span>Promo &amp; Discounts</span></a>
+        <a href="evinra_split_dist.html" data-page="evinra_split_dist" class="sb-item"><i class="hgi-stroke hgi-shuffle"></i><span>Split Distribution</span></a>
+        <a href="evinra_credit_txn.html" data-page="evinra_credit_txn" class="sb-item"><i class="hgi-stroke hgi-wallet-04"></i><span>Credit Transactions</span></a>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-group-title">Settings</div>
+        <a href="evinra_general.html" data-page="evinra_general" class="sb-item"><i class="hgi-stroke hgi-settings-01"></i><span>General</span></a>
+        <a href="evinra_users.html" data-page="evinra_users" class="sb-item"><i class="hgi-stroke hgi-user-group"></i><span>Users</span></a>
+        <a href="evinra_experience_tickets.html" data-page="evinra_experience_tickets" class="sb-item"><i class="hgi-stroke hgi-ticket-01"></i><span>Experience Ticketing</span></a>
+        <a href="evinra_credit_plans.html" data-page="evinra_credit_plans" class="sb-item"><i class="hgi-stroke hgi-dollar-01"></i><span>Credit Plans</span></a>
+        <a href="evinra_scan_roles.html" data-page="evinra_scan_roles" class="sb-item"><i class="hgi-stroke hgi-shield-check"></i><span>Scan App Roles</span></a>
+        <a href="evinra_fees_taxes.html" data-page="evinra_fees_taxes" class="sb-item"><i class="hgi-stroke hgi-percent"></i><span>Fees &amp; Taxes</span></a>
+        <a href="evinra_discounts.html" data-page="evinra_discounts" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Discounts</span></a>
+        <a href="evinra_productions.html" data-page="evinra_productions" class="sb-item"><i class="hgi-stroke hgi-star"></i><span>Productions</span></a>
+        <a href="evinra_shows.html" data-page="evinra_shows" class="sb-item"><i class="hgi-stroke hgi-play-circle"></i><span>Shows</span></a>
+        <a href="evinra_other_vendors.html" data-page="evinra_other_vendors" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Other Vendors</span></a>
+      </div>
     </div>
 
-    <div class="sb-section">
-      <div class="sb-group-title">Venues & Layout</div>
-      <a href="evinra_catalog.html" class="sb-item"><i class="hgi-stroke hgi-home-02"></i><span>Seating Map</span></a>
-      <a href="evinra_rides_exp.html" class="sb-item"><i class="hgi-stroke hgi-hierarchy-square-01"></i><span>Sections & Zones</span></a>
-      <a href="evinra_catalog.html" class="sb-item"><i class="hgi-stroke hgi-building-02"></i><span>Entry Points</span></a>
-    </div>
-
-    <div class="sb-section">
-      <div class="sb-group-title">Analytics</div>
-      <a href="evinra_dashboard_v2_vibrant.html" class="sb-item"><i class="hgi-stroke hgi-dashboard-square-01"></i><span>Analytics Dashboard</span></a>
-      <a href="evinra_sales_overview.html" class="sb-item"><i class="hgi-stroke hgi-chart-column"></i><span>Sales Overview</span></a>
-      <a href="evinra_event_sales_report.html" class="sb-item"><i class="hgi-stroke hgi-analytics-01"></i><span>Sales Report</span></a>
-      <a href="evinra_inshow_analytics.html" class="sb-item"><i class="hgi-stroke hgi-shopping-cart-01"></i><span>In-Show Analytics</span></a>
-    </div>
-
-    <div class="sb-section">
-      <div class="sb-group-title">Transactions</div>
-      <a href="evinra_order_detail.html" class="sb-item"><i class="hgi-stroke hgi-file-01"></i><span>Order Transactions</span></a>
-      <a href="evinra_attendance_scan_report.html" class="sb-item"><i class="hgi-stroke hgi-qr-code"></i><span>Attendance / Scan</span></a>
-      <a href="evinra_credit_txn.html" class="sb-item"><i class="hgi-stroke hgi-wallet-04"></i><span>Credit Txn</span></a>
-    </div>
-
-    <div class="sb-section">
-      <div class="sb-group-title">Finance & Revenue</div>
-      <a href="evinra_vendor_settlement.html" class="sb-item"><i class="hgi-stroke hgi-store-01"></i><span>Vendor Settlement</span></a>
-      <a href="evinra_refund_report.html" class="sb-item"><i class="hgi-stroke hgi-tag-01"></i><span>Refund Report</span></a>
-      <a href="evinra_split_dist.html" class="sb-item"><i class="hgi-stroke hgi-shuffle"></i><span>Split Distribution</span></a>
-      <a href="evinra_credit_plans.html" class="sb-item"><i class="hgi-stroke hgi-dollar-01"></i><span>Credit Plans</span></a>
-    </div>
-
-    <div class="sb-section">
-      <div class="sb-group-title">Configuration</div>
-      <a href="evinra_general.html" class="sb-item"><i class="hgi-stroke hgi-settings-01"></i><span>General Settings</span></a>
-      <a href="evinra_experience_tickets.html" class="sb-item"><i class="hgi-stroke hgi-ticket-01"></i><span>Experience Ticketing</span></a>
-      <a href="evinra_credit_plans.html" class="sb-item"><i class="hgi-stroke hgi-dollar-01"></i><span>Credit Plans</span></a>
-      <a href="evinra_scan_roles.html" class="sb-item"><i class="hgi-stroke hgi-shield-check"></i><span>Scan App Roles</span></a>
-      <a href="evinra_shows.html" class="sb-item"><i class="hgi-stroke hgi-play-circle"></i><span>Shows</span></a>
-      <a href="#" class="sb-item"><i class="hgi-stroke hgi-percent"></i><span>Fee & Taxes</span></a>
-      <a href="#" class="sb-item"><i class="hgi-stroke hgi-discount"></i><span>Discounts & Promos</span></a>
+    <div class="sb-user" onclick="location.href='login.html'">
+      <div class="sb-user-avatar">YP</div>
+      <div class="sb-user-info">
+        <div class="sb-user-name">Yoaldis P.</div>
+        <div class="sb-user-role">Super Admin</div>
+      </div>
+      <i class="hgi-stroke hgi-logout-01 sb-user-action"></i>
     </div>
   </aside>
 
-  <!-- MAIN -->
   <div class="main">
-    <!-- TOPBAR -->
     <div class="topbar">
       <div class="topbar-left">
-        <div class="topbar-title">Dashboard</div>
-        <div class="topbar-breadcrumb">Evinra <span>/</span> Operations <span>/</span> Main</div>
+        <div class="topbar-title">Event Sales Report</div>
+        <div class="topbar-breadcrumb">Evinra <span>/</span> Analytics <span>/</span> Sales Report</div>
       </div>
       <div class="topbar-right">
+        <div class="topbar-btn"><i class="hgi-stroke hgi-refresh"></i></div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-download-01"></i></div>
+        <div class="topbar-btn"><i class="hgi-stroke hgi-printer"></i></div>
         <div class="topbar-btn"><i class="hgi-stroke hgi-notification-01"></i></div>
         <div class="topbar-btn"><i class="hgi-stroke hgi-search-01"></i></div>
         <div class="topbar-btn"><i class="hgi-stroke hgi-settings-01"></i></div>
         <div class="theme-toggle"><i class="hgi-stroke hgi-sun"></i><span>Light</span></div>
-        <div class="topbar-btn"><i class="hgi-stroke hgi-arrow-right-02"></i></div>
+        <a href="login.html" class="topbar-btn" title="Sign out" style="text-decoration:none"><i class="hgi-stroke hgi-logout-01"></i></a>
       </div>
     </div>
 
-    <!-- CONTENT -->
     <div class="content">
-      <!-- Hero Section -->
-      <div class="hero">
-        <div class="hero-title">Dashboard <span class="highlight">Overview</span></div>
-        <div class="hero-sub">Real-time ticketing operations. Monitor events, track revenue, and manage attendee flow.</div>
-        <div class="hero-stats">
-          <div class="stat">
-            <div class="stat-value">24</div>
-            <div class="stat-label">Modules</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">14</div>
-            <div class="stat-label">Shows</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">$1.2M</div>
-            <div class="stat-label">Revenue</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">2</div>
-            <div class="stat-label">Productions</div>
-          </div>
+      <!-- DATE RANGE + FILTERS + SEARCH -->
+      <div class="range-bar">
+        <button class="range-btn" data-range="range"><i class="hgi-stroke hgi-calendar"></i>Range</button>
+        <button class="range-btn" data-range="today"><i class="hgi-stroke hgi-clock-01"></i>Today</button>
+        <button class="range-btn active" data-range="week">Current Week</button>
+        <button class="range-btn" data-range="lastweek">Last Week</button>
+        <button class="range-btn" data-range="lastmonth">Last Month</button>
+
+        <div class="range-search" style="margin-left:10px">
+          <i class="hgi-stroke hgi-search-01"></i>
+          <input type="text" placeholder="Search event, venue, city...">
         </div>
+
+        <select class="range-select"><option>Production</option><option>Flying Lions</option><option>Circus of Dreams</option><option>Nova Circus</option></select>
+        <select class="range-select"><option>Venue</option><option>South Florida Fairgrounds</option><option>GurtPaller Park</option><option>Orange County Arena</option></select>
+        <select class="range-select"><option>Day</option><option>Mon</option><option>Tue</option><option>Wed</option><option>Thu</option><option>Fri</option><option>Sat</option><option>Sun</option></select>
+        <select class="range-select"><option>Channel</option><option>Box Office</option><option>Storefront</option><option>Vendor</option><option>Third Party</option></select>
+
+        <span class="results-count"><strong>2</strong> results</span>
       </div>
 
-      <!-- KPI Statistics -->
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-label"><i class="hgi-stroke hgi-dollar-01"></i>Total Revenue</div>
-          <div class="stat-value">$186,400</div>
-          <div class="stat-sub">↑ +12.8% vs last period</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label"><i class="hgi-stroke hgi-ticket-01"></i>Tickets Sold</div>
-          <div class="stat-value">14,235</div>
-          <div class="stat-sub">↑ +5.2% this period</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label"><i class="hgi-stroke hgi-tag-01"></i>Avg Ticket Price</div>
-          <div class="stat-value">$13.10</div>
-          <div class="stat-sub">↓ -1.4% vs last period</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label"><i class="hgi-stroke hgi-users"></i>Attendance Rate</div>
-          <div class="stat-value">82%</div>
-          <div class="stat-sub">↑ +3.1% vs last period</div>
-        </div>
-      </div>
-
-      <!-- Charts -->
-      <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; margin-bottom: 24px;">
-        <div class="section-title"><i class="hgi-stroke hgi-analytics-01"></i>Revenue Trend (12 Months)</div>
-        <div class="chart-container">
-          <canvas id="revChart"></canvas>
-        </div>
-      </div>
-
-      <!-- Recent Events -->
-      <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; margin-bottom: 24px;">
-        <div class="section-title"><i class="hgi-stroke hgi-star"></i>Recent Event Activity</div>
-        <table class="tbl">
+      <!-- REPORT TABLE -->
+      <div style="overflow-x:auto">
+        <table class="esr-table">
           <thead>
             <tr>
-              <th>Event</th>
-              <th>City</th>
-              <th>Status</th>
-              <th>Revenue</th>
-              <th>Capacity</th>
+              <th class="idx">#</th>
+              <th class="sort">Date</th>
+              <th>Day</th>
+              <th>Channel</th>
+              <th class="num">Qty</th>
+              <th class="num">Fees</th>
+              <th class="num">Discounts</th>
+              <th class="num">Tips</th>
+              <th class="num">Refunds</th>
+              <th class="num">Gross Sales</th>
+              <th class="num">Net Rev.</th>
             </tr>
           </thead>
           <tbody>
+            <!-- VENUE 1: Flying Lions -->
             <tr>
-              <td><strong>Flying Lions Circus</strong></td>
-              <td>West Palm Beach</td>
-              <td><span class="badge badge-green"><i class="hgi-stroke hgi-check-circle-01"></i>Active</span></td>
-              <td>$96,800</td>
-              <td>68% (5,840/8,600)</td>
+              <td colspan="11" class="esr-vh-cell">
+                <div class="esr-vh-title">
+                  Flying Lions
+                  <span class="venue-chip"><i class="hgi-stroke hgi-location-01"></i>South Florida Fairgrounds</span>
+                  <span class="venue-chip" style="background:var(--bg3);color:var(--text2);border-color:var(--border)"><i class="hgi-stroke hgi-building-02"></i>West Palm Beach, FL</span>
+                </div>
+                <div class="esr-vh-cap">Capacity 450 seats</div>
+              </td>
             </tr>
-            <tr>
-              <td><strong>Circus of Dreams</strong></td>
-              <td>Miami</td>
-              <td><span class="badge badge-green"><i class="hgi-stroke hgi-check-circle-01"></i>Active</span></td>
-              <td>$55,240</td>
-              <td>52% (4,210/8,100)</td>
+            <tr class="esr-data">
+              <td class="idx">1</td>
+              <td class="date-cell">05/20/2026</td>
+              <td><span class="day-chip">Wed</span></td>
+              <td>
+                <div class="ch-pills">
+                  <span class="ch-pill boxoffice"><i class="hgi-stroke hgi-ticket-01"></i>Box Office</span>
+                  <span class="ch-pill vendor"><i class="hgi-stroke hgi-store-01"></i>Vendor</span>
+                  <span class="ch-pill thirdparty"><i class="hgi-stroke hgi-globe-02"></i>Third Party</span>
+                </div>
+              </td>
+              <td class="num bold">458</td>
+              <td class="num">$2,670.39</td>
+              <td class="num neg">-$385.00</td>
+              <td class="num pos">+$47.60</td>
+              <td class="num neg">-$138.00</td>
+              <td class="num">$13,913.47</td>
+              <td class="num net">$10,767.68</td>
             </tr>
-            <tr>
-              <td><strong>Fire & Silk</strong></td>
-              <td>Tampa</td>
-              <td><span class="badge badge-amber"><i class="hgi-stroke hgi-clock-01"></i>Upcoming</span></td>
-              <td>$41,100</td>
-              <td>44% (3,120/7,080)</td>
+            <tr class="esr-subtotal">
+              <td colspan="4">Flying Lions Subtotal — 1 date · 3 shows</td>
+              <td class="num">458</td>
+              <td class="num">$2,670.39</td>
+              <td class="num neg">-$385.00</td>
+              <td class="num pos">+$47.60</td>
+              <td class="num neg">-$138.00</td>
+              <td class="num">$13,913.47</td>
+              <td class="num net">$10,767.68</td>
             </tr>
+
+            <!-- VENUE 2: Circus of Dreams -->
             <tr>
-              <td><strong>Acrobat Fever</strong></td>
-              <td>Jacksonville</td>
-              <td><span class="badge badge-amber"><i class="hgi-stroke hgi-clock-01"></i>Upcoming</span></td>
-              <td>$32,300</td>
-              <td>38% (2,065/5,420)</td>
+              <td colspan="11" class="esr-vh-cell">
+                <div class="esr-vh-title">
+                  Circus of Dreams
+                  <span class="venue-chip"><i class="hgi-stroke hgi-location-01"></i>GurtPaller Park</span>
+                  <span class="venue-chip" style="background:var(--bg3);color:var(--text2);border-color:var(--border)"><i class="hgi-stroke hgi-building-02"></i>North Port, FL</span>
+                </div>
+                <div class="esr-vh-cap">Capacity 200 seats</div>
+              </td>
+            </tr>
+            <tr class="esr-data">
+              <td class="idx">2</td>
+              <td class="date-cell">05/21/2026</td>
+              <td><span class="day-chip">Thu</span></td>
+              <td>
+                <div class="ch-pills">
+                  <span class="ch-pill boxoffice"><i class="hgi-stroke hgi-ticket-01"></i>Box Office</span>
+                  <span class="ch-pill storefront"><i class="hgi-stroke hgi-globe-02"></i>Storefront</span>
+                  <span class="ch-pill vendor"><i class="hgi-stroke hgi-store-01"></i>Vendor</span>
+                  <span class="ch-pill thirdparty"><i class="hgi-stroke hgi-share-08"></i>Third Party</span>
+                </div>
+              </td>
+              <td class="num bold">551</td>
+              <td class="num">$459.12</td>
+              <td class="num neg">-$345.00</td>
+              <td class="num pos">+$56.20</td>
+              <td class="num neg">-$253.00</td>
+              <td class="num">$15,597.34</td>
+              <td class="num net">$14,596.42</td>
+            </tr>
+            <tr class="esr-subtotal">
+              <td colspan="4">Circus of Dreams Subtotal — 1 date · 6 shows</td>
+              <td class="num">551</td>
+              <td class="num">$459.12</td>
+              <td class="num neg">-$345.00</td>
+              <td class="num pos">+$56.20</td>
+              <td class="num neg">-$253.00</td>
+              <td class="num">$15,597.34</td>
+              <td class="num net">$14,596.42</td>
+            </tr>
+
+            <!-- GRAND TOTAL -->
+            <tr class="esr-grand">
+              <td colspan="4">Grand Total — 2 shows across 2 events</td>
+              <td class="num">1,009</td>
+              <td class="num">$3,129.51</td>
+              <td class="num neg">-$730.00</td>
+              <td class="num pos">+$103.80</td>
+              <td class="num neg">-$391.00</td>
+              <td class="num">$29,510.81</td>
+              <td class="num net">$25,364.10</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- FOOTER -->
     <div class="footer">
       <div>Evinra Ticketing OS · <strong style="color:var(--primary)">v2.1</strong></div>
       <div class="footer-right">
@@ -1240,62 +1526,24 @@ body.light-mode .sb-logo-img.light { display: block; }
   </div>
 </div>
 
+<script>
+(function(){
+  document.querySelectorAll('.range-btn[data-range]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.range-btn[data-range]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+})();
+</script>
 <script src="evinra-theme.js"></script>
 <script>
-// Initialize revenue chart
-const ctx = document.getElementById('revChart');
-if (ctx) {
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-      datasets: [{
-        label: 'Monthly Revenue',
-        data: [120000, 135000, 160000, 145000, 180000, 160000, 190000, 175000, 210000, 185000, 195000, 186400],
-        borderColor: '#2A9B85',
-        backgroundColor: 'rgba(42, 155, 133, 0.05)',
-        borderWidth: 2,
-        tension: 0.4,
-        fill: true,
-        pointRadius: 4,
-        pointBackgroundColor: '#2A9B85',
-        pointBorderColor: '#fff',
-        pointBorderWidth: 2
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: false,
-          border: { display: false },
-          grid: { color: 'rgba(255, 255, 255, 0.05)' },
-          ticks: {
-            font: { size: 10, family: "'Inter', sans-serif" },
-            color: 'var(--text-secondary)',
-            callback: function(value) {
-              return '$' + (value / 1000).toFixed(0) + 'K';
-            }
-          }
-        },
-        x: {
-          border: { display: false },
-          grid: { display: false },
-          ticks: {
-            font: { size: 10, family: "'Inter', sans-serif" },
-            color: 'var(--text-secondary)'
-          }
-        }
-      }
-    }
-  });
-}
+(function(){
+  var path = (location.pathname.split('/').pop() || 'evinra_index.html').replace('.html','');
+  if (!path) path = 'evinra_index';
+  var el = document.querySelector('.sb-item[data-page="'+path+'"]');
+  if (el) el.classList.add('active');
+})();
 </script>
 </body>
 </html>
