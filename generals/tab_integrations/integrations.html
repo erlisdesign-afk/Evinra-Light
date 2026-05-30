@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Evinra - Productions</title>
+  <title>Evinra - Integrations</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800" rel="stylesheet">
@@ -23,9 +23,6 @@
       --text2: #666666;
       --text3: #999999;
       --border: #e0e0e0;
-      --status-active: #16a766;
-      --status-draft: #ffa500;
-      --status-archived: #999999;
     }
 
     * {
@@ -221,6 +218,7 @@
       gap: 0;
       margin-bottom: 24px;
       border-bottom: 1px solid var(--border);
+      overflow-x: auto;
     }
 
     .tab {
@@ -234,6 +232,7 @@
       border-bottom: 2px solid transparent;
       transition: all 0.2s;
       font-family: 'Inter', sans-serif;
+      white-space: nowrap;
     }
 
     .tab:hover {
@@ -245,95 +244,60 @@
       border-bottom-color: var(--primary);
     }
 
-    /* BANNER */
-    .banner {
-      background: #e8f5f0;
-      border: 1px solid #a8d5c4;
-      border-radius: 8px;
-      padding: 12px 16px;
-      margin-bottom: 24px;
+    /* PAGE HEADER */
+    .page-header {
       display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 13px;
-      color: var(--text);
-    }
-
-    .banner i {
-      font-size: 18px;
-      color: var(--primary);
-    }
-
-    /* FILTER BAR */
-    .filter-bar {
-      display: flex;
-      gap: 12px;
+      align-items: flex-start;
+      justify-content: space-between;
       margin-bottom: 24px;
-      align-items: center;
     }
 
-    .search-box {
+    .page-header-left {
       flex: 1;
-      max-width: 300px;
-      position: relative;
     }
 
-    .search-box input {
-      width: 100%;
-      padding: 10px 12px 10px 36px;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-family: 'Inter', sans-serif;
-      font-size: 12px;
+    .page-title {
+      font-weight: 700;
+      font-size: 20px;
       color: var(--text);
-      outline: none;
-      transition: all 0.2s;
+      margin-bottom: 6px;
     }
 
-    .search-box input::placeholder {
-      color: var(--text3);
+    .page-subtitle {
+      font-size: 13px;
+      color: var(--text2);
     }
 
-    .search-box input:focus {
-      border-color: var(--primary);
-      background: var(--bg);
-      box-shadow: 0 0 0 3px var(--primary-dim);
+    /* EMPTY STATE */
+    .empty-state {
+      text-align: center;
+      padding: 80px 24px;
+      background: var(--bg2);
+      border-radius: 8px;
+      border: 2px dashed var(--border);
     }
 
-    .search-box i {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text3);
-      font-size: 14px;
+    .empty-state i {
+      font-size: 64px;
+      color: var(--border);
+      margin-bottom: 16px;
+      display: block;
     }
 
-    .filter-select {
-      padding: 10px 12px;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-family: 'Inter', sans-serif;
-      font-size: 12px;
+    .empty-state-title {
+      font-weight: 700;
+      font-size: 18px;
       color: var(--text);
-      outline: none;
-      cursor: pointer;
-      transition: all 0.2s;
+      margin-bottom: 8px;
     }
 
-    .filter-select:hover {
-      border-color: var(--primary);
-    }
-
-    .filter-select:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px var(--primary-dim);
+    .empty-state-text {
+      font-size: 13px;
+      color: var(--text2);
+      margin-bottom: 24px;
     }
 
     .btn-add {
-      margin-left: auto;
       padding: 10px 16px;
       background: var(--primary);
       color: white;
@@ -343,7 +307,7 @@
       font-weight: 600;
       font-size: 12px;
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 8px;
       transition: all 0.2s;
@@ -352,116 +316,6 @@
     .btn-add:hover {
       background: #1f8b75;
       box-shadow: 0 8px 24px rgba(42, 155, 133, 0.35);
-    }
-
-    /* TABLE */
-    .table-wrapper {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12px;
-    }
-
-    thead {
-      background: var(--bg3);
-      border-bottom: 1px solid var(--border);
-    }
-
-    th {
-      padding: 12px 16px;
-      text-align: left;
-      font-weight: 700;
-      color: var(--text2);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    tbody tr {
-      border-bottom: 1px solid var(--border);
-      transition: all 0.2s;
-    }
-
-    tbody tr:hover {
-      background: var(--bg2);
-    }
-
-    td {
-      padding: 12px 16px;
-      color: var(--text);
-    }
-
-    .cell-id {
-      font-weight: 600;
-      color: var(--primary);
-    }
-
-    .cell-contact {
-      font-size: 11px;
-      color: var(--text2);
-      margin-top: 2px;
-    }
-
-    /* BADGES */
-    .badge {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .badge-active {
-      background: rgba(22, 167, 102, 0.15);
-      color: var(--status-active);
-    }
-
-    .badge-draft {
-      background: rgba(255, 165, 0, 0.15);
-      color: var(--status-draft);
-    }
-
-    .badge-archived {
-      background: rgba(153, 153, 153, 0.15);
-      color: var(--status-archived);
-    }
-
-    .badge-local {
-      background: rgba(42, 155, 133, 0.15);
-      color: var(--primary);
-    }
-
-    .badge-em {
-      background: rgba(100, 100, 200, 0.15);
-      color: #6464c8;
-    }
-
-    /* ACTION BUTTON */
-    .btn-action {
-      width: 32px;
-      height: 32px;
-      border: 1px solid var(--border);
-      background: var(--bg3);
-      border-radius: 6px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text2);
-      transition: all 0.2s;
-    }
-
-    .btn-action:hover {
-      background: var(--border);
-      color: var(--text);
     }
   </style>
 </head>
@@ -565,7 +419,7 @@
     <div class="topbar">
       <div class="topbar-left">
         <div class="topbar-title">General</div>
-        <div class="topbar-breadcrumb">Events / Settings / <span>General</span> / Productions</div>
+        <div class="topbar-breadcrumb">Events / Settings / <span>General</span> / Integrations</div>
       </div>
       <div class="topbar-right">
         <div class="topbar-user">
@@ -581,154 +435,33 @@
 
 <!-- TABS -->
 <div class="tabs-container">
-  <button class="tab active" onclick="navigateToTab('../tab_production/productions.html')">Productions</button>
+  <button class="tab" onclick="navigateToTab('../tab_production/productions.html')">Productions</button>
   <button class="tab" onclick="navigateToTab('../tab_product/products.html')">Products</button>
   <button class="tab" onclick="navigateToTab('../tab_rides_exp/rides_experiences.html')">Rides & Exp.</button>
   <button class="tab" onclick="navigateToTab('../tab_product_categories/product_categories.html')">Products Categories</button>
   <button class="tab" onclick="navigateToTab('../tab_gateway/gateways.html')">Gateway</button>
   <button class="tab" onclick="navigateToTab('../tab_devices/devices.html')">Devices</button>
   <button class="tab" onclick="navigateToTab('../tab_device_locations/device_locations.html')">Device by Locations</button>
-  <button class="tab" onclick="navigateToTab('../tab_integrations/integrations.html')">Integrations</button>
+  <button class="tab active" onclick="navigateToTab('../tab_integrations/integrations.html')">Integrations</button>
 </div>
 
-<!-- BANNER -->
-<div class="banner">
-  <i class="hgi-stroke hgi-info-circle"></i>
-  <span>Managed in Event Management Module. Productions are read-only here — manage them from your EM platform.</span>
-</div>
-
-<!-- FILTER BAR -->
-<div class="filter-bar">
-  <div class="search-box">
-    <i class="hgi-stroke hgi-search-01"></i>
-    <input type="text" placeholder="Search productions...">
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-left">
+    <div class="page-title">Integrations</div>
+    <div class="page-subtitle">Manage third-party integrations and API connections</div>
   </div>
-  <select class="filter-select">
-    <option>All Statuses</option>
-    <option>Active</option>
-    <option>Draft</option>
-    <option>Archived</option>
-  </select>
+</div>
+
+<!-- EMPTY STATE -->
+<div class="empty-state">
+  <i class="hgi-stroke hgi-plug"></i>
+  <div class="empty-state-title">No Integrations Connected</div>
+  <div class="empty-state-text">Get started by connecting your first integration to extend Evinra's functionality.</div>
   <button class="btn-add">
     <i class="hgi-stroke hgi-plus"></i>
-    Add Production
+    Add Integration
   </button>
-</div>
-
-<!-- TABLE -->
-<div class="table-wrapper">
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>NAME</th>
-        <th>CONTACT</th>
-        <th>DESCRIPTION</th>
-        <th>SOURCE</th>
-        <th>SHOWS</th>
-        <th>STATUS</th>
-        <th style="width: 40px;"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="cell-id">PRD-001</td>
-        <td>
-          <strong>Evinra Faris Event</strong>
-          <div class="cell-contact">msantos@evinra.com</div>
-        </td>
-        <td>
-          <strong>Maria Santos</strong>
-          <div class="cell-contact">msantos@evinra.com</div>
-        </td>
-        <td>Main touring production with full experience lineup</td>
-        <td><span class="badge badge-local">Local</span></td>
-        <td><strong>2</strong></td>
-        <td><span class="badge badge-active">Active</span></td>
-        <td><button class="btn-action"><i class="hgi-stroke hgi-eye"></i></button></td>
-      </tr>
-      <tr>
-        <td class="cell-id">PRD-002</td>
-        <td>
-          <strong>Summer Festival 2026</strong>
-          <div class="cell-contact">jcole@summerfest.com</div>
-        </td>
-        <td>
-          <strong>James Cole</strong>
-          <div class="cell-contact">jcole@summerfest.com</div>
-        </td>
-        <td>Outdoor summer festival series – multi-stage</td>
-        <td><span class="badge badge-local">Local</span></td>
-        <td><strong>1</strong></td>
-        <td><span class="badge badge-active">Active</span></td>
-        <td><button class="btn-action"><i class="hgi-stroke hgi-eye"></i></button></td>
-      </tr>
-      <tr>
-        <td class="cell-id">PRD-003</td>
-        <td>
-          <strong>Bayfront Events</strong>
-          <div class="cell-contact">sgreen@bayfront.com</div>
-        </td>
-        <td>
-          <strong>Sara Green</strong>
-          <div class="cell-contact">sgreen@bayfront.com</div>
-        </td>
-        <td>Bayfront Arena residency shows</td>
-        <td><span class="badge badge-em">EM</span></td>
-        <td><strong>2</strong></td>
-        <td><span class="badge badge-active">Active</span></td>
-        <td><button class="btn-action"><i class="hgi-stroke hgi-eye"></i></button></td>
-      </tr>
-      <tr>
-        <td class="cell-id">PRD-004</td>
-        <td>
-          <strong>Miami Arena Events</strong>
-          <div class="cell-contact">tray@miamiarena.com</div>
-        </td>
-        <td>
-          <strong>Tom Ray</strong>
-          <div class="cell-contact">tray@miamiarena.com</div>
-        </td>
-        <td>Large-capacity arena concert series</td>
-        <td><span class="badge badge-em">EM</span></td>
-        <td><strong>3</strong></td>
-        <td><span class="badge badge-active">Active</span></td>
-        <td><button class="btn-action"><i class="hgi-stroke hgi-eye"></i></button></td>
-      </tr>
-      <tr>
-        <td class="cell-id">PRD-005</td>
-        <td>
-          <strong>Golden Rock Tour</strong>
-          <div class="cell-contact">lchen@goldenrock.com</div>
-        </td>
-        <td>
-          <strong>Lucy Chen</strong>
-          <div class="cell-contact">lchen@goldenrock.com</div>
-        </td>
-        <td>National rock tour – pending final approval</td>
-        <td><span class="badge badge-local">Local</span></td>
-        <td><strong>0</strong></td>
-        <td><span class="badge badge-draft">Draft</span></td>
-        <td><button class="btn-action"><i class="hgi-stroke hgi-eye"></i></button></td>
-      </tr>
-      <tr>
-        <td class="cell-id">PRD-006</td>
-        <td>
-          <strong>Championship Series</strong>
-          <div class="cell-contact">arivera@championship.com</div>
-        </td>
-        <td>
-          <strong>Alex Rivera</strong>
-          <div class="cell-contact">arivera@championship.com</div>
-        </td>
-        <td>Sports championship event series</td>
-        <td><span class="badge badge-em">EM</span></td>
-        <td><strong>0</strong></td>
-        <td><span class="badge badge-archived">Archived</span></td>
-        <td><button class="btn-action"><i class="hgi-stroke hgi-eye"></i></button></td>
-      </tr>
-    </tbody>
-  </table>
 </div>
 
     </div>
@@ -748,11 +481,8 @@
     tabs.forEach(tab => {
       tab.classList.remove('active');
       const onclick = tab.getAttribute('onclick');
-      if (onclick) {
-        const path = onclick.match(/'([^']+)'/)[1];
-        if (currentPath.includes(path.split('/').pop())) {
-          tab.classList.add('active');
-        }
+      if (onclick && currentPath.includes(onclick.match(/'([^']+)'/)[1])) {
+        tab.classList.add('active');
       }
     });
   });
