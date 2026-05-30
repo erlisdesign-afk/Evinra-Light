@@ -14,7 +14,10 @@
       "Bash(git init *)",
       "Bash(git config *)",
       "Bash(git add *)",
-      "Bash(git commit -m 'Initial commit: Evinra HTML pages with standardized sidebar and light mode styling *)"
+      "Bash(git commit -m 'Initial commit: Evinra HTML pages with standardized sidebar and light mode styling *)",
+      "Bash(gh --version)",
+      "PowerShell(gh --version)",
+      "Bash(git commit *)"
     ]
   }
 }
